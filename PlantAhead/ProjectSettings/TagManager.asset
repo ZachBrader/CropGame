@@ -47,6 +47,12 @@ TagManager:
   - name: Actors
     uniqueID: 490821995
     locked: 0
-  - name: Crops
+  - name: Buildings
     uniqueID: 1484007595
+    locked: 0
+  - name: Crops
+    uniqueID: 3597178109
+    locked: 0
+  - name: TreeTops
+    uniqueID: 3484327761
     locked: 0

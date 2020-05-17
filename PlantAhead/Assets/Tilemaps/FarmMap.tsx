@@ -5,12 +5,36 @@
   <terrain name="grass" tile="928"/>
   <terrain name="fencing" tile="928"/>
  </terraintypes>
- <tile id="0" terrain="1,1,1,"/>
- <tile id="1" terrain="1,1,,"/>
- <tile id="2" terrain="1,1,,"/>
- <tile id="3" terrain="1,1,,1"/>
- <tile id="32" terrain="1,,1,"/>
- <tile id="35" terrain=",1,,1"/>
+ <tile id="0" terrain="1,1,1,">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0.0222222" y="0.0666667" width="15.9333" height="15.9333"/>
+  </objectgroup>
+ </tile>
+ <tile id="1" terrain="1,1,,">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0.0222222" y="0.0666667" width="15.9778" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="2" terrain="1,1,,">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0.0222222" y="0.0444444" width="16" height="16.0222"/>
+  </objectgroup>
+ </tile>
+ <tile id="3" terrain="1,1,,1">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0.0888889" width="15.8889" height="15.8444"/>
+  </objectgroup>
+ </tile>
+ <tile id="32" terrain="1,,1,">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="-0.0444444" y="0.0666667" width="4.04444" height="15.8444"/>
+  </objectgroup>
+ </tile>
+ <tile id="35" terrain=",1,,1">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="12.0222" y="0" width="3.97778" height="15.9778"/>
+  </objectgroup>
+ </tile>
  <tile id="36">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="7.95652" width="15.913" height="8"/>
@@ -21,10 +45,26 @@
    <object id="1" x="0.0434783" y="8" width="15.8696" height="8"/>
   </objectgroup>
  </tile>
- <tile id="64" terrain="1,,1,1"/>
- <tile id="65" terrain=",,1,1"/>
- <tile id="66" terrain=",,1,1"/>
- <tile id="67" terrain=",1,1,1"/>
+ <tile id="64" terrain="1,,1,1">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0.0222222" y="0" width="16.0222" height="15.9333"/>
+  </objectgroup>
+ </tile>
+ <tile id="65" terrain=",,1,1">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0.0444444" width="15.9333" height="15.8667"/>
+  </objectgroup>
+ </tile>
+ <tile id="66" terrain=",,1,1">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0.0222222" y="0.0444444" width="15.9778" height="15.9556"/>
+  </objectgroup>
+ </tile>
+ <tile id="67" terrain=",1,1,1">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0.0666667" y="0.0222222" width="15.8667" height="15.9111"/>
+  </objectgroup>
+ </tile>
  <tile id="68">
   <objectgroup draworder="index" id="3">
    <object id="4" x="0.0268614" y="0" width="15.9825" height="16.0094"/>

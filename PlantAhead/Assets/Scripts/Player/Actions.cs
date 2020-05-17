@@ -21,6 +21,8 @@ public class Actions : MonoBehaviour
 
     [SerializeField]
     private bool nearWater = false;
+    
+    [Header("plant")] public GameObject plant;
 
     // Start is called before the first frame update
     void Start()
@@ -38,8 +40,7 @@ public class Actions : MonoBehaviour
     {
         selectCell();
         // Used to interact with a tile
-        if (Input.GetKeyDown(KeyCode.L))
-        {
+        if (Input.GetKeyDown(KeyCode.Space)){
             DoAction();
         }
 
@@ -57,6 +58,12 @@ public class Actions : MonoBehaviour
             Debug.Log("No item currently equipped -- Cannot Preform Action");
             return;
         }
+
+        if (plant.tag.Equals("Plant")){
+            Instantiate(plant, new Vector3(curCellPosition.x, curCellPosition.y, curCellPosition.z), Quaternion.identity);
+
+        }
+
         currentEquipped.GetComponent<Item>().Use(curCellPosition);
     }
 

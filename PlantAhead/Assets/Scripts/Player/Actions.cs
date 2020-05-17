@@ -40,6 +40,7 @@ public class Actions : MonoBehaviour
         playerInventory = GetComponent<Inventory>();
         movement = GetComponent<Movement>();
         curSelectionSprite = GameObject.Instantiate(selectionSprite) as GameObject;
+        
     }
 
     // Update is called once per frame

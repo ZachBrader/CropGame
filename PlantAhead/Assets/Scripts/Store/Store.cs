@@ -22,11 +22,12 @@ public class Store : MonoBehaviour
 
         isOpen = storeUi.activeSelf;
         Debug.Log("Store is currently: " + isOpen);
+
+        // Get player items
         Transform[] allChildren = playerInventoryUIParent.GetComponentsInChildren<Transform>();
         playerInventoryUIList = new List<GameObject>();
         foreach (Transform child in allChildren)
         {
-            print(child.name);
             playerInventoryUIList.Add(child.gameObject);
         }
         print(playerInventoryUIList.Count);

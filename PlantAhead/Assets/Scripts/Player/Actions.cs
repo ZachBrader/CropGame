@@ -10,14 +10,14 @@ public class Actions : MonoBehaviour
     public GameObject gridObject;
     public GameObject selectionSprite;
 
-    private Grid grid;
+    public Grid grid;
     private GameObject currentEquipped;
-    private GameObject curSelectionSprite = null;
+    public GameObject curSelectionSprite = null;
     [SerializeField]
     private Vector3Int curCellPosition;
     private Inventory playerInventory;
 
-    private Movement movement;
+    public Movement movement;
     private GameManager gameManager;
 
     [SerializeField]
@@ -28,10 +28,14 @@ public class Actions : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        Debug.Log("Actions Start");
+        var temp = GameObject.FindGameObjectWithTag("GameManager");
+        if (temp != null){
+            gameManager = temp.GetComponent<GameManager>();
+        }
 
         EquipItem(firstSelectedItem);
-        grid = gridObject.GetComponent<Grid>();
+        //grid = gridObject.GetComponent<Grid>();
 
         playerInventory = GetComponent<Inventory>();
         movement = GetComponent<Movement>();

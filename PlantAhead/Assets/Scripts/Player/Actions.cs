@@ -13,8 +13,14 @@ public class Actions : MonoBehaviour
     private Grid grid;
     private GameObject currentEquipped;
     private GameObject curSelectionSprite = null;
+    [SerializeField]
     private Vector3Int curCellPosition;
     private Inventory playerInventory;
+
+    private Movement movement;
+
+    [SerializeField]
+    private bool nearWater = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +29,8 @@ public class Actions : MonoBehaviour
         grid = gridObject.GetComponent<Grid>();
 
         playerInventory = GetComponent<Inventory>();
+        movement = GetComponent<Movement>();
+        curSelectionSprite = GameObject.Instantiate(selectionSprite) as GameObject;
     }
 
     // Update is called once per frame
@@ -70,18 +78,31 @@ public class Actions : MonoBehaviour
     void selectCell()
     {
         Vector3Int cellPosition = grid.WorldToCell(transform.position);
-
+        Vector3 offset = new Vector3(cellPosition.x + 0.5f + movement.direction.x, cellPosition.y - 0.5f + movement.direction.y, cellPosition.z);
         //print("Player position: " + transform.position);
         //print("Found Cell: " + cellPosition);
 
-        if (cellPosition != curCellPosition)
-        {
-            Destroy(curSelectionSprite);
-            curSelectionSprite = GameObject.Instantiate(selectionSprite) as GameObject;
-            curSelectionSprite.transform.position = cellPosition;
-
+            curSelectionSprite.transform.position = offset;
             curCellPosition = cellPosition;
+
+    }
+
+    public void OnTriggerEnter2D(Collider2D collison) 
+    {
+        if(collison.CompareTag("Water"))
+        {
+            nearWater = true;
         }
     }
+
+    public void OnTriggerExit2D(Collider2D collison) 
+    {
+        if(collison.CompareTag("Water"))
+        {
+            nearWater = false;
+        }
+    }
+
+
 
 }

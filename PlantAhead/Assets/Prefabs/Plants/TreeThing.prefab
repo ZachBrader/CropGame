@@ -69,7 +69,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -697789187
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2573825329112470195, guid: 755d6eca844c1aa4dbe60ba6330d6282,
     type: 3}
@@ -99,6 +99,6 @@ MonoBehaviour:
   stage2: {fileID: 2758529375310615579, guid: 755d6eca844c1aa4dbe60ba6330d6282, type: 3}
   stage3: {fileID: -954848900766835231, guid: 755d6eca844c1aa4dbe60ba6330d6282, type: 3}
   stage4: {fileID: 2651082895550569169, guid: 755d6eca844c1aa4dbe60ba6330d6282, type: 3}
-  timer: 60
+  timer: 10
   reusable: 1
   spriteRenderer: {fileID: 2196614929591260537}

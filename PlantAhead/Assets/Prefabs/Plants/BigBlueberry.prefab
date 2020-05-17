@@ -99,6 +99,6 @@ MonoBehaviour:
   stage2: {fileID: 6744342409855926770, guid: 755d6eca844c1aa4dbe60ba6330d6282, type: 3}
   stage3: {fileID: 1612532063194987043, guid: 755d6eca844c1aa4dbe60ba6330d6282, type: 3}
   stage4: {fileID: -9150812332014437802, guid: 755d6eca844c1aa4dbe60ba6330d6282, type: 3}
-  timer: 60
+  timer: 10
   reusable: 0
   spriteRenderer: {fileID: 1311804588099874526}

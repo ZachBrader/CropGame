@@ -69,7 +69,7 @@ public class Actions : MonoBehaviour
         }
 
         if (plant.tag.Equals("Plant")){
-            Instantiate(plant, new Vector3(curCellPosition.x, curCellPosition.y, curCellPosition.z), Quaternion.identity);
+            Instantiate(plant, new Vector3(curCellPosition.x - 0.5f, curCellPosition.y  - 0.5f, curCellPosition.z), Quaternion.identity);
 
         }
 

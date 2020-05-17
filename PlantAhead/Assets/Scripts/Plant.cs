@@ -35,7 +35,7 @@ public class Plant : MonoBehaviour{
      */
     void waterLevelCheck(){
         if (waterLevel <= 0f){
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
 
         if (waterLevel > 0){

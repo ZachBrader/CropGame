@@ -45,6 +45,16 @@
    <object id="1" x="0.0434783" y="8" width="15.8696" height="8"/>
   </objectgroup>
  </tile>
+ <tile id="38">
+  <objectgroup draworder="index" id="2">
+   <object id="7" x="0.0444444" y="0.0444444" width="15.9556" height="15.9778"/>
+  </objectgroup>
+ </tile>
+ <tile id="39">
+  <objectgroup draworder="index" id="3">
+   <object id="2" x="-0.0222222" y="0.0222222" width="16.0222" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="64" terrain="1,,1,1">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0.0222222" y="0" width="16.0222" height="15.9333"/>

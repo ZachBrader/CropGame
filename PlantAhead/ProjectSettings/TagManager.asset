@@ -43,14 +43,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Actors
-    uniqueID: 490821995
-    locked: 0
   - name: Buildings
     uniqueID: 1484007595
     locked: 0
   - name: Crops
     uniqueID: 3597178109
+    locked: 0
+  - name: Actors
+    uniqueID: 490821995
     locked: 0
   - name: New Layer
     uniqueID: 3484327761

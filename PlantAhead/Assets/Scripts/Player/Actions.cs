@@ -23,7 +23,7 @@ public class Actions : MonoBehaviour
     [SerializeField]
     private bool nearWater = false;
     
-    [Header("plant")] public GameObject plant;
+    [Header("Plant")] public GameObject plant;
 
     // Start is called before the first frame update
     void Start()

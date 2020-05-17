@@ -54,7 +54,7 @@ public class Actions : MonoBehaviour
         }
 
         // Temporary Fix to simulate sleeping
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             gameManager.EndDay();
         }

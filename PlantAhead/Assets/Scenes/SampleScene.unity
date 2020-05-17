@@ -418,7 +418,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.736622, y: -33.60396, z: -10}
+  m_LocalPosition: {x: 20.546017, y: -33.608994, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -749,7 +749,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1449022244
 GameObject:
@@ -1066,7 +1066,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 490821995
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 874b1772a721da74d9722848d3420cc2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1076,7 +1076,7 @@ SpriteRenderer:
   m_Size: {x: 4, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &2000611876
@@ -1319,6 +1319,12 @@ PrefabInstance:
       propertyPath: gridObject
       value: 
       objectReference: {fileID: 184408929}
+    - target: {fileID: 5794718071514118738, guid: 719902d9423145a419fcfff3254d526a,
+        type: 3}
+      propertyPath: plant
+      value: 
+      objectReference: {fileID: 7802496143075752189, guid: a20463a3e09357c48b577c289dd4d232,
+        type: 3}
     - target: {fileID: 5794718071514118739, guid: 719902d9423145a419fcfff3254d526a,
         type: 3}
       propertyPath: inventoryUIParent

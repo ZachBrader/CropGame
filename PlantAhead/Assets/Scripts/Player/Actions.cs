@@ -18,6 +18,7 @@ public class Actions : MonoBehaviour
     private Inventory playerInventory;
 
     private Movement movement;
+    private GameManager gameManager;
 
     [SerializeField]
     private bool nearWater = false;
@@ -27,6 +28,8 @@ public class Actions : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+
         EquipItem(firstSelectedItem);
         grid = gridObject.GetComponent<Grid>();
 
@@ -48,6 +51,12 @@ public class Actions : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             EquipItem(playerInventory.getitem(0));
+        }
+
+        // Temporary Fix to simulate sleeping
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            gameManager.EndDay();
         }
     }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Actions : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class Actions : MonoBehaviour
 
     public Movement movement;
     private GameManager gameManager;
+
+    public Image waterBar;
 
     [SerializeField]
     private bool nearWater = false;
@@ -85,12 +88,14 @@ public class Actions : MonoBehaviour
         currentEquipped.GetComponent<Item>().Use(curCellPosition);
     }
 
+    
+
     void EquipItem(GameObject item)
     {
         if (item == null)
         {
             currentEquipped = null;
-            itemSelectedText.GetComponent<Text>().text = "Item: None";
+            itemSelectedText.GetComponent<TextMeshPro>().text = "Item: None";
             Debug.Log("No item selected");
             return;
         }

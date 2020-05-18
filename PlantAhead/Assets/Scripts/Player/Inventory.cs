@@ -79,7 +79,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    void addToInventory(GameObject item)
+    public void addToInventory(GameObject item)
     {
         if (inventoryList.Count >= inventorySize)
         {

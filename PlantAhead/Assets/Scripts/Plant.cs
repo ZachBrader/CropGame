@@ -11,22 +11,38 @@ public class Plant : MonoBehaviour{
     [Header("Time per phase, in seconds")] public int timer;
     [Header("Is the item reharvestable?")] public bool reusable;
 
+    public Animator animator;
+
+    private float lastSparkle = 0f; // time since last sparkle
+    private float timeBetweenSparkles = 5f; // how frequently to sparkle; update when watering and growing
+
     //convey water level via sparkles or something
 
     public SpriteRenderer spriteRenderer; 
     private int plantStage = 0;
-    private float waterLevel = 0f;
+    public float waterLevel = 0f;
     private float stageTime = 0f;
     
     
     // Start is called before the first frame update
     void Start(){
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        animator = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update(){
         grow();
+
+        if (waterLevel > 0) 
+        {
+            lastSparkle += Time.deltaTime;
+            if(lastSparkle > timeBetweenSparkles)
+            {
+                lastSparkle = timeBetweenSparkles - lastSparkle;
+                animator.SetTrigger("Water Sparkle");
+            }
+        }
         
     }
 

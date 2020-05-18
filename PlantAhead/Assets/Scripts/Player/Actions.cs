@@ -103,8 +103,8 @@ public class Actions : MonoBehaviour
         //print("Player position: " + transform.position);
         //print("Found Cell: " + cellPosition);
 
-            curSelectionSprite.transform.position = offset;
-            curCellPosition = cellPosition;
+        curSelectionSprite.transform.position = offset;
+        curCellPosition = cellPosition;
 
     }
 

@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class Seed : Item
 {
+
+    // Which type of plant it will grow
+    public GameObject plant;
+
+    [HideInInspector]
+    public int seedCount = 1;
+
     // Start is called before the first frame update
     void Start()
     {
-        this.name = "Seed";
-        print("Setting name to seed");
     }
 
     // Update is called once per frame
@@ -17,8 +22,13 @@ public class Seed : Item
         
     }
 
-    public override void Use(Vector3Int selectedTile)
+    public override void Use(Vector3 selectedTile)
     {
         Debug.Log("Planted Seed at " + selectedTile);
+        if (plant.tag.Equals("Plant"))
+        {
+            Instantiate(plant, selectedTile, Quaternion.identity);
+
+        }
     }
 }

@@ -76,13 +76,15 @@ public class Actions : MonoBehaviour
             return;
         }
 
-        if (plant.tag.Equals("Plant")){
+        /*if (plant.tag.Equals("Plant")){
             Vector3Int cellPosition = grid.WorldToCell(transform.position);
             Instantiate(plant, new Vector3(cellPosition.x + 0.5f + movement.direction.x, cellPosition.y - 0.5f + movement.direction.y, cellPosition.z), Quaternion.identity);
 
-        }
+        }*/
 
-        currentEquipped.GetComponent<Item>().Use(curCellPosition);
+        Vector3Int cellPosition = grid.WorldToCell(transform.position);
+        Vector3 fixedCellLocation = new Vector3(cellPosition.x + 0.5f + movement.direction.x, cellPosition.y - 0.5f + movement.direction.y, cellPosition.z);
+        currentEquipped.GetComponent<Item>().Use(fixedCellLocation);
     }
 
     void EquipItem(GameObject item)
@@ -96,7 +98,8 @@ public class Actions : MonoBehaviour
         }
 
         currentEquipped = item;
-        itemSelectedText.GetComponent<Text>().text = "Item: " + item.GetComponent<Item>().name;
+        print(item.GetComponent<Item>().itemName + " : " + item.name);
+        itemSelectedText.GetComponent<Text>().text = "Item: " + item.GetComponent<Item>().itemName;
         Debug.Log("Equipped " + item.GetComponent<Item>().name);
     }
 

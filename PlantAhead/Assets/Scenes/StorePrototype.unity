@@ -2022,7 +2022,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.125}
+    pivot: {x: 0.5, y: 0.65}
     oldSize: {x: 2, y: 2}
     newSize: {x: 2, y: 2}
     adaptiveTilingThreshold: 0.5
@@ -3028,7 +3028,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 490821995
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 874b1772a721da74d9722848d3420cc2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3292,6 +3292,18 @@ PrefabInstance:
       propertyPath: grid
       value: 
       objectReference: {fileID: 184408930}
+    - target: {fileID: 5794718071514118738, guid: 719902d9423145a419fcfff3254d526a,
+        type: 3}
+      propertyPath: firstSelectedItem
+      value: 
+      objectReference: {fileID: 1093700146046993454, guid: a5cbc9831fbc38a4f87d426b6433703d,
+        type: 3}
+    - target: {fileID: 5794718071514118738, guid: 719902d9423145a419fcfff3254d526a,
+        type: 3}
+      propertyPath: selectionSprite
+      value: 
+      objectReference: {fileID: 5690451708708873100, guid: 068a1a7dfb329a4499ca5018c8f8db25,
+        type: 3}
     - target: {fileID: 5794718071514118739, guid: 719902d9423145a419fcfff3254d526a,
         type: 3}
       propertyPath: inventoryUIParent

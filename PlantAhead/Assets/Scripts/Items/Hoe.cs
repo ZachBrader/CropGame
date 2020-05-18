@@ -7,8 +7,7 @@ public class Hoe : Item
     // Start is called before the first frame update
     void Start()
     {
-        this.name = "Hoe";
-        print("Setting name to hoe");
+        this.itemName = "Hoe";
     }
 
     // Update is called once per frame
@@ -17,7 +16,7 @@ public class Hoe : Item
         
     }
 
-    public override void Use(Vector3Int selectedTile)
+    public override void Use(Vector3 selectedTile)
     {
         Debug.Log("Hoe'd " + selectedTile);
     }

@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    [HideInInspector]
-    public string name;
+    public string itemName;
 
     // Start is called before the first frame update
     void Start()
     {
-        name = "None";
+        itemName = "None";
     }
 
     // Update is called once per frame
@@ -19,7 +18,7 @@ public class Item : MonoBehaviour
         
     }
 
-    public virtual void Use(Vector3Int selectedTile)
+    public virtual void Use(Vector3 selectedTile)
     {
         Debug.Log("Using item");
     }

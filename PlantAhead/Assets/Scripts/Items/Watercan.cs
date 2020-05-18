@@ -7,8 +7,7 @@ public class Watercan : Item
     // Start is called before the first frame update
     void Start()
     {
-        this.name = "Watercan";
-        print("Setting name to watercan");
+        this.itemName = "Watercan";
     }
 
     // Update is called once per frame
@@ -17,7 +16,7 @@ public class Watercan : Item
         
     }
 
-    public override void Use(Vector3Int selectedTile)
+    public override void Use(Vector3 selectedTile)
     {
         Debug.Log("Watered " + selectedTile);
     }

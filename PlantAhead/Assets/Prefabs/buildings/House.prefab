@@ -68,7 +68,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1484007595
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 473703301661911005, guid: 82b1afc2e3d852348ae27380973d0022, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2614238915082533287}
   m_Layer: 0
   m_Name: House
-  m_TagString: Untagged
+  m_TagString: House
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,7 +107,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2614238915082533284}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.216724, y: -34.959152, z: -3.3285866}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2614238915267056236}
@@ -128,7 +128,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.75}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -141,13 +141,14 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 6.7611275, y: 1.949913}
-      - {x: 2.8113327, y: 1.9480782}
+      - {x: 2.821991, y: 1.9693985}
       - {x: 2.814045, y: -0.86870956}
-      - {x: 3.6215782, y: -0.8384819}
-      - {x: 3.6588726, y: 0.21539688}
-      - {x: 4.980253, y: 0.23071289}
-      - {x: 4.9461975, y: -0.8462677}
-      - {x: 6.762274, y: -0.82714844}
+      - {x: 3.570379, y: -0.3947544}
+      - {x: 3.7954047, y: 0.79565585}
+      - {x: 4.843722, y: 0.810972}
+      - {x: 5.031529, y: -0.4025402}
+      - {x: 5.8884635, y: -0.8047589}
+      - {x: 6.745208, y: -0.8100822}
 --- !u!61 &2614238915082533287
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -161,7 +162,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 4.3677244, y: 0.13038063}
+  m_Offset: {x: 4.7956715, y: 1.331183}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -172,7 +173,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9499111, y: 1.8195305}
+  m_Size: {x: 3.9296188, y: 2.7752523}
   m_EdgeRadius: 0
 --- !u!1 &2614238915267056237
 GameObject:

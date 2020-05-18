@@ -1,16 +1,66 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3091112989257140797
+--- !u!1001 &5329270264395808809
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3324291818824633320, guid: 277393091fe3b184c9896e7ef2088ae3,
+        type: 3}
+      propertyPath: reusable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3324291818824633320, guid: 277393091fe3b184c9896e7ef2088ae3,
+        type: 3}
+      propertyPath: stage1
+      value: 
+      objectReference: {fileID: -58964958081557142, guid: 755d6eca844c1aa4dbe60ba6330d6282,
+        type: 3}
+    - target: {fileID: 3324291818824633320, guid: 277393091fe3b184c9896e7ef2088ae3,
+        type: 3}
+      propertyPath: stage2
+      value: 
+      objectReference: {fileID: 2758529375310615579, guid: 755d6eca844c1aa4dbe60ba6330d6282,
+        type: 3}
+    - target: {fileID: 3324291818824633320, guid: 277393091fe3b184c9896e7ef2088ae3,
+        type: 3}
+      propertyPath: stage3
+      value: 
+      objectReference: {fileID: -954848900766835231, guid: 755d6eca844c1aa4dbe60ba6330d6282,
+        type: 3}
+    - target: {fileID: 3324291818824633320, guid: 277393091fe3b184c9896e7ef2088ae3,
+        type: 3}
+      propertyPath: stage4
+      value: 
+      objectReference: {fileID: 2651082895550569169, guid: 755d6eca844c1aa4dbe60ba6330d6282,
+        type: 3}
+    - target: {fileID: 3324291818824633320, guid: 277393091fe3b184c9896e7ef2088ae3,
+        type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 7482483227611548608}
+    - target: {fileID: 3324291818824633321, guid: 277393091fe3b184c9896e7ef2088ae3,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -697789187
+      objectReference: {fileID: 0}
+    - target: {fileID: 3324291818824633321, guid: 277393091fe3b184c9896e7ef2088ae3,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3324291818824633321, guid: 277393091fe3b184c9896e7ef2088ae3,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2573825329112470195, guid: 755d6eca844c1aa4dbe60ba6330d6282,
+        type: 3}
     - target: {fileID: 3324291818824633322, guid: 277393091fe3b184c9896e7ef2088ae3,
         type: 3}
       propertyPath: m_Name
-      value: Plant
+      value: TreeThing 1
       objectReference: {fileID: 0}
     - target: {fileID: 3324291818824633326, guid: 277393091fe3b184c9896e7ef2088ae3,
         type: 3}
@@ -69,3 +119,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 277393091fe3b184c9896e7ef2088ae3, type: 3}
+--- !u!212 &7482483227611548608 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3324291818824633321, guid: 277393091fe3b184c9896e7ef2088ae3,
+    type: 3}
+  m_PrefabInstance: {fileID: 5329270264395808809}
+  m_PrefabAsset: {fileID: 0}

@@ -22,6 +22,9 @@ public class Actions : MonoBehaviour
 
     [SerializeField]
     private bool nearWater = false;
+
+    [SerializeField]
+    private bool canSleep = false;
     
     [Header("Plant")] public GameObject plant;
 
@@ -40,7 +43,6 @@ public class Actions : MonoBehaviour
         playerInventory = GetComponent<Inventory>();
         movement = GetComponent<Movement>();
         curSelectionSprite = GameObject.Instantiate(selectionSprite) as GameObject;
-        
     }
 
     // Update is called once per frame
@@ -59,7 +61,8 @@ public class Actions : MonoBehaviour
         }
 
         // Temporary Fix to simulate sleeping
-        if (Input.GetKeyDown(KeyCode.Q))
+        // checks if you're in the house
+        if (Input.GetKeyDown(KeyCode.Q) && canSleep)
         {
             gameManager.EndDay();
         }
@@ -74,7 +77,8 @@ public class Actions : MonoBehaviour
         }
 
         if (plant.tag.Equals("Plant")){
-            Instantiate(plant, new Vector3(curCellPosition.x - 0.5f, curCellPosition.y  - 0.5f, curCellPosition.z), Quaternion.identity);
+            Vector3Int cellPosition = grid.WorldToCell(transform.position);
+            Instantiate(plant, new Vector3(cellPosition.x + 0.5f + movement.direction.x, cellPosition.y - 0.5f + movement.direction.y, cellPosition.z), Quaternion.identity);
 
         }
 
@@ -103,8 +107,8 @@ public class Actions : MonoBehaviour
         //print("Player position: " + transform.position);
         //print("Found Cell: " + cellPosition);
 
-            curSelectionSprite.transform.position = offset;
-            curCellPosition = cellPosition;
+        curSelectionSprite.transform.position = offset;
+        curCellPosition = cellPosition;
 
     }
 
@@ -114,6 +118,11 @@ public class Actions : MonoBehaviour
         {
             nearWater = true;
         }
+
+        if(collison.CompareTag("House"))
+        {
+            canSleep = true;
+        }
     }
 
     public void OnTriggerExit2D(Collider2D collison) 
@@ -121,6 +130,11 @@ public class Actions : MonoBehaviour
         if(collison.CompareTag("Water"))
         {
             nearWater = false;
+        }
+
+        if(collison.CompareTag("House"))
+        {
+            canSleep = false;
         }
     }
 

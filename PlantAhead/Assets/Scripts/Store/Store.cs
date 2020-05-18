@@ -7,6 +7,8 @@ public class Store : MonoBehaviour
 {
     public GameObject storeUi;
     public GameObject playerInventoryUIParent;
+    public GameObject itemToSell;
+
 
     private List<GameObject> playerInventoryUIList;
     private bool isOpen;
@@ -42,6 +44,7 @@ public class Store : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
+            print("Toggling store");
             toggleStore();
         }
     }
@@ -83,5 +86,10 @@ public class Store : MonoBehaviour
             Debug.Log("Closing inventory");
             storeUi.SetActive(false);
         }
+    }
+
+    public void buyItem(GameObject item)
+    {
+        playerInventory.addToInventory(itemToSell);
     }
 }

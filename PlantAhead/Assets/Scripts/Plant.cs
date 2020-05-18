@@ -11,6 +11,8 @@ public class Plant : MonoBehaviour{
     [Header("Time per phase, in seconds")] public int timer;
     [Header("Is the item reharvestable?")] public bool reusable;
 
+    [Header("Water needed per stage of growth")] public int waterCost;
+
     public Animator animator;
 
     private float lastSparkle = 0f; // time since last sparkle
@@ -20,7 +22,7 @@ public class Plant : MonoBehaviour{
 
     public SpriteRenderer spriteRenderer; 
     private int plantStage = 0;
-    public float waterLevel = 0f;
+    public int waterLevel = 0;
     private float stageTime = 0f;
     
     
@@ -54,8 +56,8 @@ public class Plant : MonoBehaviour{
             //Destroy(this.gameObject);
         }
 
-        if (waterLevel > 0){
-            waterLevel -= 0.33f;
+        if (waterLevel - waterCost > 0){
+            waterLevel -= waterCost;
         }
     }
 
@@ -63,7 +65,7 @@ public class Plant : MonoBehaviour{
      * maximizes water value of plant
      */
     void waterPlant(){
-        waterLevel = 1;
+        waterLevel += 1;
     }
     
     /*

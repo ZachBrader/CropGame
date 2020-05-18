@@ -30,13 +30,15 @@ public class Watercan : Item
     }
 
     // do a watering can action. If near water, this will try to fill the watering can
-    public override void Use(Vector3 selectedTile)
+    public override int Use(Vector3 selectedTile)
     {
         // fill the can if near water
         if(nearWater)
         {
             waterCurrentlyinCan = maxWaterinCan;
             // update water level amount
+
+            return 0;
         }
         else if(waterCurrentlyinCan >= waterPerUse) 
         {
@@ -56,6 +58,8 @@ public class Watercan : Item
         }
 
         waterBar.fillAmount = (float) waterCurrentlyinCan / (float) maxWaterinCan;
+
+        return energyCost;
     }
 
 

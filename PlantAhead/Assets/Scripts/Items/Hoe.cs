@@ -17,8 +17,9 @@ public class Hoe : Item
         
     }
 
-    public override void Use(Vector3 selectedTile)
+    public override int Use(Vector3 selectedTile)
     {
         Debug.Log("Hoe'd " + selectedTile);
+        return energyCost;
     }
 }

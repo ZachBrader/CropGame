@@ -22,7 +22,7 @@ public class Seed : Item
         
     }
 
-    public override void Use(Vector3 selectedTile)
+    public override int Use(Vector3 selectedTile)
     {
         Debug.Log("Planted Seed at " + selectedTile);
         if (plant.tag.Equals("Plant"))
@@ -30,5 +30,6 @@ public class Seed : Item
             Instantiate(plant, selectedTile, Quaternion.identity);
 
         }
+        return energyCost;
     }
 }

@@ -7,6 +7,8 @@ public class Item : MonoBehaviour
     public string itemName;
     public string triggerName;
 
+    public int energyCost = 5;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +22,10 @@ public class Item : MonoBehaviour
         
     }
 
-    public virtual void Use(Vector3 selectedTile)
+    // this should return energy cost
+    public virtual int Use(Vector3 selectedTile)
     {
         Debug.Log("Using item");
+        return energyCost;
     }
 }

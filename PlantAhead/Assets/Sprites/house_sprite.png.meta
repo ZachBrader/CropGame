@@ -8,6 +8,9 @@ TextureImporter:
   - first:
       213: 473703301661911005
     second: house_sprite_bottom
+  - first:
+      213: -4851156332578367175
+    second: house_sprite_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -109,11 +112,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 46
+        y: 23
         width: 64
-        height: 34
+        height: 57
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -132,9 +135,9 @@ TextureImporter:
         x: 0
         y: 0
         width: 64
-        height: 46
+        height: 23
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

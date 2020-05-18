@@ -22,6 +22,9 @@ public class Actions : MonoBehaviour
 
     [SerializeField]
     private bool nearWater = false;
+
+    [SerializeField]
+    private bool canSleep = false;
     
     [Header("Plant")] public GameObject plant;
 
@@ -58,7 +61,8 @@ public class Actions : MonoBehaviour
         }
 
         // Temporary Fix to simulate sleeping
-        if (Input.GetKeyDown(KeyCode.Q))
+        // checks if you're in the house
+        if (Input.GetKeyDown(KeyCode.Q) && canSleep)
         {
             gameManager.EndDay();
         }
@@ -114,6 +118,11 @@ public class Actions : MonoBehaviour
         {
             nearWater = true;
         }
+
+        if(collison.CompareTag("House"))
+        {
+            canSleep = true;
+        }
     }
 
     public void OnTriggerExit2D(Collider2D collison) 
@@ -121,6 +130,11 @@ public class Actions : MonoBehaviour
         if(collison.CompareTag("Water"))
         {
             nearWater = false;
+        }
+
+        if(collison.CompareTag("House"))
+        {
+            canSleep = false;
         }
     }
 

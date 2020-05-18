@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 using TMPro;
 
@@ -12,6 +13,7 @@ public class Actions : MonoBehaviour
     public GameObject selectionSprite;
 
     public Grid grid;
+    public Tilemap tillableTiles;
     private GameObject currentEquipped;
     public GameObject curSelectionSprite = null;
     [SerializeField]
@@ -21,10 +23,10 @@ public class Actions : MonoBehaviour
     public Movement movement;
     private GameManager gameManager;
 
-    public Image waterBar;
+    //public Image waterBar; in watercan.cs
 
     [SerializeField]
-    private bool nearWater = false;
+    private bool nearWater = false; // watercan.cs make it's own check; this may not be needed here
 
     [SerializeField]
     private bool canSleep = false;
@@ -40,7 +42,7 @@ public class Actions : MonoBehaviour
             gameManager = temp.GetComponent<GameManager>();
         }
 
-        EquipItem(firstSelectedItem);
+        // EquipItem(firstSelectedItem);
         //grid = gridObject.GetComponent<Grid>();
 
         playerInventory = GetComponent<Inventory>();
@@ -76,7 +78,7 @@ public class Actions : MonoBehaviour
         if (currentEquipped == null)
         {
             Debug.Log("No item currently equipped -- Cannot Preform Action");
-            return;
+            //return;
         }
 
         /*if (plant.tag.Equals("Plant")){
@@ -85,9 +87,18 @@ public class Actions : MonoBehaviour
 
         }*/
 
-        Vector3Int cellPosition = grid.WorldToCell(transform.position);
-        Vector3 fixedCellLocation = new Vector3(cellPosition.x + 0.5f + movement.direction.x, cellPosition.y - 0.5f + movement.direction.y, cellPosition.z);
-        currentEquipped.GetComponent<Item>().Use(fixedCellLocation);
+        Vector3 selectorPos = new Vector3(transform.position.x + movement.direction.x, transform.position.y + movement.direction.y, 0);
+        Vector3Int cellPosition = grid.WorldToCell(selectorPos);
+        var tillableTile = tillableTiles.GetTile(cellPosition);
+
+        if(tillableTile != null)
+        {
+            var newPlant = Instantiate(plant);
+            newPlant.transform.position = new Vector3(cellPosition.x + 0.5f, cellPosition.y - 0.5f, 0);
+            (tillableTile as TillableTile).plant = newPlant.GetComponent<Plant>();
+        }
+        
+        //currentEquipped.GetComponent<Item>().Use(fixedCellLocation);
     }
 
     
@@ -104,7 +115,7 @@ public class Actions : MonoBehaviour
 
         currentEquipped = item;
         print(item.GetComponent<Item>().itemName + " : " + item.name);
-        itemSelectedText.GetComponent<Text>().text = "Item: " + item.GetComponent<Item>().itemName;
+        itemSelectedText.GetComponent<TextMeshPro>().text = "Item: " + item.GetComponent<Item>().itemName;
         Debug.Log("Equipped " + item.GetComponent<Item>().name);
     }
 

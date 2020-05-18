@@ -8,6 +8,7 @@ public class Hoe : Item
     void Start()
     {
         this.itemName = "Hoe";
+        this.triggerName = "Hoe";
     }
 
     // Update is called once per frame

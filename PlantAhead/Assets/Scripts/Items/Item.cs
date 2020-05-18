@@ -5,11 +5,13 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     public string itemName;
+    public string triggerName;
 
     // Start is called before the first frame update
     void Start()
     {
         itemName = "None";
+        triggerName = "None";
     }
 
     // Update is called once per frame

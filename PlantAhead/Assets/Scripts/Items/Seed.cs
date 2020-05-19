@@ -22,7 +22,7 @@ public class Seed : Item
         
     }
 
-    public override int Use(Vector3 selectedTile)
+    public override int Use(Vector3Int selectedTile)
     {
         Debug.Log("Planted Seed at " + selectedTile);
         if (plant.tag.Equals("Plant"))

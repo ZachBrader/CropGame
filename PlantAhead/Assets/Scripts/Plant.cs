@@ -64,8 +64,8 @@ public class Plant : MonoBehaviour{
     /*
      * maximizes water value of plant
      */
-    void waterPlant(){
-        waterLevel += 1;
+    public void waterPlant(int waterAmount){
+        waterLevel += waterAmount;
     }
     
     /*

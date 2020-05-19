@@ -83,6 +83,8 @@ public class Actions : MonoBehaviour
 
         Vector3 selectorPos = new Vector3(transform.position.x + movement.direction.x, transform.position.y + movement.direction.y, 0);
         Vector3Int cellPosition = grid.WorldToCell(selectorPos);
+        // call use here for the tool
+
         var tillableTile = tillableTiles.GetTile(cellPosition);
 
         if(tillableTile != null){

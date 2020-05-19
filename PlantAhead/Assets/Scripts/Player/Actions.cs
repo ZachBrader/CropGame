@@ -34,8 +34,7 @@ public class Actions : MonoBehaviour
     [Header("Plant")] public GameObject plant;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
         Debug.Log("Actions Start");
         var temp = GameObject.FindGameObjectWithTag("GameManager");
         if (temp != null){
@@ -51,8 +50,7 @@ public class Actions : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update(){
         selectCell();
         // Used to interact with a tile
         if (Input.GetKeyDown(KeyCode.Space)){
@@ -60,23 +58,19 @@ public class Actions : MonoBehaviour
         }
 
         // Used to equip the currently selected item
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
+        if (Input.GetKeyDown(KeyCode.Alpha0)){
             EquipItem(playerInventory.getitem(0));
         }
 
         // Temporary Fix to simulate sleeping
         // checks if you're in the house
-        if (Input.GetKeyDown(KeyCode.Q) && canSleep)
-        {
+        if (Input.GetKeyDown(KeyCode.Q) && canSleep){
             gameManager.EndDay();
         }
     }
 
-    void DoAction()
-    {
-        if (currentEquipped == null)
-        {
+    void DoAction(){
+        if (currentEquipped == null){
             Debug.Log("No item currently equipped -- Cannot Preform Action");
             //return;
         }
@@ -91,8 +85,7 @@ public class Actions : MonoBehaviour
         Vector3Int cellPosition = grid.WorldToCell(selectorPos);
         var tillableTile = tillableTiles.GetTile(cellPosition);
 
-        if(tillableTile != null)
-        {
+        if(tillableTile != null){
             var newPlant = Instantiate(plant);
             newPlant.transform.position = new Vector3(cellPosition.x + 0.5f, cellPosition.y - 0.5f, 0);
             (tillableTile as TillableTile).plant = newPlant.GetComponent<Plant>();

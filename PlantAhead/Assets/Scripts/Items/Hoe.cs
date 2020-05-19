@@ -1,24 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
+
+[CreateAssetMenu(menuName = "Items/Hoe")]
 public class Hoe : Item
 {    
-    // Start is called before the first frame update
-    void Start()
-    {
-        this.itemName = "Hoe";
-        this.triggerName = "Hoe";
-    }
 
-    // Update is called once per frame
-    void Update()
+    public override int Use(TileBase selectedTile)
     {
-        
-    }
-
-    public override int Use(Vector3Int selectedTile)
-    {
+        // change tile to hoed
         Debug.Log("Hoe'd " + selectedTile);
         return energyCost;
     }

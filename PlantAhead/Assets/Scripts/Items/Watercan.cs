@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 
-
+[CreateAssetMenu(menuName = "Items/WateringCan")]
 public class Watercan : Item
 {
     [SerializeField]
@@ -17,25 +17,12 @@ public class Watercan : Item
     public int waterCurrentlyinCan = 0;
 
     public int waterPerUse = 1;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        this.itemName = "Watercan";
-        this.triggerName = "Water";
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
     // do a watering can action. If near water, this will try to fill the watering can
-    public override int Use(Vector3Int selectedTile)
+    public override int Use(TileBase selectedTile)
     {
 
-        var tillableTile = tillableTiles.GetTile(selectedTile);
 
         // fill the can if near water
         if(nearWater)
@@ -45,7 +32,7 @@ public class Watercan : Item
             return 0;
         }
             
-        if(tillableTile != null){
+        if(selectedTile != null){
             bool didWater;
             if(waterCurrentlyinCan >= waterPerUse) 
             {
@@ -56,8 +43,8 @@ public class Watercan : Item
                 // act on the plant here
                 
                 // only call if not null
-                if ((tillableTile as TillableTile).plant != null){
-                    (tillableTile as TillableTile).plant.waterPlant(waterPerUse);
+                if ((selectedTile as TillableTile).plant != null){
+                    (selectedTile as TillableTile).plant.waterPlant(waterPerUse);
                 }
             }
             else

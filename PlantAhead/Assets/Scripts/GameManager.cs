@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,7 +19,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     { 
-        dayTrackerText.GetComponent<Text>().text = "Date: " + curDay + " / " + finalDate;
+        dayTrackerText.GetComponent<TMP_Text>().text = "Date: " + curDay + " / " + finalDate;
     }
 
     // Update is called once per frame
@@ -35,7 +36,7 @@ public class GameManager : MonoBehaviour
     {
         curDay++;
 
-        dayTrackerText.GetComponent<Text>().text = "Date: " + curDay + " / " + finalDate;
+        dayTrackerText.GetComponent<TMP_Text>().text = "Date: " + curDay + " / " + finalDate;
 
         if (curDay == finalDate)
         {

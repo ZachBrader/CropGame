@@ -22,7 +22,7 @@ public class Plant : MonoBehaviour{
 
     public SpriteRenderer spriteRenderer; 
     private int plantStage = 0;
-    public int waterLevel = 0;
+    public int waterLevel = 1;
     private float stageTime = 0f;
     
     
@@ -57,7 +57,7 @@ public class Plant : MonoBehaviour{
         }
 
         if (waterLevel - waterCost > 0){
-            waterLevel -= waterCost;
+            //waterLevel -= waterCost;
         }
     }
 

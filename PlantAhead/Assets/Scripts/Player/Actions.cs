@@ -87,9 +87,9 @@ public class Actions : MonoBehaviour
 
         var tillableTile = tillableTiles.GetTile(cellPosition);
 
-        if(tillableTile != null){
-            var newPlant = Instantiate(plant);
-            newPlant.transform.position = new Vector3(cellPosition.x + 0.5f, cellPosition.y - 0.5f, 0);
+        if(tillableTile != null || (tillableTile as TillableTile).plant == null){
+            var newPlant = Instantiate(plant, new Vector3(cellPosition.x + 0.5f, cellPosition.y - 0.5f, 0), Quaternion.identity);
+            //newPlant.transform.position = new Vector3(cellPosition.x + 0.5f, cellPosition.y - 0.5f, 0);
             (tillableTile as TillableTile).plant = newPlant.GetComponent<Plant>();
         }
         

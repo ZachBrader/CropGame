@@ -85,9 +85,15 @@ public class Actions : MonoBehaviour
         Vector3Int cellPosition = grid.WorldToCell(selectorPos);
         // call use here for the tool
 
-        var tillableTile = tillableTiles.GetTile(cellPosition);
+        var tillableTile = gameManager.GetTile(new Vector2Int(cellPosition.x, cellPosition.y));
 
-        if(tillableTile != null || (tillableTile as TillableTile).plant == null){
+        if(tillableTile == null)
+        {
+            Debug.Log("null tile");
+        }
+
+        if(tillableTile != null && (tillableTile as TillableTile).plant == null){
+            Debug.Log("attempting to plant at location " + cellPosition);
             var newPlant = Instantiate(plant, new Vector3(cellPosition.x + 0.5f, cellPosition.y - 0.5f, 0), Quaternion.identity);
             //newPlant.transform.position = new Vector3(cellPosition.x + 0.5f, cellPosition.y - 0.5f, 0);
             (tillableTile as TillableTile).plant = newPlant.GetComponent<Plant>();

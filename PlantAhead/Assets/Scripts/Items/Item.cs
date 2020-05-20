@@ -10,6 +10,8 @@ public class Item : ScriptableObject
     public Tilemap tillableTiles;
     public int energyCost = 5;
 
+    public Sprite icon;
+
 
     // this should return energy cost
     public virtual int Use(TileBase selectedTile)

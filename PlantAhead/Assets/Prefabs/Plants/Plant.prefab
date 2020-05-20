@@ -67,8 +67,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -697789187
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 3324291818824633320}
   - component: {fileID: 3324291818824633323}
   m_Layer: 0
-  m_Name: BigBlueberry
+  m_Name: Plant
   m_TagString: Plant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -184,9 +184,10 @@ MonoBehaviour:
   stage4: {fileID: -9150812332014437802, guid: 755d6eca844c1aa4dbe60ba6330d6282, type: 3}
   timer: 10
   reusable: 0
+  waterCost: 0
   animator: {fileID: 0}
   spriteRenderer: {fileID: 3324291818824633321}
-  waterLevel: 0
+  waterLevel: 10
 --- !u!95 &3324291818824633323
 Animator:
   serializedVersion: 3

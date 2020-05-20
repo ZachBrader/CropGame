@@ -43,9 +43,9 @@ public class Watercan : Item
                 // act on the plant here
                 
                 // only call if not null
-                if ((selectedTile as TillableTile).plant != null){
-                    (selectedTile as TillableTile).plant.waterPlant(waterPerUse);
-                }
+                // if ((selectedTile as TillableTile).plant != null){
+                //     (selectedTile as TillableTile).plant.waterPlant(waterPerUse);
+                // }
             }
             else
             {

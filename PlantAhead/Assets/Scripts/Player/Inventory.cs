@@ -34,7 +34,7 @@ public class Inventory : MonoBehaviour
 
         inventoryList = new List<GameObject>();
 
-        addToInventory(testItem);
+        //addToInventory(testItem);
     }
 
     // Update is called once per frame
@@ -87,10 +87,10 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            GameObject newItem = GameObject.Instantiate(item) as GameObject;
+            //GameObject newItem = GameObject.Instantiate(item) as GameObject;
             //newItem.SetActive(false);
-            newItem.transform.parent = transform;
-            inventoryList.Add(newItem);
+            //newItem.transform.parent = transform;
+            //inventoryList.Add(newItem);
         }
     }
 

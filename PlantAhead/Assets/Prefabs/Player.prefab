@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5794718071514119087}
   - component: {fileID: 5794718071514119084}
   - component: {fileID: 5794718071514118738}
-  - component: {fileID: 5794718071514118739}
   - component: {fileID: 5794718071514118736}
   - component: {fileID: 5794718071514118737}
   - component: {fileID: 5871655690175268699}
@@ -125,29 +124,14 @@ MonoBehaviour:
   selectionSprite: {fileID: 5690451708708873100, guid: 068a1a7dfb329a4499ca5018c8f8db25,
     type: 3}
   grid: {fileID: 0}
+  tillableTiles: {fileID: 0}
   curSelectionSprite: {fileID: 5690451708708873100, guid: 068a1a7dfb329a4499ca5018c8f8db25,
     type: 3}
   curCellPosition: {x: 0, y: 0, z: 0}
   movement: {fileID: 0}
   nearWater: 0
+  canSleep: 0
   plant: {fileID: 7677809699565551188, guid: 277393091fe3b184c9896e7ef2088ae3, type: 3}
---- !u!114 &5794718071514118739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5794718071514119085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df1a93990e9e67c43bf1a7f9e27da302, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventorySize: 5
-  inventoryList: []
-  testItem: {fileID: 7376297545856781845, guid: cb75809e26656374d944f409ee6676a9,
-    type: 3}
-  inventoryUIParent: {fileID: 0}
 --- !u!50 &5794718071514118736
 Rigidbody2D:
   serializedVersion: 4

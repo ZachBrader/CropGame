@@ -18,9 +18,9 @@ public class Actions : MonoBehaviour
     public GameObject curSelectionSprite = null;
     [SerializeField]
     private Vector3Int curCellPosition;
-    private Inventory playerInventory;
 
     public Movement movement;
+    public InventoryDisplay inventoryDisplay;
     private GameManager gameManager;
 
     //public Image waterBar; in watercan.cs
@@ -44,7 +44,7 @@ public class Actions : MonoBehaviour
         // EquipItem(firstSelectedItem);
         //grid = gridObject.GetComponent<Grid>();
 
-        playerInventory = GetComponent<Inventory>();
+        //playerInventory = GetComponent<Inventory>();
         movement = GetComponent<Movement>();
         curSelectionSprite = GameObject.Instantiate(selectionSprite) as GameObject;
     }
@@ -57,10 +57,16 @@ public class Actions : MonoBehaviour
             DoAction();
         }
 
-        // Used to equip the currently selected item
-        if (Input.GetKeyDown(KeyCode.Alpha0)){
-            EquipItem(playerInventory.getitem(0));
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("Toggling Inventory");
+            inventoryDisplay.toggleInventory();
         }
+
+        // Used to equip the currently selected item
+        /*if (Input.GetKeyDown(KeyCode.Alpha0)){
+            EquipItem(playerInventory.getitem(0));
+        }*/
 
         // Temporary Fix to simulate sleeping
         // checks if you're in the house

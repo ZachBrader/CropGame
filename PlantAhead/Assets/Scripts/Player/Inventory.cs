@@ -1,106 +1,56 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    public int inventorySize = 5;
-
-    [HideInInspector]
-    public List<GameObject> inventoryList;
-
-    public GameObject testItem;
-
-    // Holds the list of text elements to print out the inventory
-    public GameObject inventoryUIParent;
-    private List<GameObject> inventoryUIList;
-
-    // Used to determine weather inventory is currently open for player
-    private bool isOpen;
+    List<Item> playerInventory;
+    bool isReady = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        isOpen = false;
-        Transform[] allChildren = inventoryUIParent.GetComponentsInChildren<Transform>();
-        inventoryUIList = new List<GameObject>();
-        foreach (Transform child in allChildren)
-        {
-            inventoryUIList.Add(child.gameObject);
-        }
-        // Remove parent item -- temporary fix
-        inventoryUIList.RemoveAt(0);
-
-        inventoryList = new List<GameObject>();
-
-        //addToInventory(testItem);
+        playerInventory = new List<Item>();
+        isReady = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Show inventory if player presses the I button
-        if (Input.GetKeyDown(KeyCode.I))
+        
+    }
+
+    public void AddItemToInventory(Item itemToAdd)
+    {
+        Debug.Log("Adding " + itemToAdd.itemName + " to inventory!");
+
+        playerInventory.Add(itemToAdd);
+
+        foreach(Item itemInInv in playerInventory)
         {
-            showInventory();
-        }
-        else if (Input.GetKeyUp(KeyCode.I))
-        {
-            closeInventory();
+            Debug.Log("Inventory currently has: " + itemInInv.itemName);
         }
     }
 
-    void showInventory()
+    public void RemoveItemFromInventory(Item itemToRemove)
     {
-        print("Number of held items: " + inventoryList.Count);
-        if (isOpen == false)
-        {
-            isOpen = true;
-            Debug.Log("Showing Inventory");
-            inventoryUIParent.SetActive(true);
+        Debug.Log("removing " + itemToRemove.itemName + " to inventory!");
 
-            int count = 0; 
-            foreach (GameObject heldItem in inventoryList)
-            {
-                inventoryUIList[count].GetComponent<Text>().text = "Item: " + heldItem.GetComponent<Item>().name + " -- " + count;
-                count++;
-            }
+        playerInventory.Remove(itemToRemove);
+
+        foreach (Item itemInInv in playerInventory)
+        {
+            Debug.Log("Inventory currently has: " + itemInInv.itemName);
         }
     }
 
-    void closeInventory()
-    {
-        if (isOpen == true)
-        {
-            isOpen = false;
-            Debug.Log("Closing inventory");
-            inventoryUIParent.SetActive(false);
-        }
-    }
 
-    public void addToInventory(GameObject item)
+    public List<Item> GetPlayerInventory()
     {
-        if (inventoryList.Count >= inventorySize)
+        if (!isReady)
         {
-            Debug.Log("List is full with " + inventoryList.Count + " items");
+            return null;
         }
-        else
-        {
-            //GameObject newItem = GameObject.Instantiate(item) as GameObject;
-            //newItem.SetActive(false);
-            //newItem.transform.parent = transform;
-            //inventoryList.Add(newItem);
-        }
-    }
-
-    List<GameObject> getInventory()
-    {
-        return inventoryList;
-    }
-
-    public GameObject getitem(int itemNumber)
-    {
-        return inventoryList[itemNumber];
+        return playerInventory;
     }
 }

@@ -21,9 +21,27 @@ public class GameManager : MonoBehaviour
 
     public CustomTile[,] tileGrid;
 
+    // TESTING CODE -- FEEL FREE TO REMOVE
+    public GameObject player;
+    private Inventory playerInventory;
+
+    public Sprite seedIcon;
+    // END TESTING
+
     // Start is called before the first frame update
     void Start()
-    { 
+    {
+        // TESTING CODE -- FEEL FREE TO REMOVE
+        playerInventory = player.GetComponent<Inventory>();
+
+        Seed seedToAdd = ScriptableObject.CreateInstance<Seed>();
+
+        seedToAdd.icon = seedIcon;
+        seedToAdd.itemName = "TestingItem";
+        playerInventory.AddItemToInventory(seedToAdd);
+        //playerInventory.RemoveItemFromInventory(seedToAdd);
+        // END TESTING
+
         dayTrackerText.GetComponent<TMP_Text>().text = "Date: " + curDay + " / " + finalDate;
 
         // init the grid for interactions

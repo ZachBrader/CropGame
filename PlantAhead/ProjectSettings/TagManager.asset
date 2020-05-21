@@ -8,6 +8,8 @@ TagManager:
   - GameManager
   - Plant
   - House
+  - Slot
+  - Inventory
   layers:
   - Default
   - TransparentFX

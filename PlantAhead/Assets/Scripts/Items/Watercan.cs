@@ -33,7 +33,7 @@ public class Watercan : Item
             return 0;
         }
             
-        if(selectedTile != null){
+        if(selectedTile.plant != null){
             bool didWater;
             if(waterCurrentlyinCan >= waterPerUse) 
             {

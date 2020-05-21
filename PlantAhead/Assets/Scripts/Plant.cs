@@ -105,6 +105,7 @@ public class Plant : MonoBehaviour{
         Debug.Log("Plant grew!");
         if (plantStage != 5){
             plantStage++;
+            changePlant();
         }
     }
 

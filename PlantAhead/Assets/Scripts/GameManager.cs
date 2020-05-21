@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
         {
             for(int y = 0; y < myMap.m_Height; y++){
                 var thisTile = tileGrid[x, y];
-                if ((thisTile as TillableTile).plant != null){
+                if ((thisTile as TillableTile) != null && (thisTile as TillableTile).plant != null){
                     (thisTile as TillableTile).plant.plantStageUpdate();
                 }
 

@@ -62,6 +62,19 @@ public class GameManager : MonoBehaviour
     {
         curDay++;
 
+        //updates each plants stage, will add checks later to only have this done in specific 
+        //conditions, this will also be where growth happens
+        for(int x = 0; x < myMap.m_Width; x ++)
+        {
+            for(int y = 0; y < myMap.m_Height; y++){
+                var thisTile = tileGrid[x, y];
+                if ((thisTile as TillableTile).plant != null){
+                    (thisTile as TillableTile).plant.plantStageUpdate();
+                }
+
+            }
+        }
+
         dayTrackerText.GetComponent<TMP_Text>().text = "Date: " + curDay + " / " + finalDate;
 
         if (curDay == finalDate)

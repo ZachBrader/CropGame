@@ -20,7 +20,7 @@ public class Watercan : Item
     
 
     // do a watering can action. If near water, this will try to fill the watering can
-    public override int Use(TileBase selectedTile)
+    public int Use(TillableTile selectedTile)
     {
 
 

@@ -100,7 +100,7 @@ public class Plant : MonoBehaviour{
         }
     }
 
-    void plantStageUpdate(){
+    public void plantStageUpdate(){
         if (plantStage != 5){
             plantStage++;
         }
@@ -109,7 +109,7 @@ public class Plant : MonoBehaviour{
     /*
      * destroys the plant if it is not reusable 
      */
-    void harvest(){
+    public void harvest(){
 
         if (reusable){
             this.spriteRenderer.sprite = stage2;

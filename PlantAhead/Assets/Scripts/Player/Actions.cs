@@ -32,8 +32,10 @@ public class Actions : MonoBehaviour
     [SerializeField]
     private bool canSleep = false;
     
-    [Header("Plant")] public GameObject plant;
+    [SerializeField] public GameObject plant;
 
+    [SerializeField]
+    public ScriptableObject waterCan;
     // Start is called before the first frame update
     void Start(){
         Debug.Log("Actions Start");
@@ -69,6 +71,18 @@ public class Actions : MonoBehaviour
             Debug.Log("Toggling Store");
             storeDisplay.toggleDisplay();
         }
+        
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            Debug.Log("Attempting to harvest");
+            Harvest();
+        }
+        
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Debug.Log("Attempting to water or get water");
+            Water();
+        }
 
         // Used to equip the currently selected item
         /*if (Input.GetKeyDown(KeyCode.Alpha0)){
@@ -88,12 +102,6 @@ public class Actions : MonoBehaviour
             //return;
         }
 
-        /*if (plant.tag.Equals("Plant")){
-            Vector3Int cellPosition = grid.WorldToCell(transform.position);
-            Instantiate(plant, new Vector3(cellPosition.x + 0.5f + movement.direction.x, cellPosition.y - 0.5f + movement.direction.y, cellPosition.z), Quaternion.identity);
-
-        }*/
-
         Vector3 selectorPos = new Vector3(transform.position.x + movement.direction.x, transform.position.y + movement.direction.y, 0);
         Vector3Int cellPosition = grid.WorldToCell(selectorPos);
         // call use here for the tool
@@ -111,10 +119,27 @@ public class Actions : MonoBehaviour
             //newPlant.transform.position = new Vector3(cellPosition.x + 0.5f, cellPosition.y - 0.5f, 0);
             (tillableTile as TillableTile).plant = newPlant.GetComponent<Plant>();
         }
-        
-        //currentEquipped.GetComponent<Item>().Use(fixedCellLocation);
     }
 
+    void Harvest(){
+        Vector3 selectorPos = new Vector3(transform.position.x + movement.direction.x, transform.position.y + movement.direction.y, 0);
+        Vector3Int cellPosition = grid.WorldToCell(selectorPos);
+        var tillableTile = gameManager.GetTile(new Vector2Int(cellPosition.x, cellPosition.y));
+
+        if ((tillableTile as TillableTile).plant != null){
+            (tillableTile as TillableTile).plant.harvest();
+            
+        }
+    }
+
+    void Water(){
+        Vector3 selectorPos = new Vector3(transform.position.x + movement.direction.x, transform.position.y + movement.direction.y, 0);
+        Vector3Int cellPosition = grid.WorldToCell(selectorPos);
+        var tillableTile = gameManager.GetTile(new Vector2Int(cellPosition.x, cellPosition.y));
+
+        (waterCan as Watercan).Use((tillableTile as TillableTile));
+
+    }
     
 
     void EquipItem(GameObject item)

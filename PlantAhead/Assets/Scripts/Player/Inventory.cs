@@ -7,6 +7,8 @@ public class Inventory : MonoBehaviour
     List<Item> playerInventory;
     bool isReady = false;
 
+    public int maxItems = 5;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,11 +22,18 @@ public class Inventory : MonoBehaviour
         
     }
 
+    public bool IsReady()
+    {
+        return isReady;
+    }
+
     public void AddItemToInventory(Item itemToAdd)
     {
         Debug.Log("Adding " + itemToAdd.itemName + " to inventory!");
-
-        playerInventory.Add(itemToAdd);
+        if (playerInventory.Count + 1 <= maxItems)
+        {
+            playerInventory.Add(itemToAdd);
+        }
 
         foreach(Item itemInInv in playerInventory)
         {

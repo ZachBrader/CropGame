@@ -21,6 +21,7 @@ public class Actions : MonoBehaviour
 
     public Movement movement;
     public InventoryDisplay inventoryDisplay;
+    public StoreDisplay storeDisplay;
     private GameManager gameManager;
 
     //public Image waterBar; in watercan.cs
@@ -61,6 +62,12 @@ public class Actions : MonoBehaviour
         {
             Debug.Log("Toggling Inventory");
             inventoryDisplay.toggleInventory();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            Debug.Log("Toggling Store");
+            storeDisplay.toggleDisplay();
         }
 
         // Used to equip the currently selected item

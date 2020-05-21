@@ -27,6 +27,7 @@ public class Watercan : Item
         // fill the can if near water
         if(nearWater)
         {
+            Debug.Log("Can refilled");
             waterCurrentlyinCan = maxWaterinCan;
             // update water level amount
             return 0;
@@ -42,10 +43,10 @@ public class Watercan : Item
                 didWater = true;
                 // act on the plant here
                 
-                // only call if not null
-                // if ((selectedTile as TillableTile).plant != null){
-                //     (selectedTile as TillableTile).plant.waterPlant(waterPerUse);
-                // }
+                //only call if not null
+                if ((selectedTile as TillableTile).plant != null){
+                    (selectedTile as TillableTile).plant.waterPlant(waterPerUse);
+                }
             }
             else
             {
@@ -60,7 +61,7 @@ public class Watercan : Item
                 if(maxWaterinCan == 0){
                     maxWaterinCan = 1;
                 }
-                waterBar.fillAmount = (float) waterCurrentlyinCan / (float) maxWaterinCan;
+                //waterBar.fillAmount = (float) waterCurrentlyinCan / (float) maxWaterinCan;
                 return energyCost;
             }
         }

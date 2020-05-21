@@ -57,7 +57,7 @@ public class Plant : MonoBehaviour{
         }
 
         if (waterLevel - waterCost > 0){
-            //waterLevel -= waterCost;
+            waterLevel -= waterCost;
         }
     }
 
@@ -65,6 +65,7 @@ public class Plant : MonoBehaviour{
      * maximizes water value of plant
      */
     public void waterPlant(int waterAmount){
+        Debug.Log("Water successful");
         waterLevel += waterAmount;
     }
     
@@ -101,6 +102,7 @@ public class Plant : MonoBehaviour{
     }
 
     public void plantStageUpdate(){
+        Debug.Log("Plant grew!");
         if (plantStage != 5){
             plantStage++;
         }
@@ -110,7 +112,7 @@ public class Plant : MonoBehaviour{
      * destroys the plant if it is not reusable 
      */
     public void harvest(){
-
+        Debug.Log("Harvest successful");
         if (reusable){
             this.spriteRenderer.sprite = stage2;
         }

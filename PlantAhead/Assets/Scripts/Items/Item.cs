@@ -9,6 +9,7 @@ public class Item : ScriptableObject
     public string triggerName = "none";
     public Tilemap tillableTiles;
     public int energyCost = 5;
+    public int cost = 5;
 
     public Sprite icon;
 

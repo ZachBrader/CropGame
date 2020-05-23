@@ -38,10 +38,6 @@ public class Store : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*for (int i = 0; i < 3; i++)
-        {
-            BuyItemFromStore(stockSeed);
-        }*/
     }
 
     public void AddItemToStock(Item itemToAdd)
@@ -72,7 +68,7 @@ public class Store : MonoBehaviour
     {
         if (stock.Contains(itemToBuy))
         {
-            playerInventory.AddItemToInventory(itemToBuy);
+            playerInventory.ConfirmPurchase(itemToBuy);
         }
     }
 

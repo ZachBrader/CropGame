@@ -8,8 +8,7 @@ using TMPro;
 public class Actions : MonoBehaviour
 {
     public TMP_Text itemSelectedText;
-    public Item firstSelectedItem;
-    public GameObject gridObject;
+    //public GameObject gridObject;
     public GameObject selectionSprite;
 
     public Grid grid;
@@ -44,14 +43,9 @@ public class Actions : MonoBehaviour
         {
             gameManager = temp.GetComponent<GameManager>();
         }
-
-        // EquipItem(firstSelectedItem);
-        //grid = gridObject.GetComponent<Grid>();
-
         //playerInventory = GetComponent<Inventory>();
         movement = GetComponent<Movement>();
         curSelectionSprite = GameObject.Instantiate(selectionSprite) as GameObject;
-        EquipItem(firstSelectedItem);
     }
 
     // Update is called once per frame
@@ -153,7 +147,6 @@ public class Actions : MonoBehaviour
         Vector3 offset = new Vector3(cellPosition.x + 0.5f + movement.direction.x, cellPosition.y - 0.5f + movement.direction.y, cellPosition.z);
 
         curSelectionSprite.transform.position = offset;
-        curCellPosition = cellPosition;
 
     }
 

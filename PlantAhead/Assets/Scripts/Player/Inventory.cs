@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Inventory : MonoBehaviour
 {
@@ -8,6 +9,11 @@ public class Inventory : MonoBehaviour
     bool isReady = false;
 
     private Actions player;
+    public TMP_Text playerGoldTrackerText;
+
+    public int startingGold = 0;
+    private int curGold = 0;
+
     public int maxItems = 5;
 
     // Start is called before the first frame update
@@ -15,6 +21,7 @@ public class Inventory : MonoBehaviour
     {
         playerInventory = new List<Item>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Actions>();
+        ReceiveGold(startingGold);
         isReady = true;
     }
 
@@ -29,30 +36,50 @@ public class Inventory : MonoBehaviour
         return isReady;
     }
 
+    public int SpendGold(int goldToSpend)
+    {
+        curGold -= goldToSpend;
+        playerGoldTrackerText.text = "Gold: " + curGold + "g";
+        return curGold;
+    }
+
+    public int ReceiveGold(int goldReceived)
+    {
+        curGold += goldReceived;
+        playerGoldTrackerText.text = "Gold: " + curGold + "g";
+        return curGold;
+    }
+
+    public void ConfirmPurchase(Item itemToAdd)
+    {
+        if (curGold >= itemToAdd.cost)
+        {
+            SpendGold(itemToAdd.cost);
+            AddItemToInventory(itemToAdd);
+            Debug.Log("Able to Purchase " + itemToAdd.itemName);
+        }
+        else
+        {
+            Debug.Log("Unable to buy item -- Too little gold");
+        }
+    }
+
     public void AddItemToInventory(Item itemToAdd)
     {
-        Debug.Log("Adding " + itemToAdd.itemName + " to inventory!");
         if (playerInventory.Count + 1 <= maxItems)
         {
             playerInventory.Add(itemToAdd);
-        }
 
-        foreach(Item itemInInv in playerInventory)
-        {
-            Debug.Log("Inventory currently has: " + itemInInv.itemName);
+            if (playerInventory.Count == 1)
+            {
+                EquipItemFromInventory(itemToAdd);
+            }
         }
     }
 
     public void RemoveItemFromInventory(Item itemToRemove)
     {
-        Debug.Log("removing " + itemToRemove.itemName + " to inventory!");
-
         playerInventory.Remove(itemToRemove);
-
-        foreach (Item itemInInv in playerInventory)
-        {
-            Debug.Log("Inventory currently has: " + itemInInv.itemName);
-        }
     }
 
 

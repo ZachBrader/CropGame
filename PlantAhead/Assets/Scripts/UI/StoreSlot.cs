@@ -32,7 +32,7 @@ public class StoreSlot : Slot
     {
         if (containedItem != null)
         {
-            string newDescription = "Store Item Name: " + containedItem.itemName;
+            string newDescription = "Store Item Name: " + containedItem.itemName + " - " + containedItem.cost + " G";
 
             storeDisplay.UpdateSelectorText(newDescription);
         }

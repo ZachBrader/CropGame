@@ -8,10 +8,10 @@ using UnityEngine.Tilemaps;
 public class Hoe : Item
 {    
 
-    public override int Use(TileBase selectedTile)
+    /*public override int Use(TileBase selectedTile)
     {
         // change tile to hoed
         Debug.Log("Hoe'd " + selectedTile);
         return energyCost;
-    }
+    }*/
 }

@@ -14,7 +14,7 @@ public class Item : ScriptableObject
 
 
     // this should return energy cost
-    public virtual int Use(TileBase selectedTile)
+    public virtual int Use(CustomTile selectedTile, Vector3 plantLocation)
     {
         Debug.Log("Using item");
         return energyCost;

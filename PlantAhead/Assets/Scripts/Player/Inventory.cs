@@ -7,12 +7,14 @@ public class Inventory : MonoBehaviour
     List<Item> playerInventory;
     bool isReady = false;
 
+    private Actions player;
     public int maxItems = 5;
 
     // Start is called before the first frame update
     void Start()
     {
         playerInventory = new List<Item>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Actions>();
         isReady = true;
     }
 
@@ -61,5 +63,18 @@ public class Inventory : MonoBehaviour
             return null;
         }
         return playerInventory;
+    }
+
+    public void EquipItemFromInventory(Item itemToEquip)
+    {
+        if (playerInventory.Contains(itemToEquip))
+        {
+            Debug.Log("Equipping " + itemToEquip.itemName);
+            player.EquipItem(itemToEquip);
+        }
+        else
+        {
+            Debug.Log("Player does not have item -- Unable to equip");
+        }
     }
 }

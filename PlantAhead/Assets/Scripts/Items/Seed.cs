@@ -15,17 +15,18 @@ public class Seed : Item
     public int seedCount = 1;
 
 
-    public override int Use(TileBase selectedTile)
+    public override int Use(CustomTile selectedTile, Vector3 plantLocation)
     {
 
-        // maybe make sure the tile is a tillable tile??? idk????
-        // check if tile has been hoed
-        Debug.Log("Planted Seed at " + selectedTile);
-        if (plant.tag.Equals("Plant"))
+        if (selectedTile != null && (selectedTile as TillableTile).plant == null)
         {
-            Instantiate(plant, (selectedTile as Tile).gameObject.transform.position, Quaternion.identity);
+            Debug.Log("Planting at location " + plantLocation);
 
+            var newPlant = Instantiate(plant, plantLocation, Quaternion.identity);
+            (selectedTile as TillableTile).plant = newPlant.GetComponent<Plant>();
+            return energyCost;
         }
-        return energyCost;
+        Debug.Log("Failed to plant");
+        return 0;
     }
 }

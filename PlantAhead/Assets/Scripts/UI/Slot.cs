@@ -7,6 +7,7 @@ public class Slot : MonoBehaviour
 {
     protected Item containedItem = null;
     private InventoryDisplay inventoryDisplay;
+    private Inventory playerInventory;
     protected Image slotImage;
 
     private bool isOff = false;
@@ -21,6 +22,7 @@ public class Slot : MonoBehaviour
     public virtual void SetUp()
     {
         inventoryDisplay = GameObject.FindGameObjectWithTag("Inventory").GetComponent<InventoryDisplay>();
+        playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         slotImage = GetComponent<Image>();
         isReady = true;
     }
@@ -29,6 +31,16 @@ public class Slot : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void EquipItem()
+    {
+        if (!isReady || containedItem == null)
+        {
+            return;
+        }
+
+        playerInventory.EquipItemFromInventory(containedItem);
     }
 
     public virtual void setItem(Item newItem)

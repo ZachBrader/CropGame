@@ -7,19 +7,19 @@ using TMPro;
 
 public class Actions : MonoBehaviour
 {
-    public GameObject itemSelectedText;
-    public GameObject firstSelectedItem;
+    public TMP_Text itemSelectedText;
+    public Item firstSelectedItem;
     public GameObject gridObject;
     public GameObject selectionSprite;
 
     public Grid grid;
     public Tilemap tillableTiles;
-    private GameObject currentEquipped;
+    private Item currentEquipped;
     public GameObject curSelectionSprite = null;
     [SerializeField]
     private Vector3Int curCellPosition;
 
-    public Movement movement;
+    private Movement movement;
     public InventoryDisplay inventoryDisplay;
     public StoreDisplay storeDisplay;
     private GameManager gameManager;
@@ -40,7 +40,8 @@ public class Actions : MonoBehaviour
     void Start(){
         Debug.Log("Actions Start");
         var temp = GameObject.FindGameObjectWithTag("GameManager");
-        if (temp != null){
+        if (temp != null)
+        {
             gameManager = temp.GetComponent<GameManager>();
         }
 
@@ -50,6 +51,7 @@ public class Actions : MonoBehaviour
         //playerInventory = GetComponent<Inventory>();
         movement = GetComponent<Movement>();
         curSelectionSprite = GameObject.Instantiate(selectionSprite) as GameObject;
+        EquipItem(firstSelectedItem);
     }
 
     // Update is called once per frame
@@ -84,44 +86,30 @@ public class Actions : MonoBehaviour
             Water();
         }
 
-        // Used to equip the currently selected item
-        /*if (Input.GetKeyDown(KeyCode.Alpha0)){
-            EquipItem(playerInventory.getitem(0));
-        }*/
-
-        // Temporary Fix to simulate sleeping
+        // Player sleeps
         // checks if you're in the house
         if (Input.GetKeyDown(KeyCode.Q) && canSleep){
             gameManager.EndDay();
         }
     }
 
-    void DoAction(){
-        if (currentEquipped == null){
+    void DoAction()
+    {
+        if (currentEquipped == null)
+        {
             Debug.Log("No item currently equipped -- Cannot Preform Action");
-            //return;
+            return;
         }
-
         Vector3 selectorPos = new Vector3(transform.position.x + movement.direction.x, transform.position.y + movement.direction.y, 0);
         Vector3Int cellPosition = grid.WorldToCell(selectorPos);
-        // call use here for the tool
 
         var tillableTile = gameManager.GetTile(new Vector2Int(cellPosition.x, cellPosition.y));
 
-        if(tillableTile == null)
-        {
-            Debug.Log("null tile");
-        }
-
-        if(tillableTile != null && (tillableTile as TillableTile).plant == null){
-            Debug.Log("attempting to plant at location " + cellPosition);
-            var newPlant = Instantiate(plant, new Vector3(cellPosition.x + 0.5f, cellPosition.y - 0.5f, 0), Quaternion.identity);
-            //newPlant.transform.position = new Vector3(cellPosition.x + 0.5f, cellPosition.y - 0.5f, 0);
-            (tillableTile as TillableTile).plant = newPlant.GetComponent<Plant>();
-        }
+        currentEquipped.Use(tillableTile, new Vector3(cellPosition.x + 0.5f, cellPosition.y - 0.5f, 0));
     }
 
-    void Harvest(){
+    void Harvest()
+    {
         Vector3 selectorPos = new Vector3(transform.position.x + movement.direction.x, transform.position.y + movement.direction.y, 0);
         Vector3Int cellPosition = grid.WorldToCell(selectorPos);
         var tillableTile = gameManager.GetTile(new Vector2Int(cellPosition.x, cellPosition.y));
@@ -132,7 +120,8 @@ public class Actions : MonoBehaviour
         }
     }
 
-    void Water(){
+    void Water()
+    {
         Vector3 selectorPos = new Vector3(transform.position.x + movement.direction.x, transform.position.y + movement.direction.y, 0);
         Vector3Int cellPosition = grid.WorldToCell(selectorPos);
         var tillableTile = gameManager.GetTile(new Vector2Int(cellPosition.x, cellPosition.y));
@@ -142,28 +131,26 @@ public class Actions : MonoBehaviour
     }
     
 
-    void EquipItem(GameObject item)
+    public void EquipItem(Item itemToEquip)
     {
-        if (item == null)
+        if (itemToEquip == null)
         {
             currentEquipped = null;
-            itemSelectedText.GetComponent<TextMeshPro>().text = "Item: None";
+            itemSelectedText.text = "Item: None";
             Debug.Log("No item selected");
             return;
         }
 
-        currentEquipped = item;
-        print(item.GetComponent<Item>().itemName + " : " + item.name);
-        itemSelectedText.GetComponent<TextMeshPro>().text = "Item: " + item.GetComponent<Item>().itemName;
-        Debug.Log("Equipped " + item.GetComponent<Item>().name);
+        currentEquipped = itemToEquip;
+        print(itemToEquip.itemName + " : " + itemToEquip.itemName);
+        itemSelectedText.text = "Item: " + itemToEquip.itemName;
+        Debug.Log("Equipped " + itemToEquip.itemName);
     }
 
     void selectCell()
     {
         Vector3Int cellPosition = grid.WorldToCell(transform.position);
         Vector3 offset = new Vector3(cellPosition.x + 0.5f + movement.direction.x, cellPosition.y - 0.5f + movement.direction.y, cellPosition.z);
-        //print("Player position: " + transform.position);
-        //print("Found Cell: " + cellPosition);
 
         curSelectionSprite.transform.position = offset;
         curCellPosition = cellPosition;

@@ -112,7 +112,7 @@ public class Plant : MonoBehaviour{
     /*
      * destroys the plant if it is not reusable 
      */
-    public void harvest(){
+    public int harvest(){
         Debug.Log("Harvest successful");
         if (reusable){
             this.spriteRenderer.sprite = stage2;
@@ -120,6 +120,8 @@ public class Plant : MonoBehaviour{
         else{
             Destroy(this.gameObject);
         }
+
+        return 0;
     }
 
     /*

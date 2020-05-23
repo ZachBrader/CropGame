@@ -11,6 +11,7 @@ public class StoreDisplay : MonoBehaviour
 
     public GameObject slotsParent;
     private List<Slot> allSlots;
+    private InventoryDisplay inventoryDisplay;
 
     private List<Item> curStock;
 
@@ -23,6 +24,7 @@ public class StoreDisplay : MonoBehaviour
     {
         allSlots = new List<Slot>();
         curStock = new List<Item>();
+        inventoryDisplay = GameObject.FindGameObjectWithTag("Inventory").GetComponent<InventoryDisplay>();
 
         // Maintain list of all slots
         foreach (Transform child in slotsParent.transform)
@@ -34,6 +36,9 @@ public class StoreDisplay : MonoBehaviour
         }
 
         isOpen = slotsParent.activeSelf;
+        slotsParent.SetActive(true);
+        checkStockAndUpdateVisuals();
+        slotsParent.SetActive(false);
     }
 
     // Update is called once per frame
@@ -43,6 +48,11 @@ public class StoreDisplay : MonoBehaviour
         {
             checkStockAndUpdateVisuals();
         }
+    }
+
+    public bool checkOpen()
+    {
+        return isOpen;
     }
 
     public void toggleDisplay()
@@ -55,6 +65,11 @@ public class StoreDisplay : MonoBehaviour
         }
         else
         {
+            if (inventoryDisplay.checkOpen())
+            {
+                // Closing inventory to open store
+                inventoryDisplay.toggleInventory();
+            }
             slotsParent.SetActive(true);
         }
     }

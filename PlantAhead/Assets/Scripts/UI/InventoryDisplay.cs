@@ -10,6 +10,7 @@ public class InventoryDisplay : MonoBehaviour
 
     public GameObject player;
     private Inventory playerInventory;
+    private StoreDisplay storeDisplay;
 
     public GameObject slotsParent;
     private List<Slot> allSlots;
@@ -26,6 +27,7 @@ public class InventoryDisplay : MonoBehaviour
         playerInventory = player.GetComponent<Inventory>();
         allSlots = new List<Slot>();
         curPlayerInv = new List<Item>();
+        storeDisplay = GameObject.FindGameObjectWithTag("Store").GetComponent<StoreDisplay>();
 
         // Maintain list of all slots
         foreach (Transform child in slotsParent.transform)
@@ -38,12 +40,9 @@ public class InventoryDisplay : MonoBehaviour
 
         isOpen = slotsParent.activeSelf;
 
-        // Temporary fix -- Need to instantiate slots
-        if (!isOpen)
-        {
-            toggleInventory();
-            toggleInventory();
-        }
+        slotsParent.SetActive(true);
+        checkInventoryAndUpdateVisuals();
+        slotsParent.SetActive(false);
     }
 
     // Update is called once per frame
@@ -53,6 +52,11 @@ public class InventoryDisplay : MonoBehaviour
         {
             checkInventoryAndUpdateVisuals();
         }
+    }
+
+    public bool checkOpen()
+    {
+        return isOpen;
     }
 
     public void toggleInventory()
@@ -65,6 +69,11 @@ public class InventoryDisplay : MonoBehaviour
         }
         else
         {
+            if (storeDisplay.checkOpen())
+            {
+                // Closing inventory to open store
+                storeDisplay.toggleDisplay();
+            }
             slotsParent.SetActive(true);
         }
     }

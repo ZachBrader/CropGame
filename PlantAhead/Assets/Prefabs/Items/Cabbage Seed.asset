@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a99e366e9bdd30144acc0e04d12cd56b, type: 3}
+  m_Name: Cabbage Seed
+  m_EditorClassIdentifier: 
+  itemName: Cabbage Seed
+  triggerName: none
+  tillableTiles: {fileID: 0}
+  energyCost: 5
+  icon: {fileID: 6217684377880407845, guid: 755d6eca844c1aa4dbe60ba6330d6282, type: 3}
+  plant: {fileID: 9121704432736946755, guid: 6775f81d5afa59c44b7ceb94f2a0d944, type: 3}
+  seedCount: 1

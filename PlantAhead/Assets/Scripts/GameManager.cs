@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 using SuperTiled2Unity;
+using UnityEditor;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+        GameObject.Find("UIOverlay/Panel").GetComponent<Image>().color = new Color(0,0,0,0);
 
         dayTrackerText.GetComponent<TMP_Text>().text = "Date: " + curDay + " / " + finalDate;
 
@@ -60,6 +63,7 @@ public class GameManager : MonoBehaviour
 
     public void EndDay()
     {
+        GameObject.Find("UIOverlay/Panel").GetComponent<Image>().color = new Color(0,0,0,255);
         curDay++;
 
         //updates each plants stage, will add checks later to only have this done in specific 
@@ -81,6 +85,14 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Level Completed");
         }
+
+        Invoke("clearPanel",1);
+        
+    }
+
+    void clearPanel(){
+        GameObject.Find("UIOverlay/Panel").GetComponent<Image>().color = new Color(0,0,0,0);
+        
     }
 
     public CustomTile GetTile(Vector2Int location)

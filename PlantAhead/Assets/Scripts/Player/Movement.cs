@@ -18,9 +18,12 @@ public class Movement : MonoBehaviour
 
     private Animator animator;
 
+    AudioSource audioData;
+    
     // Start is called before the first frame update
     void Start()
     {
+        audioData = GetComponent<AudioSource>();
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
@@ -69,6 +72,8 @@ public class Movement : MonoBehaviour
             animator.SetFloat("Y_pos", movement.y);
             direction.x = movement.x;
             direction.y = movement.y;
+            audioData.Play();
+            
         }
         else
         {
@@ -81,5 +86,6 @@ public class Movement : MonoBehaviour
     {
         // rigidbody2d.AddForce(movement * speed * 10f);
         rigidbody2d.MovePosition(transform.position + movement.normalized * speed * Time.deltaTime);
+        
     }
 }

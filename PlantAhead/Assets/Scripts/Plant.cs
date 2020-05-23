@@ -103,7 +103,7 @@ public class Plant : MonoBehaviour{
 
     public void plantStageUpdate(){
         Debug.Log("Plant grew!");
-        if (plantStage != 5){
+        if (plantStage != 4){
             plantStage++;
             changePlant();
         }

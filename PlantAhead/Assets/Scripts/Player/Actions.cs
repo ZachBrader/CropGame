@@ -31,7 +31,7 @@ public class Actions : MonoBehaviour
     [SerializeField]
     private bool canSleep = false;
     
-    [SerializeField] public GameObject plant;
+    //[SerializeField] public GameObject plant;
 
     [SerializeField]
     public ScriptableObject waterCan;

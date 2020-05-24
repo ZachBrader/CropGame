@@ -77,7 +77,7 @@ public class Movement : MonoBehaviour
             animator.SetFloat("Y_pos", movement.y);
             direction.x = movement.x;
             direction.y = movement.y;
-            audioData.Play();
+            //audioData.Play();
             
         }
         else

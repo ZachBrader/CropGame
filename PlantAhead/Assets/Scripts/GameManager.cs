@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
     public SuperMap myMap;
     public Tilemap dirtTiles;
 
+    public List<Tilemap> waterTiles;
+
+    public List<Water> waterSources;
     public CustomTile[,] tileGrid;
 
     // Start is called before the first frame update
@@ -44,11 +47,18 @@ public class GameManager : MonoBehaviour
                     // this is important!
                     tileGrid[x, y] = new TillableTile();
                 }
+                for(int i = 0; i < waterTiles.Count; i++)
+                {
+                    thisTile = waterTiles[i].GetTile(new Vector3Int(x, -y, 0));
+                    if( thisTile != null)
+                    {
+                        // instantiate where there are water tiles, with each layer hold a different water source
+                        tileGrid[x, y] = new WaterTile(waterSources[i]);
+                    }
+                }
             }
         }
         
-
-
     }
 
     // Update is called once per frame

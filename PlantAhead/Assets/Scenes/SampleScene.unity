@@ -145,6 +145,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9afdeaae1bb27d6418d5d8cd5165faed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &409907087 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2428022946275712619, guid: 11645bbc038562f4486bb87d8751430d,
+    type: 3}
+  m_PrefabInstance: {fileID: 714675262}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,6 +551,32 @@ MonoBehaviour:
   finalDate: 10
   myMap: {fileID: 231264825}
   dirtTiles: {fileID: 1175084173}
+  waterTiles:
+  - {fileID: 709617696}
+  - {fileID: 1324901974}
+  waterSources:
+  - WaterAmountMax: 9999
+    WaterAmount: 9999
+  - WaterAmountMax: 9999
+    WaterAmount: 9999
+--- !u!114 &686411071 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2428022945483535495, guid: 11645bbc038562f4486bb87d8751430d,
+    type: 3}
+  m_PrefabInstance: {fileID: 714675262}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1839735485 &709617696 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: -4437042420714647580, guid: cb2adceff6a6d784292e8299e8391b6b,
+    type: 3}
+  m_PrefabInstance: {fileID: 569913606}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &714675262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -761,6 +799,11 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8007171392442682898, guid: 11645bbc038562f4486bb87d8751430d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11645bbc038562f4486bb87d8751430d, type: 3}
 --- !u!114 &714675263 stripped
@@ -968,6 +1011,32 @@ Transform:
 --- !u!1839735485 &1175084173 stripped
 Tilemap:
   m_CorrespondingSourceObject: {fileID: -4862879195089995840, guid: cb2adceff6a6d784292e8299e8391b6b,
+    type: 3}
+  m_PrefabInstance: {fileID: 569913606}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1320769624 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2428022944729818918, guid: 11645bbc038562f4486bb87d8751430d,
+    type: 3}
+  m_PrefabInstance: {fileID: 714675262}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1320769626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1320769624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23eb5406f1f4aa54696c85689a75acb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waterBar: {fileID: 409907087}
+  EnergyBar: {fileID: 686411071}
+--- !u!1839735485 &1324901974 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: -5253608116751521475, guid: cb2adceff6a6d784292e8299e8391b6b,
     type: 3}
   m_PrefabInstance: {fileID: 569913606}
   m_PrefabAsset: {fileID: 0}

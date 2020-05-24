@@ -131,7 +131,7 @@ public class Actions : MonoBehaviour
         Vector3Int cellPosition = grid.WorldToCell(selectorPos);
         var tillableTile = gameManager.GetTile(new Vector2Int(cellPosition.x, cellPosition.y));
 
-        (waterCan as Watercan).Use((tillableTile as TillableTile));
+        (waterCan as Watercan).Use(tillableTile);
 
     }
     

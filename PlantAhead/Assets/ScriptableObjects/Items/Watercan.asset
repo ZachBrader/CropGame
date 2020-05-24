@@ -16,8 +16,9 @@ MonoBehaviour:
   triggerName: none
   tillableTiles: {fileID: 0}
   energyCost: 5
+  cost: 5
+  icon: {fileID: 0}
   nearWater: 0
-  waterBar: {fileID: 0}
-  maxWaterinCan: 100
-  waterCurrentlyinCan: 0
+  maxWaterinCan: 10
+  waterCurrentlyinCan: 3
   waterPerUse: 1

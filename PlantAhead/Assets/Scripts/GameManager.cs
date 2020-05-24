@@ -11,11 +11,16 @@ public class GameManager : MonoBehaviour
 {
     public GameObject dayTrackerText;
 
-    // Keeps track of the day the player is currently on
-    private int curDay;
+    // Victory Variables
 
-    // When the player needs to meet their goal
+    private int curDay;
     public int finalDate;
+    public int playerGoldGoal;
+
+    public EndGameMenu endGameMenu;
+    private Inventory playerInventory;
+
+    // END VICTORY VARIABLES
 
     public SuperMap myMap;
     public Tilemap dirtTiles;
@@ -39,6 +44,7 @@ public class GameManager : MonoBehaviour
         {
             player = GameObject.FindGameObjectWithTag("Player");
         }
+        playerInventory = player.GetComponent<Inventory>();
 
         // init the grid for interactions
         tileGrid = new CustomTile[myMap.m_Width, myMap.m_Height];
@@ -107,8 +113,9 @@ public class GameManager : MonoBehaviour
 
         dayTrackerText.GetComponent<TMP_Text>().text = "Date: " + curDay + " / " + finalDate;
 
-        if (curDay == finalDate)
+        if (curDay == finalDate || HasPlayerWon())
         {
+            EndGame();
             Debug.Log("Level Completed");
         }
 
@@ -134,5 +141,32 @@ public class GameManager : MonoBehaviour
         return tileGrid[location.x, -location.y];
     }
     
+    private bool HasPlayerWon()
+    {
+        // If player has made enough gold
+        if (playerInventory.GetGold() >= playerGoldGoal)
+        {
+            return true;
+        }
+        return false;
+    }
 
+    private void EndGame()
+    {
+        endGameMenu.showDisplay();
+        endGameMenu.setDateText(curDay + " / " + finalDate);
+        endGameMenu.setGoldText(playerInventory.GetGold() + " / " + playerGoldGoal);
+        if (HasPlayerWon())
+        {
+            endGameMenu.setVictoryText("Victory!");
+            endGameMenu.ActivateObject(endGameMenu.nextLevelButton);
+            Debug.Log("Player has won!");
+        }
+        else
+        {
+            endGameMenu.setVictoryText("Level Failed!");
+            endGameMenu.DeactivateObject(endGameMenu.nextLevelButton);
+            Debug.Log("Player has lost");
+        }
+    }
 }

@@ -36,6 +36,11 @@ public class Inventory : MonoBehaviour
         return isReady;
     }
 
+    public int GetGold()
+    {
+        return curGold;
+    }
+
     public int SpendGold(int goldToSpend)
     {
         curGold -= goldToSpend;

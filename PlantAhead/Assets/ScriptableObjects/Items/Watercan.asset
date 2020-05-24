@@ -20,5 +20,5 @@ MonoBehaviour:
   icon: {fileID: 0}
   nearWater: 0
   maxWaterinCan: 10
-  waterCurrentlyinCan: 3
+  waterCurrentlyinCan: 9
   waterPerUse: 1

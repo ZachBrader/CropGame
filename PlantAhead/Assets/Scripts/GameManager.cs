@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerUI;
     public StoreDisplay storeDisplay;
     public InGameMenu inGameMenu;
+    private bool menuLocked = false;
 
     // END VICTORY VARIABLES
 
@@ -91,6 +92,11 @@ public class GameManager : MonoBehaviour
 
     public void OpenMenu(string menuName)
     {
+        if (menuLocked == true)
+        {
+            return;
+        }
+
         if (menuName != "Store")
         {
             storeDisplay.closeDisplay();
@@ -203,6 +209,7 @@ public class GameManager : MonoBehaviour
     private void EndGame()
     {
         OpenMenu("EndGameMenu");
+        menuLocked = true;
         endGameMenu.setDateText(curDay + " / " + finalDate);
         endGameMenu.setGoldText(playerInventory.GetGold() + " / " + playerGoldGoal);
         if (HasPlayerWon())

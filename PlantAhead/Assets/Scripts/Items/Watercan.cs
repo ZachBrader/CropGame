@@ -9,13 +9,13 @@ public class Watercan : Item
 {
     [SerializeField]
     private bool nearWater = false;
-
+    
     public int maxWaterinCan = 10;
 
     public int waterCurrentlyinCan = 10;
 
-    public int waterPerUse = 1;    
-
+    public int waterPerUse = 1;
+    
     // do a watering can action. If near water, this will try to fill the watering can
     public int Use(CustomTile selectedTile)
     {
@@ -27,8 +27,8 @@ public class Watercan : Item
                 waterCurrentlyinCan += fillAmount;
                 if(maxWaterinCan == 0){
                         maxWaterinCan = 1;
-                    }
-                    UIManager.Instance.waterBar.fillAmount = (float) waterCurrentlyinCan / (float) maxWaterinCan;
+                }
+                UIManager.Instance.waterBar.fillAmount = (float) waterCurrentlyinCan / (float) maxWaterinCan;
                 return 0;
             }
                 

@@ -38,6 +38,11 @@ public class Actions : MonoBehaviour
 
     [SerializeField]
     public ScriptableObject waterCan;
+
+    [SerializeField] public AudioClip waterSound;
+
+    private AudioSource source;
+    
     // Start is called before the first frame update
     void Start(){
         Debug.Log("Actions Start");
@@ -50,6 +55,7 @@ public class Actions : MonoBehaviour
         movement = GetComponent<Movement>();
         curSelectionSprite = GameObject.Instantiate(selectionSprite) as GameObject;
         animator = GetComponent<Animator>();
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -144,6 +150,7 @@ public class Actions : MonoBehaviour
 
     void Water()
     {
+        source.PlayOneShot(waterSound, .5f);
         Vector3 selectorPos = new Vector3(transform.position.x + movement.direction.x, transform.position.y + movement.direction.y, 0);
         Vector3Int cellPosition = grid.WorldToCell(selectorPos);
         var tillableTile = gameManager.GetTile(new Vector2Int(cellPosition.x, cellPosition.y));
@@ -156,6 +163,8 @@ public class Actions : MonoBehaviour
                 currentEnergy -= energyCost;
                 setEnergyBar();
             }
+        
+        
         
     }
     

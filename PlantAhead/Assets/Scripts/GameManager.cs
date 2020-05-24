@@ -20,6 +20,11 @@ public class GameManager : MonoBehaviour
     public EndGameMenu endGameMenu;
     private Inventory playerInventory;
 
+    public InventoryDisplay inventoryDisplay;
+    public GameObject playerUI;
+    public StoreDisplay storeDisplay;
+    public InGameMenu inGameMenu;
+
     // END VICTORY VARIABLES
 
     public SuperMap myMap;
@@ -82,6 +87,50 @@ public class GameManager : MonoBehaviour
         {
             Application.Quit();
         }
+    }
+
+    public void OpenMenu(string menuName)
+    {
+        if (menuName != "Store")
+        {
+            storeDisplay.closeDisplay();
+        }
+        else
+        {
+            storeDisplay.toggleDisplay();
+            playerUI.SetActive(!storeDisplay.checkOpen());
+        }
+
+        if (menuName != "Inventory")
+        {
+            inventoryDisplay.closeDisplay();
+        }
+        else
+        {
+            inventoryDisplay.toggleDisplay();
+            playerUI.SetActive(!inventoryDisplay.checkOpen());
+        }
+
+        if (menuName != "InGameMenu")
+        {
+            inGameMenu.closeDisplay();
+        }
+        else
+        {
+            inGameMenu.toggleDisplay();
+            playerUI.SetActive(!inGameMenu.checkOpen());
+        }
+
+        if (menuName != "EndGameMenu")
+        {
+            endGameMenu.closeDisplay();
+        }
+        else
+        {
+            endGameMenu.toggleDisplay();
+            playerUI.SetActive(!endGameMenu.checkOpen());
+        }
+
     }
 
     public void EndDay(int penalty = 0)
@@ -153,7 +202,7 @@ public class GameManager : MonoBehaviour
 
     private void EndGame()
     {
-        endGameMenu.showDisplay();
+        OpenMenu("EndGameMenu");
         endGameMenu.setDateText(curDay + " / " + finalDate);
         endGameMenu.setGoldText(playerInventory.GetGold() + " / " + playerGoldGoal);
         if (HasPlayerWon())

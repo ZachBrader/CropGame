@@ -59,23 +59,28 @@ public class InventoryDisplay : MonoBehaviour
         return isOpen;
     }
 
-    public void toggleInventory()
+    public void toggleDisplay()
     {
-        isOpen = !isOpen;
-
         if (isOpen == false)
         {
-            slotsParent.SetActive(false);
+            showDisplay();
         }
         else
         {
-            if (storeDisplay.checkOpen())
-            {
-                // Closing inventory to open store
-                storeDisplay.toggleDisplay();
-            }
-            slotsParent.SetActive(true);
+            closeDisplay();
         }
+    }
+
+    public void showDisplay()
+    {
+        slotsParent.SetActive(true);
+        isOpen = true;
+    }
+
+    public void closeDisplay()
+    {
+        slotsParent.SetActive(false);
+        isOpen = false;
     }
 
     void checkInventoryAndUpdateVisuals()

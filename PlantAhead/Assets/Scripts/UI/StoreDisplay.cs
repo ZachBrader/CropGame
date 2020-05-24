@@ -57,21 +57,26 @@ public class StoreDisplay : MonoBehaviour
 
     public void toggleDisplay()
     {
-        isOpen = !isOpen;
-
         if (isOpen == false)
         {
-            slotsParent.SetActive(false);
+            showDisplay();
         }
         else
         {
-            if (inventoryDisplay.checkOpen())
-            {
-                // Closing inventory to open store
-                inventoryDisplay.toggleInventory();
-            }
-            slotsParent.SetActive(true);
+            closeDisplay();
         }
+    }
+
+    public void showDisplay()
+    {
+        slotsParent.SetActive(true);
+        isOpen = true;
+    }
+
+    public void closeDisplay()
+    {
+        slotsParent.SetActive(false);
+        isOpen = false;
     }
 
     void checkStockAndUpdateVisuals()

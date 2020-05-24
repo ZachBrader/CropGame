@@ -41,11 +41,7 @@ public class Actions : MonoBehaviour
     // Start is called before the first frame update
     void Start(){
         Debug.Log("Actions Start");
-        var temp = GameObject.FindGameObjectWithTag("GameManager");
-        if (temp != null)
-        {
-            gameManager = temp.GetComponent<GameManager>();
-        }
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         //playerInventory = GetComponent<Inventory>();
         movement = GetComponent<Movement>();
         curSelectionSprite = GameObject.Instantiate(selectionSprite) as GameObject;
@@ -63,22 +59,19 @@ public class Actions : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Debug.Log("Toggling In Game Menu");
-            inGameMenu.toggleDisplay();
-            playerUI.SetActive(!inGameMenu.checkOpen());
+            gameManager.OpenMenu("InGameMenu");
         }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("Toggling Inventory");
-            inventoryDisplay.toggleInventory();
-            playerUI.SetActive(!inventoryDisplay.checkOpen());
+            gameManager.OpenMenu("Inventory");
         }
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             Debug.Log("Toggling Store");
-            storeDisplay.toggleDisplay();
-            playerUI.SetActive(!storeDisplay.checkOpen());
+            gameManager.OpenMenu("Store");
         }
 
         if (Input.GetKeyDown(KeyCode.G))

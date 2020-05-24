@@ -21,6 +21,8 @@ public class Water {
         }
         else
         {
+            UIManager.Instance.ActionStatus.text = "Water Source Empty!";
+            UIManager.Instance.displayX();
             return 0;
         }
     }

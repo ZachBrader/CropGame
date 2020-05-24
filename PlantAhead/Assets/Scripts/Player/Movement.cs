@@ -15,6 +15,7 @@ public class Movement : MonoBehaviour
     public Vector3 movement;
 
     public Vector2 direction;
+    public bool canMove; 
 
     private Animator animator;
 
@@ -59,7 +60,11 @@ public class Movement : MonoBehaviour
         // }
 
         // movement = new Vector3(moveHorizontal, moveVertical);
-
+        if(!canMove) {
+            movement = Vector3.zero;
+            animator.SetBool("moving", false);
+            return;
+        }
         movement = Vector3.zero;
         // wasd or arrow keys. Let the user pick?
         movement.x = Input.GetAxisRaw ("Horizontal"); 

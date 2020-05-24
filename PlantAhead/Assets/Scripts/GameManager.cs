@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     public List<Water> waterSources;
     public CustomTile[,] tileGrid;
 
+    public GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,11 @@ public class GameManager : MonoBehaviour
         GameObject.Find("UIOverlay/Panel").GetComponent<Image>().color = new Color(0,0,0,0);
 
         dayTrackerText.GetComponent<TMP_Text>().text = "Date: " + curDay + " / " + finalDate;
+
+        if(player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
 
         // init the grid for interactions
         tileGrid = new CustomTile[myMap.m_Width, myMap.m_Height];
@@ -71,7 +78,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void EndDay()
+    public void EndDay(int penalty = 0)
     {
         GameObject.Find("UIOverlay/Panel").GetComponent<Image>().color = new Color(0,0,0,255);
         curDay++;
@@ -89,6 +96,15 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        // reset the player health
+        player.GetComponent<Actions>().refreshPlayer(penalty);
+
+        // refil the water sources
+        foreach(Water source in waterSources) 
+        {
+            source.refillWaterSource();
+        }
+
         dayTrackerText.GetComponent<TMP_Text>().text = "Date: " + curDay + " / " + finalDate;
 
         if (curDay == finalDate)
@@ -96,7 +112,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("Level Completed");
         }
 
-        Invoke("clearPanel",1);
+        Invoke("clearPanel", 1);
         
     }
 

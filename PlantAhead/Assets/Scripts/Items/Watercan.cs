@@ -10,12 +10,11 @@ public class Watercan : Item
     [SerializeField]
     private bool nearWater = false;
 
-    public int maxWaterinCan = 100;
+    public int maxWaterinCan = 10;
 
-    public int waterCurrentlyinCan = 100;
+    public int waterCurrentlyinCan = 10;
 
-    public int waterPerUse = 1;
-    
+    public int waterPerUse = 1;    
 
     // do a watering can action. If near water, this will try to fill the watering can
     public int Use(CustomTile selectedTile)
@@ -26,6 +25,10 @@ public class Watercan : Item
                 // refill the can
                 var fillAmount = (selectedTile as WaterTile).refillCan(maxWaterinCan - waterCurrentlyinCan);
                 waterCurrentlyinCan += fillAmount;
+                if(maxWaterinCan == 0){
+                        maxWaterinCan = 1;
+                    }
+                    UIManager.Instance.waterBar.fillAmount = (float) waterCurrentlyinCan / (float) maxWaterinCan;
                 return 0;
             }
                 
@@ -49,6 +52,8 @@ public class Watercan : Item
                 else
                 {
                     Debug.Log("Watering Can is Empty");
+                    UIManager.Instance.ActionStatus.text = "Watering Can is Empty";
+                    UIManager.Instance.displayX();
                     return 0;
                     // notify player watering can out of water
                 }

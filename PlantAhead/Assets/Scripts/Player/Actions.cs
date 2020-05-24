@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -10,9 +11,13 @@ public class Actions : MonoBehaviour
     public TMP_Text itemSelectedText;
     //public GameObject gridObject;
     public GameObject selectionSprite;
-
+    public Animator animator;
     public Grid grid;
     public Tilemap tillableTiles;
+
+    float passOutPenalty = 0.25f;
+    public int currentEnergy = 100;
+    public int maxEnergy = 100;
     private Item currentEquipped;
     public GameObject curSelectionSprite = null;
     [SerializeField]
@@ -23,12 +28,8 @@ public class Actions : MonoBehaviour
     public StoreDisplay storeDisplay;
     public InGameMenu inGameMenu;
     public GameObject playerUI;
+ 
     private GameManager gameManager;
-
-    //public Image waterBar; in watercan.cs
-
-    [SerializeField]
-    private bool nearWater = false; // watercan.cs make it's own check; this may not be needed here
 
     [SerializeField]
     private bool canSleep = false;
@@ -48,6 +49,7 @@ public class Actions : MonoBehaviour
         //playerInventory = GetComponent<Inventory>();
         movement = GetComponent<Movement>();
         curSelectionSprite = GameObject.Instantiate(selectionSprite) as GameObject;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -96,6 +98,11 @@ public class Actions : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q) && canSleep){
             gameManager.EndDay();
         }
+
+        if(currentEnergy < 1){
+            UIManager.Instance.ActionStatus.text = " You Passed Out!";
+            gameManager.EndDay((int)(Math.Round(maxEnergy * passOutPenalty)));
+        }
     }
 
     void DoAction()
@@ -110,7 +117,9 @@ public class Actions : MonoBehaviour
 
         var tillableTile = gameManager.GetTile(new Vector2Int(cellPosition.x, cellPosition.y));
 
-        currentEquipped.Use(tillableTile, new Vector3(cellPosition.x + 0.5f, cellPosition.y - 0.5f, 0));
+        int energyCost = currentEquipped.Use(tillableTile, new Vector3(cellPosition.x + 0.5f, cellPosition.y - 0.5f, 0));
+        setEnergyBar();
+        
     }
 
     void Harvest()
@@ -120,9 +129,17 @@ public class Actions : MonoBehaviour
         var tillableTile = gameManager.GetTile(new Vector2Int(cellPosition.x, cellPosition.y));
 
         if ((tillableTile as TillableTile).plant != null){
-            (tillableTile as TillableTile).plant.harvest();
-            
+            int energyCost = (tillableTile as TillableTile).plant.harvest();
+            if(energyCost != 0)
+            {
+                animator.SetTrigger("Sickle");
+                StartCoroutine(StopPlayerMovement(0.3333f));
+                currentEnergy -= energyCost;
+                setEnergyBar();
+            }
+
         }
+
     }
 
     void Water()
@@ -131,8 +148,15 @@ public class Actions : MonoBehaviour
         Vector3Int cellPosition = grid.WorldToCell(selectorPos);
         var tillableTile = gameManager.GetTile(new Vector2Int(cellPosition.x, cellPosition.y));
 
-        (waterCan as Watercan).Use(tillableTile);
-
+        int energyCost = (waterCan as Watercan).Use(tillableTile);
+        if(energyCost != 0)
+            {
+                animator.SetTrigger("Water");
+                StartCoroutine(StopPlayerMovement(0.3333f));
+                currentEnergy -= energyCost;
+                setEnergyBar();
+            }
+        
     }
     
 
@@ -161,13 +185,25 @@ public class Actions : MonoBehaviour
 
     }
 
-    public void OnTriggerEnter2D(Collider2D collison) 
+    public void refreshPlayer(int penalty = 0)
     {
-        if(collison.CompareTag("Water"))
-        {
-            nearWater = true;
+        currentEnergy = maxEnergy - penalty;
+        setEnergyBar();
+        
+    }
+
+    public void setEnergyBar()
+    {
+        // no div 0!!!
+        if(maxEnergy < 1) {
+            maxEnergy = 1;
         }
 
+        UIManager.Instance.EnergyBar.fillAmount = (float) currentEnergy / (float) maxEnergy;
+    }
+
+    public void OnTriggerEnter2D(Collider2D collison) 
+    {
         if(collison.CompareTag("House"))
         {
             canSleep = true;
@@ -176,17 +212,19 @@ public class Actions : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D collison) 
     {
-        if(collison.CompareTag("Water"))
-        {
-            nearWater = false;
-        }
-
         if(collison.CompareTag("House"))
         {
             canSleep = false;
         }
     }
 
+    private IEnumerator StopPlayerMovement(float time) 
+    {
+        movement.canMove = false;
+        yield return new WaitForSeconds(time);
+        movement.canMove = true;
+    }
 
+    
 
 }

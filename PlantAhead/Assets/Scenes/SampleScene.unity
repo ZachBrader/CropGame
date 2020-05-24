@@ -537,6 +537,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dayTrackerText: {fileID: 714675269}
   finalDate: 10
+  playerGoldGoal: 100
+  endGameMenu: {fileID: 714675270}
   myMap: {fileID: 231264825}
   dirtTiles: {fileID: 1175084173}
   waterTiles:
@@ -547,7 +549,7 @@ MonoBehaviour:
     WaterAmount: 9999
   - WaterAmountMax: 9999
     WaterAmount: 9999
-  player: {fileID: 0}
+  player: {fileID: 5794718070221097298}
 --- !u!1839735485 &709617696 stripped
 Tilemap:
   m_CorrespondingSourceObject: {fileID: -4437042420714647580, guid: cb2adceff6a6d784292e8299e8391b6b,
@@ -759,6 +761,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 714675262}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &714675270 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3199325553887593359, guid: 11645bbc038562f4486bb87d8751430d,
+    type: 3}
+  m_PrefabInstance: {fileID: 714675262}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb927451519c234ca5469f0edee2033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &737765708
 GameObject:
   m_ObjectHideFlags: 0

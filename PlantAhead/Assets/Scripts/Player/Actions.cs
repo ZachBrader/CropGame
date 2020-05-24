@@ -21,6 +21,8 @@ public class Actions : MonoBehaviour
     private Movement movement;
     public InventoryDisplay inventoryDisplay;
     public StoreDisplay storeDisplay;
+    public InGameMenu inGameMenu;
+    public GameObject playerUI;
     private GameManager gameManager;
 
     //public Image waterBar; in watercan.cs
@@ -56,18 +58,27 @@ public class Actions : MonoBehaviour
             DoAction();
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("Toggling In Game Menu");
+            inGameMenu.toggleDisplay();
+            playerUI.SetActive(!inGameMenu.checkOpen());
+        }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("Toggling Inventory");
             inventoryDisplay.toggleInventory();
+            playerUI.SetActive(!inventoryDisplay.checkOpen());
         }
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             Debug.Log("Toggling Store");
             storeDisplay.toggleDisplay();
+            playerUI.SetActive(!storeDisplay.checkOpen());
         }
-        
+
         if (Input.GetKeyDown(KeyCode.G))
         {
             Debug.Log("Attempting to harvest");

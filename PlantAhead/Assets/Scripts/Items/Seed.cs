@@ -20,11 +20,19 @@ public class Seed : Item
 
         if (selectedTile != null && (selectedTile as TillableTile).plant == null)
         {
-            Debug.Log("Planting at location " + plantLocation);
+            if((selectedTile as TillableTile).beenHoed){
+                Debug.Log("Planting at location " + plantLocation);
 
-            var newPlant = Instantiate(plant, plantLocation, Quaternion.identity);
-            (selectedTile as TillableTile).plant = newPlant.GetComponent<Plant>();
-            return energyCost;
+                var newPlant = Instantiate(plant, plantLocation, Quaternion.identity);
+                (selectedTile as TillableTile).plant = newPlant.GetComponent<Plant>();
+                (selectedTile as TillableTile).UnHoe(); // remove the hoe state
+                return energyCost;
+            }
+            else
+            {
+                UIManager.Instance.ActionStatus.text = "Soil needs to be tilled to plant!";
+                UIManager.Instance.displayX();
+            }
         }
         Debug.Log("Failed to plant");
         return 0;

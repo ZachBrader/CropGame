@@ -38,10 +38,11 @@ public class GameManager : MonoBehaviour
 
     public GameObject player;
 
+    public TileSpriteManager tileManager;
     // Start is called before the first frame update
     void Start()
     {
-        
+        TileSpriteManager.Instance = tileManager;
         GameObject.Find("UIOverlay/Panel").GetComponent<Image>().color = new Color(0,0,0,0);
 
         dayTrackerText.GetComponent<TMP_Text>().text = "Date: " + curDay + " / " + finalDate;
@@ -64,7 +65,11 @@ public class GameManager : MonoBehaviour
                     // instantiate where there are dirtTiles
                     // note: dirt tiles do not contain the border tiles that touch grass
                     // this is important!
-                    tileGrid[x, y] = new TillableTile();
+                    tileGrid[x, y] = new TillableTile()
+                    {
+                        tilemap = dirtTiles,
+                        tilePosition = new Vector3Int(x, -y, 0)
+                    };
                 }
                 for(int i = 0; i < waterTiles.Count; i++)
                 {

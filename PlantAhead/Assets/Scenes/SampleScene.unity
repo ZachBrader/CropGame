@@ -257,7 +257,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.473849, y: -6.604191, z: -10}
+  m_LocalPosition: {x: 7.469393, y: -6.604163, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -414,6 +414,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4862879195089995840, guid: cb2adceff6a6d784292e8299e8391b6b,
+        type: 3}
+      propertyPath: m_TileAnchor.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4862879195089995840, guid: cb2adceff6a6d784292e8299e8391b6b,
+        type: 3}
+      propertyPath: m_TileAnchor.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4862879195089995840, guid: cb2adceff6a6d784292e8299e8391b6b,
+        type: 3}
+      propertyPath: m_TileAnchor.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -2446678450364287293, guid: cb2adceff6a6d784292e8299e8391b6b,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -554,6 +569,7 @@ MonoBehaviour:
   - WaterAmountMax: 9999
     WaterAmount: 9999
   player: {fileID: 5794718070221097298}
+  tileManager: {fileID: 11400000, guid: fc7b59896a3dd2a43862a2fbf2533523, type: 2}
 --- !u!1839735485 &709617696 stripped
 Tilemap:
   m_CorrespondingSourceObject: {fileID: -4437042420714647580, guid: cb2adceff6a6d784292e8299e8391b6b,
@@ -1759,6 +1775,12 @@ PrefabInstance:
       propertyPath: maxEnergy
       value: 300
       objectReference: {fileID: 0}
+    - target: {fileID: 5794718071514118738, guid: 719902d9423145a419fcfff3254d526a,
+        type: 3}
+      propertyPath: hoe
+      value: 
+      objectReference: {fileID: 11400000, guid: 8370d805777213744b3945cdf2a81cd5,
+        type: 2}
     - target: {fileID: 5794718071514118739, guid: 719902d9423145a419fcfff3254d526a,
         type: 3}
       propertyPath: inventoryUIParent

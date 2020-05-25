@@ -39,6 +39,8 @@ public class Actions : MonoBehaviour
     [SerializeField]
     public ScriptableObject waterCan;
 
+    [SerializeField]
+    public ScriptableObject hoe;
     [SerializeField] public AudioClip waterSound;
 
     private AudioSource source;
@@ -92,6 +94,12 @@ public class Actions : MonoBehaviour
             Water();
         }
 
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            Debug.Log("Attempting to use the hoe");
+            Hoe();
+        }
+
         // Player sleeps
         // checks if you're in the house
         if (Input.GetKeyDown(KeyCode.Q) && canSleep){
@@ -129,6 +137,7 @@ public class Actions : MonoBehaviour
 
         if ((tillableTile as TillableTile).plant != null){
             int energyCost = (tillableTile as TillableTile).plant.harvest();
+            (tillableTile as TillableTile).plant = null;
             if(energyCost != 0)
             {
                 animator.SetTrigger("Sickle");
@@ -159,6 +168,22 @@ public class Actions : MonoBehaviour
         
         
         
+    }
+
+    void Hoe()
+    {
+        Vector3 selectorPos = new Vector3(transform.position.x + movement.direction.x, transform.position.y + movement.direction.y, 0);
+        Vector3Int cellPosition = grid.WorldToCell(selectorPos);
+        var tillableTile = gameManager.GetTile(new Vector2Int(cellPosition.x, cellPosition.y));
+
+        int energyCost = (hoe as Hoe).Use(tillableTile);
+        if(energyCost != 0)
+            {
+                animator.SetTrigger("Hoe");
+                StartCoroutine(StopPlayerMovement(0.3333f));
+                currentEnergy -= energyCost;
+                setEnergyBar();
+            }
     }
     
 

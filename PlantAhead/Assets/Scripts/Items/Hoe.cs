@@ -7,11 +7,19 @@ using UnityEngine.Tilemaps;
 [CreateAssetMenu(menuName = "Items/Hoe")]
 public class Hoe : Item
 {    
-
-    /*public override int Use(TileBase selectedTile)
+    public int Use(CustomTile selectedTile)
     {
-        // change tile to hoed
-        Debug.Log("Hoe'd " + selectedTile);
-        return energyCost;
-    }*/
+        if(selectedTile != null){
+            if(selectedTile is TillableTile)
+            {
+                if(!(selectedTile as TillableTile).beenHoed)
+                {
+                    (selectedTile as TillableTile).Hoe();
+                }
+            }
+            return energyCost;
+        }
+        return 0;
+    }
+   
 }

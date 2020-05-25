@@ -44,6 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17795fe204961384ca69b0ef3d0a25b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waterSound: {fileID: 0}
+  plantingSound: {fileID: 0}
+  walkingSound: {fileID: 0}
+  coinSound: {fileID: 8300000, guid: 482ed731e0ba28b48ab6c5b61ad6183c, type: 3}
 --- !u!82 &2012618904717450981
 AudioSource:
   m_ObjectHideFlags: 0
@@ -54,8 +58,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: e06e6044742c557449c839f978a809a8, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

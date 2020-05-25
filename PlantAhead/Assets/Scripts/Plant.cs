@@ -121,7 +121,7 @@ public class Plant : MonoBehaviour{
             Destroy(this.gameObject);
         }
 
-        return 0;
+        return 5;
     }
 
     /*

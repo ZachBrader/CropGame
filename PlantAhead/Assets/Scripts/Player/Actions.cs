@@ -162,7 +162,6 @@ public class Actions : MonoBehaviour
         var tillableTile = gameManager.GetTile(new Vector2Int(cellPosition.x, cellPosition.y));
 
         if (tillableTile == null) { return; }
-        if (tillableTile.GetType() != typeof(TillableTile)) { return; }
 
         int energyCost = (waterCan as Watercan).Use(tillableTile);
         if(energyCost != 0)

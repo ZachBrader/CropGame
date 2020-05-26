@@ -427,8 +427,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dayTrackerText: {fileID: 1226321051}
-  finalDate: 10
-  playerGoldGoal: 100
+  finalDate: 15
+  playerGoldGoal: 50
   endGameMenu: {fileID: 1470356433}
   inventoryDisplay: {fileID: 1563906268}
   playerUI: {fileID: 166928167}
@@ -1572,7 +1572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerGoldTrackerText: {fileID: 954607183}
-  startingGold: 100
+  startingGold: 50
   maxItems: 28
 --- !u!1 &1971427741
 GameObject:

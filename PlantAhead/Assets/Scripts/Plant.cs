@@ -24,12 +24,19 @@ public class Plant : MonoBehaviour{
     private int plantStage = 0;
     public int waterLevel = 1;
     private float stageTime = 0f;
+
+    // Determines how much a plant is worth
+    public int averagePlantValue;
     
     
     // Start is called before the first frame update
     void Start(){
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         animator = gameObject.GetComponent<Animator>();
+
+        // TEST CODE
+        averagePlantValue = 5;
+        // TEST CODE
     }
 
     // Update is called once per frame
@@ -114,14 +121,22 @@ public class Plant : MonoBehaviour{
      */
     public int harvest(){
         Debug.Log("Harvest successful");
-        if (reusable){
+        if (reusable)
+        {
             this.spriteRenderer.sprite = stage2;
         }
-        else{
+        else
+        {
             Destroy(this.gameObject);
         }
 
         return 5;
+    }
+
+    // This will return the amount of money the plant sells for
+    public int ValuePlant()
+    {
+        return averagePlantValue * plantStage;
     }
 
     /*

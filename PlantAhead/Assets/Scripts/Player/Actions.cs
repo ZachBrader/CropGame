@@ -24,6 +24,7 @@ public class Actions : MonoBehaviour
     private Vector3Int curCellPosition;
 
     private Movement movement;
+    private Inventory playerInventory;
     public InventoryDisplay inventoryDisplay;
     public StoreDisplay storeDisplay;
     public InGameMenu inGameMenu;
@@ -49,7 +50,7 @@ public class Actions : MonoBehaviour
     void Start(){
         Debug.Log("Actions Start");
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        //playerInventory = GetComponent<Inventory>();
+        playerInventory = GetComponent<Inventory>();
         movement = GetComponent<Movement>();
         curSelectionSprite = GameObject.Instantiate(selectionSprite) as GameObject;
         animator = GetComponent<Animator>();
@@ -135,9 +136,11 @@ public class Actions : MonoBehaviour
         Vector3Int cellPosition = grid.WorldToCell(selectorPos);
         var tillableTile = gameManager.GetTile(new Vector2Int(cellPosition.x, cellPosition.y));
 
-        if ((tillableTile as TillableTile).plant != null){
-            int energyCost = (tillableTile as TillableTile).plant.harvest();
-            (tillableTile as TillableTile).plant = null;
+        Plant plantToHarvest = (tillableTile as TillableTile).plant;
+        if (plantToHarvest != null){
+            playerInventory.ReceiveGold(plantToHarvest.ValuePlant());
+            int energyCost = plantToHarvest.harvest();
+            plantToHarvest = null;
             if(energyCost != 0)
             {
                 animator.SetTrigger("Sickle");

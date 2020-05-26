@@ -157,4 +157,9 @@ public class Plant : MonoBehaviour{
             this.spriteRenderer.sprite = stage4;
         }
     }
+
+    public int GetPlantStage()
+    {
+        return plantStage;
+    }
 }

@@ -29,6 +29,9 @@ public class Actions : MonoBehaviour
     public StoreDisplay storeDisplay;
     public InGameMenu inGameMenu;
     public GameObject playerUI;
+
+    public GameObject guideParent;
+    public TMP_Text guideText;
  
     private GameManager gameManager;
 
@@ -144,6 +147,8 @@ public class Actions : MonoBehaviour
             playerInventory.ReceiveGold(plantToHarvest.ValuePlant());
             int energyCost = plantToHarvest.harvest();
             plantToHarvest = null;
+
+            (tillableTile as TillableTile).beenHoed = false;
             if(energyCost != 0)
             {
                 animator.SetTrigger("Sickle");
@@ -163,6 +168,7 @@ public class Actions : MonoBehaviour
         Vector3Int cellPosition = grid.WorldToCell(selectorPos);
         var tillableTile = gameManager.GetTile(new Vector2Int(cellPosition.x, cellPosition.y));
 
+        if (tillableTile == null) { return; }
         if (tillableTile.GetType() != typeof(TillableTile)) { return; }
 
         int energyCost = (waterCan as Watercan).Use(tillableTile);
@@ -183,7 +189,7 @@ public class Actions : MonoBehaviour
         Vector3 selectorPos = new Vector3(transform.position.x + movement.direction.x, transform.position.y + movement.direction.y, 0);
         Vector3Int cellPosition = grid.WorldToCell(selectorPos);
         var tillableTile = gameManager.GetTile(new Vector2Int(cellPosition.x, cellPosition.y));
-
+        if (tillableTile == null) { return; }
         if (tillableTile.GetType() != typeof(TillableTile)) { return; }
 
         int energyCost = (hoe as Hoe).Use(tillableTile);
@@ -217,9 +223,55 @@ public class Actions : MonoBehaviour
     {
         Vector3Int cellPosition = grid.WorldToCell(transform.position);
         Vector3 offset = new Vector3(cellPosition.x + 0.5f + movement.direction.x, cellPosition.y - 0.5f + movement.direction.y, cellPosition.z);
-
         curSelectionSprite.transform.position = offset;
 
+        if (canSleep)
+        {
+            guideParent.SetActive(true);
+            guideText.text = "Press Q to sleep";
+            return;
+        }
+        var tillableTile = gameManager.GetTile(new Vector2Int((int)offset.x, (int)offset.y));
+
+        if (tillableTile == null)
+        {
+            guideParent.SetActive(false);
+            return;
+        }
+        else
+        {
+            guideParent.SetActive(true);
+        }
+
+        if (tillableTile.GetType() == typeof(WaterTile))
+        {
+            guideText.text = "Press F to refill water!";
+        }
+        else if (tillableTile.GetType() == typeof(TillableTile))
+        {
+            if ((tillableTile as TillableTile).plant != null)
+            {
+                if ((tillableTile as TillableTile).plant.waterLevel < 1)
+                {
+                    guideText.text = "Press F to water plant";
+                }
+                else if ((tillableTile as TillableTile).plant.GetPlantStage() > 3)
+                {
+                    guideText.text = "Press G to harvest plant";
+                }
+            }
+            else
+            {
+                if ((tillableTile as TillableTile).beenHoed)
+                {
+                    guideText.text = "Press SPACE BAR to plant an equipped seed here!";
+                }
+                else
+                {
+                    guideText.text = "Press R to hoe land!";
+                }
+            }
+        }
     }
 
     public void refreshPlayer(int penalty = 0)

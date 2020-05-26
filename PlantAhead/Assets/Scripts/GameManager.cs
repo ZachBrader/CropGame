@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerUI;
     public StoreDisplay storeDisplay;
     public InGameMenu inGameMenu;
+    private Movement playerMovement;
     private bool menuLocked = false;
 
     // END VICTORY VARIABLES
@@ -52,6 +53,7 @@ public class GameManager : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("Player");
         }
         playerInventory = player.GetComponent<Inventory>();
+        playerMovement = player.GetComponent<Movement>();
 
         // init the grid for interactions
         tileGrid = new CustomTile[myMap.m_Width, myMap.m_Height];
@@ -142,11 +144,21 @@ public class GameManager : MonoBehaviour
             playerUI.SetActive(!endGameMenu.checkOpen());
         }
 
+        if (menuName == "Night")
+        {
+            playerUI.SetActive(false);
+        }
+
+        if (menuName == "Day")
+        {
+            playerUI.SetActive(true);
+        }
+        playerMovement.canMove = playerUI.activeSelf;
     }
 
     public void EndDay(int penalty = 0)
     {
-        GameObject.Find("UIOverlay/Panel").GetComponent<Image>().color = new Color(0,0,0,255);
+        StartCoroutine(SimulateNight());
         curDay++;
 
         //updates each plants stage, will add checks later to only have this done in specific 
@@ -177,15 +189,32 @@ public class GameManager : MonoBehaviour
         {
             EndGame();
             Debug.Log("Level Completed");
-        }
-
-        Invoke("clearPanel", 1);
+        }      
         
     }
 
-    void clearPanel(){
-        GameObject.Find("UIOverlay/Panel").GetComponent<Image>().color = new Color(0,0,0,0);
-        
+    IEnumerator SimulateNight()
+    {
+        Image screenOverlay = GameObject.Find("UIOverlay/Panel").GetComponent<Image>();
+        OpenMenu("Night");
+        menuLocked = true;
+        playerMovement.canMove = false;
+
+        while (screenOverlay.color.a < 1)
+        {
+            screenOverlay.color = new Color(0, 0, 0, screenOverlay.color.a + Time.deltaTime);
+            yield return null;
+        }
+
+        while (screenOverlay.color.a > 0)
+        {
+            screenOverlay.color = new Color(0, 0, 0, screenOverlay.color.a - Time.deltaTime);
+            yield return null;
+        }
+        menuLocked = false;
+        OpenMenu("Day");
+        playerMovement.canMove = true;
+        yield return null;
     }
 
     public CustomTile GetTile(Vector2Int location)

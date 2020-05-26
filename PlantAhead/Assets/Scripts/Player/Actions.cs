@@ -70,37 +70,31 @@ public class Actions : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("Toggling In Game Menu");
             gameManager.OpenMenu("InGameMenu");
         }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("Toggling Inventory");
             gameManager.OpenMenu("Inventory");
         }
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            Debug.Log("Toggling Store");
             gameManager.OpenMenu("Store");
         }
 
         if (Input.GetKeyDown(KeyCode.G))
         {
-            Debug.Log("Attempting to harvest");
             Harvest();
         }
         
         if (Input.GetKeyDown(KeyCode.F))
         {
-            Debug.Log("Attempting to water or get water");
             Water();
         }
 
         if(Input.GetKeyDown(KeyCode.R))
         {
-            Debug.Log("Attempting to use the hoe");
             Hoe();
         }
 
@@ -120,7 +114,6 @@ public class Actions : MonoBehaviour
     {
         if (currentEquipped == null)
         {
-            Debug.Log("No item currently equipped -- Cannot Preform Action");
             return;
         }
         Vector3 selectorPos = new Vector3(transform.position.x + movement.direction.x, transform.position.y + movement.direction.y, 0);
@@ -173,15 +166,12 @@ public class Actions : MonoBehaviour
 
         int energyCost = (waterCan as Watercan).Use(tillableTile);
         if(energyCost != 0)
-            {
-                animator.SetTrigger("Water");
-                StartCoroutine(StopPlayerMovement(0.3333f));
-                currentEnergy -= energyCost;
-                setEnergyBar();
-            }
-        
-        
-        
+        {
+            animator.SetTrigger("Water");
+            StartCoroutine(StopPlayerMovement(0.3333f));
+            currentEnergy -= energyCost;
+            setEnergyBar();
+        }
     }
 
     void Hoe()

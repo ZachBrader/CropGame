@@ -188,7 +188,9 @@ MonoBehaviour:
   waterCost: 0
   animator: {fileID: 0}
   spriteRenderer: {fileID: 3324291818824633321}
-  waterLevel: 10
+  waterLevel: 0
+  averagePlantValue: 0
+  isMushroom: 0
 --- !u!95 &3324291818824633323
 Animator:
   serializedVersion: 3

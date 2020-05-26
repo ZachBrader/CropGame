@@ -95,11 +95,46 @@
    <object id="1" x="0.0434783" y="0.0434783" width="15.9565" height="15.8696"/>
   </objectgroup>
  </tile>
+ <tile id="135">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0.5" y="0.75" width="15" height="14.75"/>
+  </objectgroup>
+ </tile>
+ <tile id="269">
+  <objectgroup draworder="index" id="3">
+   <object id="3" x="2" y="0" width="14" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="270">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="14" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="301">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="2" y="0" width="14" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="302">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="14" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="444">
   <animation>
    <frame tileid="444" duration="200"/>
    <frame tileid="443" duration="400"/>
   </animation>
+ </tile>
+ <tile id="471">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="0" width="14" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="472">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="2" y="1" width="14" height="14"/>
+  </objectgroup>
  </tile>
  <tile id="673" terrain="0,0,0,0"/>
  <tile id="674" terrain="0,0,0,"/>
@@ -149,11 +184,21 @@
    <frame tileid="714" duration="50"/>
   </animation>
  </tile>
+ <tile id="777">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="778">
   <animation>
    <frame tileid="712" duration="3010"/>
    <frame tileid="745" duration="199"/>
    <frame tileid="714" duration="50"/>
   </animation>
+ </tile>
+ <tile id="859">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="1" width="14" height="15"/>
+  </objectgroup>
  </tile>
 </tileset>

@@ -181,13 +181,16 @@ public class GameManager : MonoBehaviour
                     
                     //grow current plant and if it has too much water expand it
                     if ((thisTile as TillableTile).plant.plantStageUpdate() == true){
+                        
                         //get all neighbors of current plant
                         List<TillableTile> neighbors = checkNeighborhood(x, y);
+                        
                         //generate a random number that will be the one that is expanded to
-                        float expandingTo = Random.value * neighbors.Count;
+                        int expandingTo = Random.Range(0, neighbors.Count);
+                        
                         //expand and then update current plant
                         GameObject currentplant = (thisTile as TillableTile).plant.gameObject; 
-                        SpreadPlants(currentplant , neighbors[(int)expandingTo]);
+                        SpreadPlants(currentplant , neighbors[expandingTo]);
                     }
                 }
 

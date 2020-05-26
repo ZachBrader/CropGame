@@ -41,6 +41,11 @@ PrefabInstance:
       propertyPath: spriteRenderer
       value: 
       objectReference: {fileID: 1641705744094229880}
+    - target: {fileID: 3324291818824633320, guid: 277393091fe3b184c9896e7ef2088ae3,
+        type: 3}
+      propertyPath: waterLevel
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3324291818824633321, guid: 277393091fe3b184c9896e7ef2088ae3,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -49,7 +54,7 @@ PrefabInstance:
     - target: {fileID: 3324291818824633321, guid: 277393091fe3b184c9896e7ef2088ae3,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3324291818824633321, guid: 277393091fe3b184c9896e7ef2088ae3,
         type: 3}
@@ -60,7 +65,7 @@ PrefabInstance:
     - target: {fileID: 3324291818824633322, guid: 277393091fe3b184c9896e7ef2088ae3,
         type: 3}
       propertyPath: m_Name
-      value: Grape 1
+      value: Grape
       objectReference: {fileID: 0}
     - target: {fileID: 3324291818824633326, guid: 277393091fe3b184c9896e7ef2088ae3,
         type: 3}

@@ -22,6 +22,7 @@ public class Watercan : Item
         if(selectedTile != null){
             if(selectedTile is WaterTile)
             {
+                Debug.Log("Water refilled ");
                 // refill the can
                 var fillAmount = (selectedTile as WaterTile).refillCan(maxWaterinCan - waterCurrentlyinCan);
                 waterCurrentlyinCan += fillAmount;

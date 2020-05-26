@@ -62,7 +62,7 @@ public class Plant : MonoBehaviour{
      * checks if plant has water
      */
     void waterLevelCheck(){
-        if (waterLevel - waterCost > 0){
+        if (waterLevel > 0){
             waterLevel -= waterCost;
         }
     }

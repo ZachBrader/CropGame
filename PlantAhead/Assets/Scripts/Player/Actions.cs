@@ -124,6 +124,7 @@ public class Actions : MonoBehaviour
         Vector3Int cellPosition = grid.WorldToCell(selectorPos);
 
         var tillableTile = gameManager.GetTile(new Vector2Int(cellPosition.x, cellPosition.y));
+        if (tillableTile.GetType() != typeof(TillableTile)) { return; }
 
         int energyCost = currentEquipped.Use(tillableTile, new Vector3(cellPosition.x + 0.5f, cellPosition.y - 0.5f, 0));
         setEnergyBar();
@@ -136,6 +137,8 @@ public class Actions : MonoBehaviour
         Vector3Int cellPosition = grid.WorldToCell(selectorPos);
         var tillableTile = gameManager.GetTile(new Vector2Int(cellPosition.x, cellPosition.y));
 
+        if (tillableTile == null) { return; }
+        if (tillableTile.GetType() != typeof(TillableTile)) { return; }
         Plant plantToHarvest = (tillableTile as TillableTile).plant;
         if (plantToHarvest != null){
             playerInventory.ReceiveGold(plantToHarvest.ValuePlant());
@@ -160,6 +163,8 @@ public class Actions : MonoBehaviour
         Vector3Int cellPosition = grid.WorldToCell(selectorPos);
         var tillableTile = gameManager.GetTile(new Vector2Int(cellPosition.x, cellPosition.y));
 
+        if (tillableTile.GetType() != typeof(TillableTile)) { return; }
+
         int energyCost = (waterCan as Watercan).Use(tillableTile);
         if(energyCost != 0)
             {
@@ -178,6 +183,8 @@ public class Actions : MonoBehaviour
         Vector3 selectorPos = new Vector3(transform.position.x + movement.direction.x, transform.position.y + movement.direction.y, 0);
         Vector3Int cellPosition = grid.WorldToCell(selectorPos);
         var tillableTile = gameManager.GetTile(new Vector2Int(cellPosition.x, cellPosition.y));
+
+        if (tillableTile.GetType() != typeof(TillableTile)) { return; }
 
         int energyCost = (hoe as Hoe).Use(tillableTile);
         if(energyCost != 0)

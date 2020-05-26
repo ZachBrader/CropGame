@@ -27,6 +27,9 @@ public class Plant : MonoBehaviour{
 
     // Determines how much a plant is worth
     public int averagePlantValue;
+
+    // is the plant a mushroom actually
+    public bool isMushroom;
     
     
     // Start is called before the first frame update

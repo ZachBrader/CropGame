@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     public GameObject playerUI;
     public StoreDisplay storeDisplay;
     public InGameMenu inGameMenu;
+    public bool mushroomLevel;
+    public GameObject mushroom;
+    public int startingMushrooms;
     private Movement playerMovement;
     private bool menuLocked = false;
     private bool isGameOver = false;
@@ -42,6 +45,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
 
     public TileSpriteManager tileManager;
+    public List<TillableTile> DirtTileList = new List<TillableTile>();
 
     // Start is called before the first frame update
     void Start()
@@ -76,7 +80,9 @@ public class GameManager : MonoBehaviour
                         tilemap = dirtTiles,
                         tilePosition = new Vector3Int(x, -y, 0)
                     };
+                    DirtTileList.Add(tileGrid[x, y] as TillableTile);
                 }
+
                 for(int i = 0; i < waterTiles.Count; i++)
                 {
                     thisTile = waterTiles[i].GetTile(new Vector3Int(x, -y, 0));
@@ -243,6 +249,120 @@ public class GameManager : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    void MushroomStart()
+    {
+        for(int i = 0; i < startingMushrooms;)
+        {
+            int hit = Random.Range(0, DirtTileList.Count);
+            if(DirtTileList[hit].plant != null)
+            {
+                //plant mush
+                SpreadPlants(mushroom, DirtTileList[hit]);
+                i++;
+            }
+            else
+            {
+                bool noMush = true;
+                int temp = hit + 1;
+                while(noMush && temp != hit)
+                {
+                    if(DirtTileList[temp].plant != null)
+                    {
+                        noMush = false;
+                        SpreadPlants(mushroom, DirtTileList[hit]);
+                        i++;
+                    }
+                    else
+                    {
+                        if(hit + 1 > DirtTileList.Count){
+                            temp = -1;
+                        }
+                    }
+                    temp++;
+                }
+            }
+        }
+    }
+
+    void SpreadPlants(GameObject plant, TillableTile tile)
+    {
+        if(tile.plant == null){
+            Vector3 offset = new Vector3(tile.tilePosition.x + 0.5f, tile.tilePosition.y - 0.5f, 0);
+            var newPlant = Instantiate(plant, offset, Quaternion.identity);
+            tile.plant = newPlant.GetComponent<Plant>();
+        }
+    }
+
+    void MushroomSpawn(int maxMush = 5)
+    {
+        // determine how many to try and plant
+        maxMush = Random.Range(0, 6);
+
+        for(int i = 0; i < maxMush;)
+        {
+            int hit = Random.Range(0, DirtTileList.Count);
+            // plant the mush if there's no plant on that tile
+            if(DirtTileList[hit].plant != null)
+            {
+                SpreadPlants(mushroom, DirtTileList[hit]);
+                i++;
+            }
+
+            // something else is already there, go into retry logic
+            else
+            {
+                bool noMush = true;
+                int temp = hit + 1;
+                // don't run forever if there are no empty spots
+                while(noMush || temp == hit)
+                {
+                    if(DirtTileList[temp].plant != null)
+                    {
+                        noMush = false;
+                        SpreadPlants(mushroom, DirtTileList[hit]);
+                        i++;
+                    }
+                   else
+                    {
+                        if(hit + 1 > DirtTileList.Count){
+                            temp = -1;
+                        }
+                    }
+                    temp++;
+                }
+                // all spots are full, don't bother trying anymore
+                if(temp == hit)
+                {
+                    return;
+                }
+            }
+        }
+    }
+
+    // returns all tillable tiles in the neighborhood
+    // then for spawning new plants you can just do a random number index and spawn it if that place has no plant
+    private List<TillableTile> checkNeighborhood(int my_x, int my_y, int squaresAway = 1)
+    {
+        List <TillableTile> tilesInNeighborhood = new List<TillableTile>();
+        // get the bounds
+        int leftbound = (my_x - squaresAway >= 0 ? my_x - squaresAway : 0);
+        int rightbound = (my_x + squaresAway < myMap.m_Width ? my_x + squaresAway : myMap.m_Width);
+        int upperbound = (my_y + squaresAway < myMap.m_Height ? my_y + squaresAway : myMap.m_Height);
+        int lowerbound = (my_y - squaresAway >= 0 ? my_y - squaresAway : 0);
+
+        for (int x = leftbound; x < rightbound; x++)
+        {
+            for(int y = lowerbound; y < upperbound; y++)
+            {
+                if(tileGrid[x, y] is TillableTile && tileGrid[x,y] != null)
+                {
+                    tilesInNeighborhood.Add(tileGrid[x, y] as TillableTile);
+                }
+            }
+        }
+        return tilesInNeighborhood;
     }
 
     private void EndGame()

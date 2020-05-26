@@ -263,7 +263,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.8, y: -6.6, z: -10}
+  m_LocalPosition: {x: 7.469393, y: -6.604163, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -564,6 +564,10 @@ MonoBehaviour:
   playerUI: {fileID: 714675268}
   storeDisplay: {fileID: 714675265}
   inGameMenu: {fileID: 714675267}
+  mushroomLevel: 0
+  mushroom: {fileID: 7320437837059399940, guid: 5a80c040e78252048a336ffbc9e6c6ed,
+    type: 3}
+  startingMushrooms: 0
   myMap: {fileID: 231264825}
   dirtTiles: {fileID: 1175084173}
   waterTiles:
@@ -597,6 +601,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167468990765737604, guid: 11645bbc038562f4486bb87d8751430d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.8999634
       objectReference: {fileID: 0}
     - target: {fileID: 2197666519899857324, guid: 11645bbc038562f4486bb87d8751430d,
         type: 3}

@@ -62,10 +62,6 @@ public class Plant : MonoBehaviour{
      * checks if plant has water
      */
     void waterLevelCheck(){
-        if (waterLevel <= 0f){
-            //Destroy(this.gameObject);
-        }
-
         if (waterLevel - waterCost > 0){
             waterLevel -= waterCost;
         }
@@ -103,19 +99,30 @@ public class Plant : MonoBehaviour{
         }
 
         // change plant to next stage
-        if (stageTime >= this.timer && plantStage != 5){
-            plantStage++;
-            stageTime = 0f;
-            waterLevelCheck();
-            changePlant();
-        }
+        //if (stageTime >= this.timer && plantStage != 5){
+        //    plantStage++;
+        //    stageTime = 0f;
+        //    waterLevelCheck();
+        //   changePlant();
+        //}
     }
 
-    public void plantStageUpdate(){
+    public bool plantStageUpdate(){
         Debug.Log("Plant grew!");
-        if (plantStage != 4){
+        if (waterLevel > 1){
+            waterLevel -= 1;
             plantStage++;
             changePlant();
+            return true;
+
+        }else if (waterLevel > 0){
+            plantStage++;
+            changePlant();
+            return false;
+
+        }else{
+            Destroy(this.gameObject);
+            return false;
         }
     }
 

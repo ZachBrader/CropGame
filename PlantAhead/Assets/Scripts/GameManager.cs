@@ -178,7 +178,17 @@ public class GameManager : MonoBehaviour
             for(int y = 0; y < myMap.m_Height; y++){
                 var thisTile = tileGrid[x, y];
                 if ((thisTile as TillableTile) != null && (thisTile as TillableTile).plant != null){
-                    (thisTile as TillableTile).plant.plantStageUpdate();
+                    
+                    //grow current plant and if it has too much water expand it
+                    if ((thisTile as TillableTile).plant.plantStageUpdate() == true){
+                        //get all neighbors of current plant
+                        List<TillableTile> neighbors = checkNeighborhood(x, y);
+                        //generate a random number that will be the one that is expanded to
+                        float expandingTo = Random.value * neighbors.Count;
+                        //expand and then update current plant
+                        GameObject currentplant = (thisTile as TillableTile).plant.gameObject; 
+                        SpreadPlants(currentplant , neighbors[(int)expandingTo]);
+                    }
                 }
 
             }

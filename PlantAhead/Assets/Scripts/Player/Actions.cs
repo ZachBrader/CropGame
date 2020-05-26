@@ -245,6 +245,11 @@ public class Actions : MonoBehaviour
         }
     }
 
+    public void SetCanSleep(bool newSleep)
+    {
+        canSleep = newSleep;
+    }
+
     private IEnumerator StopPlayerMovement(float time) 
     {
         movement.canMove = false;

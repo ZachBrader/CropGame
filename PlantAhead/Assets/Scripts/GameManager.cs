@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     public InGameMenu inGameMenu;
     private Movement playerMovement;
     private bool menuLocked = false;
+    private bool isGameOver = false;
+    private Actions playerActions;
 
     // END VICTORY VARIABLES
 
@@ -40,6 +42,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
 
     public TileSpriteManager tileManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +57,7 @@ public class GameManager : MonoBehaviour
         }
         playerInventory = player.GetComponent<Inventory>();
         playerMovement = player.GetComponent<Movement>();
+        playerActions = player.GetComponent<Actions>();
 
         // init the grid for interactions
         tileGrid = new CustomTile[myMap.m_Width, myMap.m_Height];
@@ -183,18 +187,13 @@ public class GameManager : MonoBehaviour
             source.refillWaterSource();
         }
 
-        dayTrackerText.GetComponent<TMP_Text>().text = "Date: " + curDay + " / " + finalDate;
-
-        if (curDay == finalDate || HasPlayerWon())
-        {
-            EndGame();
-            Debug.Log("Level Completed");
-        }      
+        dayTrackerText.GetComponent<TMP_Text>().text = "Date: " + curDay + " / " + finalDate; 
         
     }
 
     IEnumerator SimulateNight()
     {
+        playerActions.SetCanSleep(false);
         Image screenOverlay = GameObject.Find("UIOverlay/Panel").GetComponent<Image>();
         OpenMenu("Night");
         menuLocked = true;
@@ -214,6 +213,12 @@ public class GameManager : MonoBehaviour
         menuLocked = false;
         OpenMenu("Day");
         playerMovement.canMove = true;
+        playerActions.SetCanSleep(true);
+        if (curDay == finalDate || HasPlayerWon())
+        {
+            EndGame();
+            Debug.Log("Level Completed");
+        }
         yield return null;
     }
 
@@ -242,6 +247,7 @@ public class GameManager : MonoBehaviour
 
     private void EndGame()
     {
+        menuLocked = false;
         OpenMenu("EndGameMenu");
         menuLocked = true;
         endGameMenu.setDateText(curDay + " / " + finalDate);

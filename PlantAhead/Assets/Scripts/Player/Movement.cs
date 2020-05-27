@@ -77,8 +77,10 @@ public class Movement : MonoBehaviour
             animator.SetFloat("Y_pos", movement.y);
             direction.x = movement.x;
             direction.y = movement.y;
-            //audioData.Play();
-            
+            //For footstep sounds; check if sound is currently playing before attempting to play sound again.
+            if (audioData.isPlaying != true){
+                audioData.Play();
+            }
         }
         else
         {

@@ -37,12 +37,12 @@
  </tile>
  <tile id="36">
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="7.95652" width="15.913" height="8"/>
+   <object id="1" x="0" y="0" width="15.913" height="15.9565"/>
   </objectgroup>
  </tile>
  <tile id="37">
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0.0434783" y="8" width="15.8696" height="8"/>
+   <object id="1" x="0.0434783" y="0" width="15.8696" height="16"/>
   </objectgroup>
  </tile>
  <tile id="38">
@@ -120,6 +120,26 @@
    <object id="1" x="0" y="0" width="14" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="359">
+  <animation>
+   <frame tileid="359" duration="2000"/>
+   <frame tileid="391" duration="200"/>
+   <frame tileid="423" duration="200"/>
+   <frame tileid="455" duration="200"/>
+   <frame tileid="487" duration="200"/>
+  </animation>
+ </tile>
+ <tile id="398">
+  <animation>
+   <frame tileid="398" duration="2000"/>
+   <frame tileid="399" duration="200"/>
+   <frame tileid="400" duration="200"/>
+   <frame tileid="401" duration="2000"/>
+   <frame tileid="400" duration="200"/>
+   <frame tileid="399" duration="200"/>
+   <frame tileid="398" duration="200"/>
+  </animation>
+ </tile>
  <tile id="444">
   <animation>
    <frame tileid="444" duration="200"/>
@@ -134,6 +154,35 @@
  <tile id="472">
   <objectgroup draworder="index" id="2">
    <object id="1" x="2" y="1" width="14" height="14"/>
+  </objectgroup>
+ </tile>
+ <tile id="480">
+  <animation>
+   <frame tileid="384" duration="1000"/>
+   <frame tileid="416" duration="200"/>
+   <frame tileid="448" duration="200"/>
+   <frame tileid="480" duration="200"/>
+   <frame tileid="480" duration="1000"/>
+  </animation>
+ </tile>
+ <tile id="481">
+  <animation>
+   <frame tileid="385" duration="2000"/>
+   <frame tileid="417" duration="200"/>
+   <frame tileid="449" duration="200"/>
+   <frame tileid="481" duration="200"/>
+   <frame tileid="481" duration="200"/>
+   <frame tileid="481" duration="2000"/>
+  </animation>
+ </tile>
+ <tile id="573">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="0" width="15" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="574">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="1" width="15" height="15"/>
   </objectgroup>
  </tile>
  <tile id="673" terrain="0,0,0,0"/>

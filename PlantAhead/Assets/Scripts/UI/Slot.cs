@@ -8,6 +8,7 @@ public class Slot : MonoBehaviour
     protected Item containedItem = null;
     private InventoryDisplay inventoryDisplay;
     private Inventory playerInventory;
+    protected GameObject slotSelector;
     protected Image slotImage;
 
     private bool isOff = false;
@@ -21,8 +22,9 @@ public class Slot : MonoBehaviour
 
     public virtual void SetUp()
     {
-        inventoryDisplay = GameObject.FindGameObjectWithTag("Inventory").GetComponent<InventoryDisplay>();
+        inventoryDisplay = GameObject.FindGameObjectWithTag("InventoryDisplay").GetComponent<InventoryDisplay>();
         playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        slotSelector = GameObject.FindGameObjectWithTag("InventorySelector");
         slotImage = GetComponent<Image>();
         isReady = true;
     }
@@ -75,6 +77,8 @@ public class Slot : MonoBehaviour
 
     public virtual void UpdateItemDescriptor()
     {
+        slotSelector.SetActive(true);
+        slotSelector.transform.position = transform.position;
         if (containedItem != null)
         {
             string newDescription = "Item Name: " + containedItem.itemName;
@@ -85,6 +89,7 @@ public class Slot : MonoBehaviour
 
     public virtual void RemoveItemDescriptor()
     {
+        slotSelector.SetActive(false);
         inventoryDisplay.UpdateSelectorText("---");
     }
 }

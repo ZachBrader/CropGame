@@ -7,7 +7,9 @@ using UnityEngine.EventSystems;
 
 public class StoreDisplay : MonoBehaviour
 {
+    private Inventory playerInventory;
     public Store store;
+    public TMP_Text playerGold;
 
     public GameObject slotsParent;
     private List<Slot> allSlots;
@@ -24,7 +26,8 @@ public class StoreDisplay : MonoBehaviour
     {
         allSlots = new List<Slot>();
         curStock = new List<Item>();
-        inventoryDisplay = GameObject.FindGameObjectWithTag("Inventory").GetComponent<InventoryDisplay>();
+        playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        inventoryDisplay = GameObject.FindGameObjectWithTag("InventoryDisplay").GetComponent<InventoryDisplay>();
 
         // Maintain list of all slots
         foreach (Transform child in slotsParent.transform)
@@ -90,6 +93,7 @@ public class StoreDisplay : MonoBehaviour
         }
         else
         {
+            playerGold.text = playerInventory.GetGold() + " g";
             int count = 0;
             foreach (Item itemInInv in curStock)
             {

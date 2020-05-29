@@ -38,6 +38,7 @@ public class Inventory : MonoBehaviour
 
     public int GetGold()
     {
+        if (!isReady) { return 0; }
         return curGold;
     }
 

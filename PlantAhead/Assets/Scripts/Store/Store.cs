@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Store : MonoBehaviour
 {
@@ -42,26 +43,12 @@ public class Store : MonoBehaviour
 
     public void AddItemToStock(Item itemToAdd)
     {
-        Debug.Log("Adding " + itemToAdd.itemName + " to stock!");
-
         stock.Add(itemToAdd);
-
-        foreach (Item itemInInv in stock)
-        {
-            Debug.Log("stock currently has: " + itemInInv.itemName);
-        }
     }
 
     public void RemoveItemFromStock(Item itemToRemove)
     {
-        Debug.Log("removing " + itemToRemove.itemName + " to stock!");
-
         stock.Remove(itemToRemove);
-
-        foreach (Item itemInInv in stock)
-        {
-            Debug.Log("stock currently has: " + itemInInv.itemName);
-        }
     }
 
     public void BuyItemFromStore(Item itemToBuy)

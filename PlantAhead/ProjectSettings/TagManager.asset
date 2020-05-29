@@ -11,6 +11,9 @@ TagManager:
   - Slot
   - Inventory
   - Store
+  - InventorySelector
+  - StoreSelector
+  - InventoryDisplay
   layers:
   - Default
   - TransparentFX

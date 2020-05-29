@@ -19,6 +19,7 @@ public class StoreSlot : Slot
     {
         storeDisplay = GameObject.FindGameObjectWithTag("Store").GetComponent<StoreDisplay>();
         slotImage = GetComponent<Image>();
+        slotSelector = GameObject.FindGameObjectWithTag("StoreSelector");
         isReady = true;
     }
 
@@ -30,6 +31,8 @@ public class StoreSlot : Slot
 
     public override void UpdateItemDescriptor()
     {
+        slotSelector.SetActive(true);
+        slotSelector.transform.position = transform.position;
         if (containedItem != null)
         {
             string newDescription = "Store Item Name: " + containedItem.itemName + " - " + containedItem.cost + " G";
@@ -40,6 +43,7 @@ public class StoreSlot : Slot
 
     public override void RemoveItemDescriptor()
     {
+        slotSelector.SetActive(false);
         storeDisplay.UpdateSelectorText("---");
     }
 

@@ -10,3 +10,8 @@ Planting Plant - https://freesound.org/people/wobesound/sounds/488393/ x
 Harvesting - https://freesound.org/people/wobesound/sounds/488378/ x
 Victory - https://freesound.org/people/EVRetro/sounds/495005/ x
 Game lost - https://freesound.org/people/noirenex/sounds/159408/ x
+sell large - https://freesound.org/people/wobesound/sounds/488399/
+sell medium - https://freesound.org/people/wobesound/sounds/488385/
+sell small - https://freesound.org/people/wobesound/sounds/488386/
+buy sound - https://freesound.org/people/wobesound/sounds/488377/
+no money sound - 

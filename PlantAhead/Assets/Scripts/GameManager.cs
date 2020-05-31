@@ -94,6 +94,11 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+
+        if(mushroomLevel)
+        {
+            MushroomStart();
+        }
         
     }
 
@@ -173,19 +178,101 @@ public class GameManager : MonoBehaviour
             for(int y = 0; y < myMap.m_Height; y++){
                 var thisTile = tileGrid[x, y];
                 if ((thisTile as TillableTile) != null && (thisTile as TillableTile).plant != null){
+
+                    // mushrooms:
+                    // expand no matter their water stage
+                    // grow no matter what
+                    if((thisTile as TillableTile).plant.isMushroom)
+                    {
+                        int spread = (thisTile as TillableTile).plant.SpreadZone;
+                        List<TillableTile> neighbors = checkNeighborhood(x, y, spread);
+                        var weightedCurve = Random.Range(0, 99); 
+                        int numSpread;
+                        
+                        if(weightedCurve < 10)
+                        {
+                            numSpread = 0;// no spread go home
+                        }
+                        else if(weightedCurve < 41)
+                        {
+                            // spread by 10% ROUNDED UP
+                            numSpread = Mathf.CeilToInt(neighbors.Count * 0.1f);
+                        }
+                        else if(weightedCurve < 66)
+                        {
+                            // spread by 20% ROUNDED UP
+                            numSpread = Mathf.CeilToInt(neighbors.Count * 0.2f);
+                        }
+                        else if(weightedCurve < 81)
+                        {
+                            // spread by 30% ROUNDED UP
+                            numSpread = Mathf.CeilToInt(neighbors.Count * 0.3f);
+                        }
+                        else if(weightedCurve < 91)
+                        {
+                            // spread by 40% ROUNDED UP
+                            numSpread = Mathf.CeilToInt(neighbors.Count * 0.4f);
+                        }
+                        else if(weightedCurve < 96)
+                        {                            
+                            // spread by 50% ROUNDED UP
+                            numSpread = Mathf.CeilToInt(neighbors.Count * 0.5f);
+                        }
+                        else if(weightedCurve < 99)
+                        {
+                            // spread by 75% ROUNDED UP
+                            numSpread = Mathf.CeilToInt(neighbors.Count * 0.75f);
+                        }
+                        else
+                        {
+                            //100% spread;
+                            numSpread = neighbors.Count;
+                        }
+                        
+                        // loop until the list is empty or all mushrooms have been spread
+                        while(neighbors.Count > 0 && numSpread > 0)
+                        {
+                            int hit = Random.Range(0, neighbors.Count);
+                            if(neighbors[hit].plant == null)
+                            {
+                                SpreadPlants(mushroom, neighbors[hit]);
+                                numSpread--;
+                            }
+                            // remove the index because it's not valid to use again
+                            neighbors.RemoveAt(hit);
+                        }
+
+                        // update the plant stage if possible
+                        (thisTile as TillableTile).plant.plantStageUpdate();
+                    }
+
+                    else // not a mushroom
+                    {
+                        //grow current plant and if it has too much water expand it
+                        if ((thisTile as TillableTile).plant.plantStageUpdate() == true){
+                            
+                            //get all neighbors of current plant
+                            List<TillableTile> neighbors = checkNeighborhood(x, y);
+                            
+                            //generate a random number that will be the one that is expanded to
+                            int expandingTo = Random.Range(0, neighbors.Count);
+                            
+                            //expand and then update current plant
+                            GameObject currentplant = (thisTile as TillableTile).plant.gameObject; 
+                            if((thisTile as TillableTile).plant.isMushroom)
+                            SpreadPlants(currentplant , neighbors[expandingTo]);
+                        }
                     
-                    //grow current plant and if it has too much water expand it
-                    if ((thisTile as TillableTile).plant.plantStageUpdate() == true){
-                        
-                        //get all neighbors of current plant
-                        List<TillableTile> neighbors = checkNeighborhood(x, y);
-                        
-                        //generate a random number that will be the one that is expanded to
-                        int expandingTo = Random.Range(0, neighbors.Count);
-                        
-                        //expand and then update current plant
-                        GameObject currentplant = (thisTile as TillableTile).plant.gameObject; 
-                        SpreadPlants(currentplant , neighbors[expandingTo]);
+                    }
+
+                    // spawn mushrooms if this is a mushroom level... sometimes
+                    if(mushroomLevel)
+                    {
+                        var roll = Random.Range(0, 100);
+                        if(roll > 65)
+                        {
+                            MushroomSpawn(startingMushrooms);
+                        }
                     }
                 }
 
@@ -264,7 +351,7 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < startingMushrooms;)
         {
             int hit = Random.Range(0, DirtTileList.Count);
-            if(DirtTileList[hit].plant != null)
+            if(DirtTileList[hit].plant == null)
             {
                 //plant mush
                 SpreadPlants(mushroom, DirtTileList[hit]);
@@ -274,20 +361,19 @@ public class GameManager : MonoBehaviour
             {
                 bool noMush = true;
                 int temp = hit + 1;
-                while(noMush && temp != hit)
+                while(noMush && temp != hit && temp < DirtTileList.Count)
                 {
-                    if(DirtTileList[temp].plant != null)
+                    if(DirtTileList[temp].plant == null)
                     {
                         noMush = false;
                         SpreadPlants(mushroom, DirtTileList[hit]);
                         i++;
                     }
-                    else
-                    {
-                        if(hit + 1 > DirtTileList.Count){
-                            temp = -1;
-                        }
+                    
+                    if(temp + 1 > DirtTileList.Count){
+                        temp = -1;
                     }
+
                     temp++;
                 }
             }
@@ -322,29 +408,33 @@ public class GameManager : MonoBehaviour
             else
             {
                 bool noMush = true;
-                int temp = hit + 1;
+                int temp = hit;
+                
                 // don't run forever if there are no empty spots
-                while(noMush || temp == hit)
+                while(noMush)
                 {
-                    if(DirtTileList[temp].plant != null)
+                    if(temp + 1 >= DirtTileList.Count){
+                        temp = -1;
+                    }
+
+                    temp++;
+
+                    if(temp == hit)
+                    {
+                        // all spots are full, don't bother trying anymore
+                        return;
+                    }
+
+                    if(DirtTileList[temp].plant == null)
                     {
                         noMush = false;
                         SpreadPlants(mushroom, DirtTileList[hit]);
                         i++;
                     }
-                   else
-                    {
-                        if(hit + 1 > DirtTileList.Count){
-                            temp = -1;
-                        }
-                    }
-                    temp++;
+                    
                 }
-                // all spots are full, don't bother trying anymore
-                if(temp == hit)
-                {
-                    return;
-                }
+                
+
             }
         }
     }

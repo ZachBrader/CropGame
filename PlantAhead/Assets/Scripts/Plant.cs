@@ -31,6 +31,9 @@ public class Plant : MonoBehaviour{
     // is the plant a mushroom actually
     public bool isMushroom;
     
+    public int EnergyCost; // how much energy does it cost to remove the thing
+
+    public int SpreadZone; // how large of a radius can it spread?
     
     // Start is called before the first frame update
     void Start(){
@@ -38,7 +41,7 @@ public class Plant : MonoBehaviour{
         animator = gameObject.GetComponent<Animator>();
 
         // TEST CODE
-        averagePlantValue = 5;
+        //averagePlantValue = 1;
         // TEST CODE
     }
 
@@ -115,12 +118,15 @@ public class Plant : MonoBehaviour{
             changePlant();
             return true;
 
-        }else if (waterLevel > 0){
+        }
+        else if (waterLevel > 0 || isMushroom){
             plantStage++;
             changePlant();
             return false;
 
-        }else{
+        }
+        else
+        {
             Destroy(this.gameObject);
             return false;
         }
@@ -139,8 +145,11 @@ public class Plant : MonoBehaviour{
         {
             Destroy(this.gameObject);
         }
-
-        return 5;
+        if(isMushroom)
+        {
+            return EnergyCost + plantStage - 1 * 2; // more developed mushrooms are harder to remove
+        }
+        return EnergyCost;
     }
 
     // This will return the amount of money the plant sells for

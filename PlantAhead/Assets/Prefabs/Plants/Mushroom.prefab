@@ -11,13 +11,13 @@ PrefabInstance:
         type: 3}
       propertyPath: stage1
       value: 
-      objectReference: {fileID: 4315506946141470425, guid: 5276da17e6fc5ae46a860266d8be75a3,
+      objectReference: {fileID: -8641565482479284267, guid: 5276da17e6fc5ae46a860266d8be75a3,
         type: 3}
     - target: {fileID: 3324291818824633320, guid: 277393091fe3b184c9896e7ef2088ae3,
         type: 3}
       propertyPath: stage2
       value: 
-      objectReference: {fileID: -8641565482479284267, guid: 5276da17e6fc5ae46a860266d8be75a3,
+      objectReference: {fileID: -2042072573829909366, guid: 5276da17e6fc5ae46a860266d8be75a3,
         type: 3}
     - target: {fileID: 3324291818824633320, guid: 277393091fe3b184c9896e7ef2088ae3,
         type: 3}
@@ -36,6 +36,32 @@ PrefabInstance:
       propertyPath: waterLevel
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3324291818824633320, guid: 277393091fe3b184c9896e7ef2088ae3,
+        type: 3}
+      propertyPath: EnergyCost
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3324291818824633320, guid: 277393091fe3b184c9896e7ef2088ae3,
+        type: 3}
+      propertyPath: SpreadZone
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3324291818824633320, guid: 277393091fe3b184c9896e7ef2088ae3,
+        type: 3}
+      propertyPath: isMushroom
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3324291818824633320, guid: 277393091fe3b184c9896e7ef2088ae3,
+        type: 3}
+      propertyPath: averagePlantValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3324291818824633321, guid: 277393091fe3b184c9896e7ef2088ae3,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 4315506946141470425, guid: 5276da17e6fc5ae46a860266d8be75a3,
+        type: 3}
     - target: {fileID: 3324291818824633322, guid: 277393091fe3b184c9896e7ef2088ae3,
         type: 3}
       propertyPath: m_Name

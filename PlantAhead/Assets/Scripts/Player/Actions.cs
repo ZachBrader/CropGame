@@ -67,6 +67,7 @@ public class Actions : MonoBehaviour
             DoAction();
         }
 
+        #region Inventory Selection
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             gameManager.OpenMenu("InGameMenu");
@@ -81,6 +82,12 @@ public class Actions : MonoBehaviour
         {
             gameManager.OpenMenu("Store");
         }
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            gameManager.OpenMenu("TasksBoard");
+        }
+        #endregion
 
         if (Input.GetKeyDown(KeyCode.G))
         {

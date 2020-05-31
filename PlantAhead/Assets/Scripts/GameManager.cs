@@ -18,18 +18,21 @@ public class GameManager : MonoBehaviour
     public int playerGoldGoal;
 
     public EndGameMenu endGameMenu;
-    private Inventory playerInventory;
 
     public InventoryDisplay inventoryDisplay;
     public GameObject playerUI;
     public StoreDisplay storeDisplay;
     public InGameMenu inGameMenu;
+    private InGameMenu TasksBoard;
+    private bool menuLocked = false;
+    private string curMenu = "Day";
+
     public bool mushroomLevel;
     public GameObject mushroom;
     public int startingMushrooms;
+
+    private Inventory playerInventory;
     private Movement playerMovement;
-    private bool menuLocked = false;
-    private bool isGameOver = false;
     private Actions playerActions;
 
     // END VICTORY VARIABLES
@@ -62,6 +65,8 @@ public class GameManager : MonoBehaviour
         playerInventory = player.GetComponent<Inventory>();
         playerMovement = player.GetComponent<Movement>();
         playerActions = player.GetComponent<Actions>();
+
+        TasksBoard = GameObject.FindGameObjectWithTag("TasksBoard").GetComponent<InGameMenu>();
 
         // init the grid for interactions
         tileGrid = new CustomTile[myMap.m_Width, myMap.m_Height];
@@ -113,7 +118,9 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
+        curMenu = menuName;
 
+        #region Menu Logic
         if (menuName != "Store")
         {
             storeDisplay.closeDisplay();
@@ -154,6 +161,16 @@ public class GameManager : MonoBehaviour
             playerUI.SetActive(!endGameMenu.checkOpen());
         }
 
+        if (menuName != "TasksBoard")
+        { 
+            TasksBoard.closeDisplay();
+        }
+        else
+        {
+            TasksBoard.toggleDisplay();
+            playerUI.SetActive(!TasksBoard.checkOpen());
+        }
+
         if (menuName == "Night")
         {
             playerUI.SetActive(false);
@@ -163,62 +180,79 @@ public class GameManager : MonoBehaviour
         {
             playerUI.SetActive(true);
         }
+        #endregion
+
+        if (playerUI.activeSelf == true)
+        {
+            curMenu = "Day";
+        }
         playerMovement.canMove = playerUI.activeSelf;
+    }
+
+    public string GetCurrentMenu()
+    {
+        return curMenu;
     }
 
     public void EndDay(int penalty = 0)
     {
-        StartCoroutine(SimulateNight());
+        StartCoroutine(SimulateNight(penalty));
+    }
+
+    void NightLogic(int penalty = 0)
+    {
         curDay++;
 
         //updates each plants stage, will add checks later to only have this done in specific 
         //conditions, this will also be where growth happens
-        for(int x = 0; x < myMap.m_Width; x ++)
+        for (int x = 0; x < myMap.m_Width; x++)
         {
-            for(int y = 0; y < myMap.m_Height; y++){
+            for (int y = 0; y < myMap.m_Height; y++)
+            {
                 var thisTile = tileGrid[x, y];
-                if ((thisTile as TillableTile) != null && (thisTile as TillableTile).plant != null){
+                if ((thisTile as TillableTile) != null && (thisTile as TillableTile).plant != null)
+                {
 
                     // mushrooms:
                     // expand no matter their water stage
                     // grow no matter what
-                    if((thisTile as TillableTile).plant.isMushroom)
+                    if ((thisTile as TillableTile).plant.isMushroom)
                     {
                         int spread = (thisTile as TillableTile).plant.SpreadZone;
                         List<TillableTile> neighbors = checkNeighborhood(x, y, spread);
-                        var weightedCurve = Random.Range(0, 99); 
+                        var weightedCurve = Random.Range(0, 99);
                         int numSpread;
-                        
-                        if(weightedCurve < 10)
+
+                        if (weightedCurve < 10)
                         {
                             numSpread = 0;// no spread go home
                         }
-                        else if(weightedCurve < 41)
+                        else if (weightedCurve < 41)
                         {
                             // spread by 10% ROUNDED UP
                             numSpread = Mathf.CeilToInt(neighbors.Count * 0.1f);
                         }
-                        else if(weightedCurve < 66)
+                        else if (weightedCurve < 66)
                         {
                             // spread by 20% ROUNDED UP
                             numSpread = Mathf.CeilToInt(neighbors.Count * 0.2f);
                         }
-                        else if(weightedCurve < 81)
+                        else if (weightedCurve < 81)
                         {
                             // spread by 30% ROUNDED UP
                             numSpread = Mathf.CeilToInt(neighbors.Count * 0.3f);
                         }
-                        else if(weightedCurve < 91)
+                        else if (weightedCurve < 91)
                         {
                             // spread by 40% ROUNDED UP
                             numSpread = Mathf.CeilToInt(neighbors.Count * 0.4f);
                         }
-                        else if(weightedCurve < 96)
-                        {                            
+                        else if (weightedCurve < 96)
+                        {
                             // spread by 50% ROUNDED UP
                             numSpread = Mathf.CeilToInt(neighbors.Count * 0.5f);
                         }
-                        else if(weightedCurve < 99)
+                        else if (weightedCurve < 99)
                         {
                             // spread by 75% ROUNDED UP
                             numSpread = Mathf.CeilToInt(neighbors.Count * 0.75f);
@@ -228,12 +262,12 @@ public class GameManager : MonoBehaviour
                             //100% spread;
                             numSpread = neighbors.Count;
                         }
-                        
+
                         // loop until the list is empty or all mushrooms have been spread
-                        while(neighbors.Count > 0 && numSpread > 0)
+                        while (neighbors.Count > 0 && numSpread > 0)
                         {
                             int hit = Random.Range(0, neighbors.Count);
-                            if(neighbors[hit].plant == null)
+                            if (neighbors[hit].plant == null)
                             {
                                 SpreadPlants(mushroom, neighbors[hit]);
                                 numSpread--;
@@ -249,27 +283,28 @@ public class GameManager : MonoBehaviour
                     else // not a mushroom
                     {
                         //grow current plant and if it has too much water expand it
-                        if ((thisTile as TillableTile).plant.plantStageUpdate() == true){
-                            
+                        if ((thisTile as TillableTile).plant.plantStageUpdate() == true)
+                        {
+
                             //get all neighbors of current plant
                             List<TillableTile> neighbors = checkNeighborhood(x, y);
-                            
+
                             //generate a random number that will be the one that is expanded to
                             int expandingTo = Random.Range(0, neighbors.Count);
-                            
+
                             //expand and then update current plant
-                            GameObject currentplant = (thisTile as TillableTile).plant.gameObject; 
-                            if((thisTile as TillableTile).plant.isMushroom)
-                            SpreadPlants(currentplant , neighbors[expandingTo]);
+                            GameObject currentplant = (thisTile as TillableTile).plant.gameObject;
+                            if ((thisTile as TillableTile).plant.isMushroom)
+                                SpreadPlants(currentplant, neighbors[expandingTo]);
                         }
-                    
+
                     }
 
                     // spawn mushrooms if this is a mushroom level... sometimes
-                    if(mushroomLevel)
+                    if (mushroomLevel)
                     {
                         var roll = Random.Range(0, 100);
-                        if(roll > 65)
+                        if (roll > 65)
                         {
                             MushroomSpawn(startingMushrooms);
                         }
@@ -277,22 +312,21 @@ public class GameManager : MonoBehaviour
                 }
 
             }
+            dayTrackerText.GetComponent<TMP_Text>().text = "Date: " + curDay + " / " + finalDate;
         }
 
         // reset the player health
         player.GetComponent<Actions>().refreshPlayer(penalty);
 
         // refil the water sources
-        foreach(Water source in waterSources) 
+        foreach (Water source in waterSources)
         {
             source.refillWaterSource();
         }
 
-        dayTrackerText.GetComponent<TMP_Text>().text = "Date: " + curDay + " / " + finalDate; 
-        
     }
 
-    IEnumerator SimulateNight()
+    IEnumerator SimulateNight(int penalty = 0)
     {
         playerActions.SetCanSleep(false);
         Image screenOverlay = GameObject.Find("UIOverlay/Panel").GetComponent<Image>();
@@ -302,13 +336,15 @@ public class GameManager : MonoBehaviour
 
         while (screenOverlay.color.a < 1)
         {
-            screenOverlay.color = new Color(0, 0, 0, screenOverlay.color.a + Time.deltaTime);
+            screenOverlay.color = new Color(0, 0, 0, screenOverlay.color.a + (float)(Time.deltaTime / .5));
             yield return null;
         }
 
+        NightLogic(penalty);
+
         while (screenOverlay.color.a > 0)
         {
-            screenOverlay.color = new Color(0, 0, 0, screenOverlay.color.a - Time.deltaTime);
+            screenOverlay.color = new Color(0, 0, 0, screenOverlay.color.a - (float)(Time.deltaTime / .5));
             yield return null;
         }
         menuLocked = false;

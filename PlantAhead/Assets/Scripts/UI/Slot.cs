@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Slot : MonoBehaviour
 {
     protected Item containedItem = null;
     private InventoryDisplay inventoryDisplay;
     private Inventory playerInventory;
+
+    private TMP_Text slotStockText;
     protected GameObject slotSelector;
     protected Image slotImage;
 
@@ -26,13 +29,15 @@ public class Slot : MonoBehaviour
         playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         slotSelector = GameObject.FindGameObjectWithTag("InventorySelector");
         slotImage = GetComponent<Image>();
+
+        slotStockText = transform.Find("SlotStockText").GetComponent<TMP_Text>();
         isReady = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        UpdateStoredAmount();
     }
 
     public void EquipItem()
@@ -91,5 +96,20 @@ public class Slot : MonoBehaviour
     {
         slotSelector.SetActive(false);
         inventoryDisplay.UpdateSelectorText("---");
+    }
+
+    public virtual void UpdateStoredAmount()
+    {
+        if (isReady)
+        {
+            if (containedItem != null)
+            {
+                slotStockText.text = (containedItem as Seed).seedCount.ToString();
+            }
+            else
+            {
+                slotStockText.text = "";
+            }
+        }
     }
 }

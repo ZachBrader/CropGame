@@ -74,7 +74,23 @@ public class Inventory : MonoBehaviour
     {
         if (playerInventory.Count + 1 <= maxItems)
         {
-            playerInventory.Add(itemToAdd);
+            if (itemToAdd.GetType() == typeof(Seed))
+            {
+                Item itemInInventory = FindItemInInventory(itemToAdd.itemName);
+                if (itemInInventory == null)
+                {
+                    playerInventory.Add(Instantiate(itemToAdd));
+                }
+                else
+                {
+                    (itemInInventory as Seed).seedCount += 1;
+                }
+                
+            }
+            else
+            {
+                playerInventory.Add(itemToAdd);
+            }
 
             if (playerInventory.Count == 1)
             {
@@ -85,9 +101,34 @@ public class Inventory : MonoBehaviour
 
     public void RemoveItemFromInventory(Item itemToRemove)
     {
-        playerInventory.Remove(itemToRemove);
+        Item itemInInventory = FindItemInInventory(itemToRemove.itemName);
+        if (itemInInventory != null)
+        {
+            playerInventory.Remove(itemInInventory);
+            Destroy(itemInInventory);
+            if (player.GetEquippedItem() == itemInInventory)
+            {
+                player.EquipItem(null);
+            }
+        }
+        else
+        {
+            Debug.LogError("Unable to remove item " + itemToRemove.itemName + " from player inventory");
+        }
     }
 
+    public Item FindItemInInventory(string itemToFind)
+    {
+        for (int i = 0; i < playerInventory.Count; i++)
+        {
+            if (playerInventory[i].itemName.Equals(itemToFind))
+            {
+                return playerInventory[i];
+            }
+        }
+
+        return null;
+    }
 
     public List<Item> GetPlayerInventory()
     {
@@ -100,10 +141,10 @@ public class Inventory : MonoBehaviour
 
     public void EquipItemFromInventory(Item itemToEquip)
     {
-        if (playerInventory.Contains(itemToEquip))
+        Item itemInInventory = FindItemInInventory(itemToEquip.itemName);
+        if (itemInInventory != null)
         {
-            Debug.Log("Equipping " + itemToEquip.itemName);
-            player.EquipItem(itemToEquip);
+            player.EquipItem(itemInInventory);
         }
         else
         {

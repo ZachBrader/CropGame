@@ -9,7 +9,6 @@ using TMPro;
 public class Actions : MonoBehaviour
 {
     public TMP_Text itemSelectedText;
-    //public GameObject gridObject;
     public GameObject selectionSprite;
     public Animator animator;
     public Grid grid;
@@ -308,6 +307,10 @@ public class Actions : MonoBehaviour
         movement.canMove = true;
     }
 
+    public Item GetEquippedItem()
+    {
+        return currentEquipped;
+    }
     
 
 }

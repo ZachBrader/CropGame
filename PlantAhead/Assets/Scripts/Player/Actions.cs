@@ -17,6 +17,8 @@ public class Actions : MonoBehaviour
     private GameObject guideParent;
     private TMP_Text guideText;
 
+    private Sprite RedX;
+
     private Movement movement;
     private Inventory playerInventory;
 
@@ -60,12 +62,15 @@ public class Actions : MonoBehaviour
         animator = GetComponent<Animator>();
         source = GetComponent<AudioSource>();
 
+        #region Set UI Elements
         GameObject UI = gameManager.UI;
         itemSelectedText = UI.transform.Find("PlayerUI/ItemSelectedBackground/SelectedItemText").GetComponent<TMP_Text>();
         equippedItemImage = UI.transform.Find("PlayerUI/ItemSelectedBackground/ItemImage").GetComponent<Image>();
         equippedItemCount = UI.transform.Find("PlayerUI/ItemSelectedBackground/ItemImage/ItemsInInventoryText").GetComponent<TMP_Text>();
         guideParent = UI.transform.Find("PlayerUI/GameHintBackground").gameObject;
         guideText = guideParent.transform.Find("GameHintText").GetComponent<TMP_Text>();
+        RedX = transform.Find("RedX").gameObject.GetComponent<SpriteRenderer>().sprite;
+        #endregion
     }
 
     // Update is called once per frame
@@ -155,6 +160,7 @@ public class Actions : MonoBehaviour
 
         if (tillableTile == null) { return; }
         if (tillableTile.GetType() != typeof(TillableTile)) { return; }
+
         Plant plantToHarvest = (tillableTile as TillableTile).plant;
         if (plantToHarvest != null){
             playerInventory.ReceiveGold(plantToHarvest.ValuePlant());
@@ -232,7 +238,7 @@ public class Actions : MonoBehaviour
             currentEquipped = null;
             itemSelectedText.text = "---";
             equippedItemCount.text = "";
-
+            equippedItemImage.sprite = RedX;
             return;
         }
 

@@ -9,11 +9,12 @@ using UnityEditor;
 
 public class GameManager : MonoBehaviour
 {
-
+    #region Player Reference Variables
     private GameObject player;
     private Inventory playerInventory;
     private Movement playerMovement;
     private Actions playerActions;
+    #endregion
 
     #region Player UI Variables
     public GameObject UI;

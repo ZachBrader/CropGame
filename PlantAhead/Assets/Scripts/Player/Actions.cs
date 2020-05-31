@@ -8,7 +8,18 @@ using TMPro;
 
 public class Actions : MonoBehaviour
 {
-    public TMP_Text itemSelectedText;
+
+    private GameManager gameManager;
+
+    private TMP_Text itemSelectedText;
+    private Image equippedItemImage;
+    private TMP_Text equippedItemCount;
+    private GameObject guideParent;
+    private TMP_Text guideText;
+
+    private Movement movement;
+    private Inventory playerInventory;
+
     public GameObject selectionSprite;
     public Animator animator;
     public Grid grid;
@@ -21,18 +32,6 @@ public class Actions : MonoBehaviour
     public GameObject curSelectionSprite = null;
     [SerializeField]
     private Vector3Int curCellPosition;
-
-    private Movement movement;
-    private Inventory playerInventory;
-    public InventoryDisplay inventoryDisplay;
-    public StoreDisplay storeDisplay;
-    public InGameMenu inGameMenu;
-    public GameObject playerUI;
-
-    public GameObject guideParent;
-    public TMP_Text guideText;
- 
-    private GameManager gameManager;
 
     [SerializeField]
     private bool canSleep = false;
@@ -49,23 +48,57 @@ public class Actions : MonoBehaviour
     private AudioSource source;
     
     // Start is called before the first frame update
-    void Start(){
-        Debug.Log("Actions Start");
+    void Start()
+    {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+
         playerInventory = GetComponent<Inventory>();
         movement = GetComponent<Movement>();
+
         curSelectionSprite = GameObject.Instantiate(selectionSprite) as GameObject;
+
         animator = GetComponent<Animator>();
         source = GetComponent<AudioSource>();
+
+        GameObject UI = gameManager.UI;
+        itemSelectedText = UI.transform.Find("PlayerUI/ItemSelectedBackground/SelectedItemText").GetComponent<TMP_Text>();
+        equippedItemImage = UI.transform.Find("PlayerUI/ItemSelectedBackground/ItemImage").GetComponent<Image>();
+        equippedItemCount = UI.transform.Find("PlayerUI/ItemSelectedBackground/ItemImage/ItemsInInventoryText").GetComponent<TMP_Text>();
+        guideParent = UI.transform.Find("PlayerUI/GameHintBackground").gameObject;
+        guideText = guideParent.transform.Find("GameHintText").GetComponent<TMP_Text>();
     }
 
     // Update is called once per frame
     void Update(){
         selectCell();
-        // Used to interact with a tile
+
+        #region User Actions
         if (Input.GetKeyDown(KeyCode.Space)){
             DoAction();
         }
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            Harvest();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Water();
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Hoe();
+        }
+
+        // Player sleeps
+        // checks if you're in the house
+        if (Input.GetKeyDown(KeyCode.Q) && canSleep)
+        {
+            gameManager.EndDay();
+        }
+        #endregion
 
         #region Inventory Selection
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -89,31 +122,12 @@ public class Actions : MonoBehaviour
         }
         #endregion
 
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            Harvest();
-        }
-        
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            Water();
-        }
-
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            Hoe();
-        }
-
-        // Player sleeps
-        // checks if you're in the house
-        if (Input.GetKeyDown(KeyCode.Q) && canSleep){
-            gameManager.EndDay();
-        }
-
-        if(currentEnergy < 1){
+        if (currentEnergy < 1){
             UIManager.Instance.ActionStatus.text = " You Passed Out!";
             gameManager.EndDay((int)(Math.Round(maxEnergy * passOutPenalty)));
         }
+
+        UpdateEquippedItemCount();
     }
 
     void DoAction()
@@ -196,23 +210,38 @@ public class Actions : MonoBehaviour
                 setEnergyBar();
             }
     }
-    
+
+    #region Equip Item Functions
+    public Item GetEquippedItem()
+    {
+        return currentEquipped;
+    }
+
+    public void UpdateEquippedItemCount()
+    {
+        if (currentEquipped != null)
+        {
+            equippedItemCount.text = (currentEquipped as Seed).seedCount.ToString();
+        }
+    }
 
     public void EquipItem(Item itemToEquip)
     {
         if (itemToEquip == null)
         {
             currentEquipped = null;
-            itemSelectedText.text = "Item: None";
-            Debug.Log("No item selected");
+            itemSelectedText.text = "---";
+            equippedItemCount.text = "";
+
             return;
         }
 
         currentEquipped = itemToEquip;
-        print(itemToEquip.itemName + " : " + itemToEquip.itemName);
-        itemSelectedText.text = "Item: " + itemToEquip.itemName;
-        Debug.Log("Equipped " + itemToEquip.itemName);
+        itemSelectedText.text = itemToEquip.itemName;
+        equippedItemImage.sprite = itemToEquip.icon;
+        equippedItemCount.text = (currentEquipped as Seed).seedCount.ToString();
     }
+    #endregion
 
     void selectCell()
     {
@@ -312,12 +341,6 @@ public class Actions : MonoBehaviour
         movement.canMove = false;
         yield return new WaitForSeconds(time);
         movement.canMove = true;
-    }
-
-    public Item GetEquippedItem()
-    {
-        return currentEquipped;
-    }
-    
+    }   
 
 }

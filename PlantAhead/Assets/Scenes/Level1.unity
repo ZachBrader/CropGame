@@ -1955,27 +1955,27 @@ PrefabInstance:
     - target: {fileID: 2428022946373465225, guid: 11645bbc038562f4486bb87d8751430d,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2428022946373465225, guid: 11645bbc038562f4486bb87d8751430d,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2428022946373465225, guid: 11645bbc038562f4486bb87d8751430d,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2428022946373465225, guid: 11645bbc038562f4486bb87d8751430d,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2428022946373465225, guid: 11645bbc038562f4486bb87d8751430d,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2428022946434669096, guid: 11645bbc038562f4486bb87d8751430d,
         type: 3}
@@ -2085,27 +2085,32 @@ PrefabInstance:
     - target: {fileID: 5843715704218506868, guid: 11645bbc038562f4486bb87d8751430d,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5843715704218506868, guid: 11645bbc038562f4486bb87d8751430d,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5843715704218506868, guid: 11645bbc038562f4486bb87d8751430d,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5843715704218506868, guid: 11645bbc038562f4486bb87d8751430d,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6264548689858466519, guid: 11645bbc038562f4486bb87d8751430d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: Final
+      objectReference: {fileID: 0}
+    - target: {fileID: 8622851420321682504, guid: 11645bbc038562f4486bb87d8751430d,
+        type: 3}
+      propertyPath: m_Name
+      value: GameHintText
       objectReference: {fileID: 0}
     - target: {fileID: 8878240300652573434, guid: 11645bbc038562f4486bb87d8751430d,
         type: 3}

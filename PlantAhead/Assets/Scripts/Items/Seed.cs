@@ -11,7 +11,7 @@ public class Seed : Item
     // Which type of plant it will grow
     public GameObject plant;
 
-    [HideInInspector]
+    //[HideInInspector]
     public int seedCount = 1;
 
 
@@ -26,6 +26,15 @@ public class Seed : Item
                 var newPlant = Instantiate(plant, plantLocation, Quaternion.identity);
                 (selectedTile as TillableTile).plant = newPlant.GetComponent<Plant>();
                 (selectedTile as TillableTile).UnHoe(); // remove the hoe state
+
+                seedCount -= 1;
+                Debug.Log("Current Seed Count after use: " + seedCount);
+                if (seedCount <= 0)
+                {
+                    Inventory playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+
+                    playerInventory.RemoveItemFromInventory(this);
+                }
                 return energyCost;
             }
             else

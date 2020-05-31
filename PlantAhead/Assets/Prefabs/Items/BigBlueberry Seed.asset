@@ -16,6 +16,7 @@ MonoBehaviour:
   triggerName: none
   tillableTiles: {fileID: 0}
   energyCost: 5
+  cost: 5
   icon: {fileID: 396112015443099236, guid: 755d6eca844c1aa4dbe60ba6330d6282, type: 3}
   plant: {fileID: 344410099865027031, guid: 0acf9d1e3970c234fbfc7f8f577c96ce, type: 3}
   seedCount: 1

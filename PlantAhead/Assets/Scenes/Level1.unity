@@ -439,7 +439,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UI: {fileID: 1075986817}
-  dayTrackerText: {fileID: 1226321051}
   curDay: 0
   finalDate: 15
   playerGoldGoal: 50
@@ -911,12 +910,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1226321051 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2428022946434669098, guid: 11645bbc038562f4486bb87d8751430d,
-    type: 3}
-  m_PrefabInstance: {fileID: 2071455783}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1347394189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2008,6 +2001,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2428022946434669097, guid: 11645bbc038562f4486bb87d8751430d,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 550
       objectReference: {fileID: 0}
     - target: {fileID: 2428022946743385570, guid: 11645bbc038562f4486bb87d8751430d,
         type: 3}

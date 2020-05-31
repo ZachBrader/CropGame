@@ -44,7 +44,6 @@ public class GameManager : MonoBehaviour
     public GameObject mushroom;
     public int startingMushrooms;
 
-    // END VICTORY VARIABLES
 
     public SuperMap myMap;
     public Tilemap dirtTiles;
@@ -82,8 +81,9 @@ public class GameManager : MonoBehaviour
         panel.color = new Color(0, 0, 0, 0);
 
         dayTrackerText = UI.transform.Find("PlayerUI/DayTrackerBackground/DayTrackerText").GetComponent<TMP_Text>();
-        dayTrackerText.text = "Date: " + curDay + " / " + finalDate;
         #endregion
+
+        UpdateDateInformation();
 
         #region Initialize Grid
         // init the grid for interactions
@@ -222,6 +222,7 @@ public class GameManager : MonoBehaviour
     {
         curDay++;
 
+        #region Update Map
         //updates each plants stage, will add checks later to only have this done in specific 
         //conditions, this will also be where growth happens
         for (int x = 0; x < myMap.m_Width; x++)
@@ -331,8 +332,10 @@ public class GameManager : MonoBehaviour
                 }
 
             }
-            dayTrackerText.text = "Date: " + curDay + " / " + finalDate;
         }
+        #endregion
+
+        UpdateDateInformation();
 
         // reset the player health
         player.GetComponent<Actions>().refreshPlayer(penalty);
@@ -521,6 +524,12 @@ public class GameManager : MonoBehaviour
         }
         return tilesInNeighborhood;
     }
+
+    private void UpdateDateInformation()
+    {
+        dayTrackerText.text = "Current Day: " + curDay + "  -  Days Left: " + (finalDate - curDay);
+    }
+
 
     private void EndGame()
     {

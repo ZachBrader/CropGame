@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 5949321501094379726}
   m_Layer: 5
   m_Name: EndGameMenu
-  m_TagString: Untagged
+  m_TagString: EndGameMenu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -9,31 +9,40 @@ using UnityEditor;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject dayTrackerText;
 
-    // Victory Variables
+    private GameObject player;
+    private Inventory playerInventory;
+    private Movement playerMovement;
+    private Actions playerActions;
 
-    private int curDay;
+    #region Player UI Variables
+    public GameObject UI;
+
+    private EndGameMenu endGameMenu;
+    private InventoryDisplay inventoryDisplay;
+    private GameObject playerUI;
+    private StoreDisplay storeDisplay;
+    private InGameMenu inGameMenu;
+    private InGameMenu TasksBoard;
+
+    private Image panel;
+    private TMP_Text dayTrackerText;
+
+    private bool menuLocked = false;
+    private string curMenu = "Day";
+    #endregion
+
+    [HideInInspector]
+    public int curDay;
     public int finalDate;
     public int playerGoldGoal;
 
-    public EndGameMenu endGameMenu;
+    private bool isReady = false;
 
-    public InventoryDisplay inventoryDisplay;
-    public GameObject playerUI;
-    public StoreDisplay storeDisplay;
-    public InGameMenu inGameMenu;
-    private InGameMenu TasksBoard;
-    private bool menuLocked = false;
-    private string curMenu = "Day";
 
     public bool mushroomLevel;
     public GameObject mushroom;
     public int startingMushrooms;
-
-    private Inventory playerInventory;
-    private Movement playerMovement;
-    private Actions playerActions;
 
     // END VICTORY VARIABLES
 
@@ -45,29 +54,38 @@ public class GameManager : MonoBehaviour
     public List<Water> waterSources;
     public CustomTile[,] tileGrid;
 
-    public GameObject player;
-
     public TileSpriteManager tileManager;
     public List<TillableTile> DirtTileList = new List<TillableTile>();
 
     // Start is called before the first frame update
     void Start()
     {
+        curDay = 1;
         TileSpriteManager.Instance = tileManager;
-        GameObject.Find("UIOverlay/Panel").GetComponent<Image>().color = new Color(0,0,0,0);
 
-        dayTrackerText.GetComponent<TMP_Text>().text = "Date: " + curDay + " / " + finalDate;
-
-        if(player == null)
-        {
-            player = GameObject.FindGameObjectWithTag("Player");
-        }
+        #region Initialize Player Reference Variables
+        player = GameObject.FindGameObjectWithTag("Player");
         playerInventory = player.GetComponent<Inventory>();
         playerMovement = player.GetComponent<Movement>();
         playerActions = player.GetComponent<Actions>();
+        #endregion
 
-        TasksBoard = GameObject.FindGameObjectWithTag("TasksBoard").GetComponent<InGameMenu>();
+        #region Initialize UI Reference Variables
+        endGameMenu = UI.transform.Find("EndGameMenu").GetComponent<EndGameMenu>();
+        inventoryDisplay = UI.transform.Find("InventoryDisplay").GetComponent<InventoryDisplay>();
+        inGameMenu = UI.transform.Find("InGameMenu").GetComponent<InGameMenu>();
+        TasksBoard = UI.transform.Find("TasksBoard").GetComponent<TasksBoard>();
+        storeDisplay = UI.transform.Find("StoreDisplay").GetComponent<StoreDisplay>();
+        playerUI = UI.transform.Find("PlayerUI").gameObject;
 
+        panel = UI.transform.Find("Panel").GetComponent<Image>();
+        panel.color = new Color(0, 0, 0, 0);
+
+        dayTrackerText = UI.transform.Find("PlayerUI/DayTrackerBackground/DayTrackerText").GetComponent<TMP_Text>();
+        dayTrackerText.text = "Date: " + curDay + " / " + finalDate;
+        #endregion
+
+        #region Initialize Grid
         // init the grid for interactions
         tileGrid = new CustomTile[myMap.m_Width, myMap.m_Height];
         for(int x = 0; x < myMap.m_Width; x ++)
@@ -99,8 +117,9 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+        #endregion
 
-        if(mushroomLevel)
+        if (mushroomLevel)
         {
             MushroomStart();
         }
@@ -312,7 +331,7 @@ public class GameManager : MonoBehaviour
                 }
 
             }
-            dayTrackerText.GetComponent<TMP_Text>().text = "Date: " + curDay + " / " + finalDate;
+            dayTrackerText.text = "Date: " + curDay + " / " + finalDate;
         }
 
         // reset the player health
@@ -384,7 +403,8 @@ public class GameManager : MonoBehaviour
 
     void MushroomStart()
     {
-        for(int i = 0; i < startingMushrooms;)
+        #region Mushroom Initialization
+        for (int i = 0; i < startingMushrooms;)
         {
             int hit = Random.Range(0, DirtTileList.Count);
             if(DirtTileList[hit].plant == null)
@@ -414,6 +434,7 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+        #endregion
     }
 
     void SpreadPlants(GameObject plant, TillableTile tile)
@@ -427,6 +448,7 @@ public class GameManager : MonoBehaviour
 
     void MushroomSpawn(int maxMush = 5)
     {
+        #region Mushroom Logic
         // determine how many to try and plant
         maxMush = Random.Range(0, 6);
 
@@ -473,6 +495,7 @@ public class GameManager : MonoBehaviour
 
             }
         }
+        #endregion
     }
 
     // returns all tillable tiles in the neighborhood

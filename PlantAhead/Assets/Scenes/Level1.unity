@@ -438,14 +438,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d93feb7584208429eb030b29233ce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UI: {fileID: 1075986817}
   dayTrackerText: {fileID: 1226321051}
+  curDay: 0
   finalDate: 15
   playerGoldGoal: 50
-  endGameMenu: {fileID: 1470356433}
-  inventoryDisplay: {fileID: 1563906268}
-  playerUI: {fileID: 166928167}
-  storeDisplay: {fileID: 390068790}
-  inGameMenu: {fileID: 557550865}
   mushroomLevel: 0
   mushroom: {fileID: 0}
   startingMushrooms: 0
@@ -456,7 +453,6 @@ MonoBehaviour:
   waterSources:
   - WaterAmountMax: 9999
     WaterAmount: 9999
-  player: {fileID: 1684801892}
   tileManager: {fileID: 11400000, guid: fc7b59896a3dd2a43862a2fbf2533523, type: 2}
 --- !u!4 &548479957
 Transform:
@@ -737,6 +733,12 @@ Tilemap:
     type: 3}
   m_PrefabInstance: {fileID: 1137697977}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1075986817 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2428022944729818918, guid: 11645bbc038562f4486bb87d8751430d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2071455783}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1137697977
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -984,18 +986,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a82f0b0680964b44be7675e47afe677, type: 3}
---- !u!114 &1470356433 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3199325553887593359, guid: 11645bbc038562f4486bb87d8751430d,
-    type: 3}
-  m_PrefabInstance: {fileID: 2071455783}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbb927451519c234ca5469f0edee2033, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1525654779
 GameObject:
   m_ObjectHideFlags: 0

@@ -72,5 +72,14 @@ public class Watercan : Item
 
         return 0;
     }
+
+    public void updateWaterBar()
+    {
+        if(maxWaterinCan == 0){
+            maxWaterinCan = 1;
+        }
+        
+        UIManager.Instance.waterBar.fillAmount = (float) waterCurrentlyinCan / (float) maxWaterinCan;
+    }
     
 }

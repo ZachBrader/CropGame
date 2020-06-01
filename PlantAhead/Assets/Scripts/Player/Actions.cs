@@ -61,6 +61,8 @@ public class Actions : MonoBehaviour
 
         animator = GetComponent<Animator>();
         source = GetComponent<AudioSource>();
+        waterCan = Instantiate(waterCan);
+        (waterCan as Watercan).updateWaterBar();
 
         #region Set UI Elements
         GameObject UI = gameManager.UI;
@@ -197,6 +199,7 @@ public class Actions : MonoBehaviour
             currentEnergy -= energyCost;
             setEnergyBar();
         }
+        (waterCan as Watercan).updateWaterBar();
     }
 
     void Hoe()

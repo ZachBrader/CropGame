@@ -56,12 +56,37 @@ PrefabInstance:
       propertyPath: averagePlantValue
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3324291818824633320, guid: 277393091fe3b184c9896e7ef2088ae3,
+        type: 3}
+      propertyPath: PerfectWaterAmount
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3324291818824633321, guid: 277393091fe3b184c9896e7ef2088ae3,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 4315506946141470425, guid: 5276da17e6fc5ae46a860266d8be75a3,
         type: 3}
+    - target: {fileID: 3324291818824633321, guid: 277393091fe3b184c9896e7ef2088ae3,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3324291818824633321, guid: 277393091fe3b184c9896e7ef2088ae3,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3324291818824633321, guid: 277393091fe3b184c9896e7ef2088ae3,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3324291818824633321, guid: 277393091fe3b184c9896e7ef2088ae3,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3324291818824633322, guid: 277393091fe3b184c9896e7ef2088ae3,
         type: 3}
       propertyPath: m_Name

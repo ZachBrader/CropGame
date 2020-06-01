@@ -16,7 +16,8 @@ public class Plant : MonoBehaviour{
     public Animator animator;
 
     private float lastSparkle = 0f; // time since last sparkle
-    private float timeBetweenSparkles = 5f; // how frequently to sparkle; update when watering and growing
+    private float timeBetweenSparkles;
+    public float MaxTimeBetweenSparkles = 5f; // how frequently to sparkle; update when watering and growing
 
     //convey water level via sparkles or something
 
@@ -34,11 +35,17 @@ public class Plant : MonoBehaviour{
     public int EnergyCost; // how much energy does it cost to remove the thing
 
     public int SpreadZone; // how large of a radius can it spread?
+
+    [SerializeField]
+    private float valueModifier;
+    public int PerfectWaterAmount;
     
     // Start is called before the first frame update
     void Start(){
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         animator = gameObject.GetComponent<Animator>();
+        valueModifier = 1;
+        timeBetweenSparkles = MaxTimeBetweenSparkles;
 
         // TEST CODE
         //averagePlantValue = 1;
@@ -49,7 +56,7 @@ public class Plant : MonoBehaviour{
     void Update(){
         grow();
 
-        if (waterLevel > 0) 
+        if (waterLevel > 0 && waterLevel < 2 * PerfectWaterAmount) 
         {
             lastSparkle += Time.deltaTime;
             if(lastSparkle > timeBetweenSparkles)
@@ -76,6 +83,29 @@ public class Plant : MonoBehaviour{
     public void waterPlant(int waterAmount){
         Debug.Log("Water successful");
         waterLevel += waterAmount;
+        
+        var temp = ((waterLevel) / (float) PerfectWaterAmount);
+        Debug.Log(temp);
+        if (temp <= 1) // sparkle aggresively
+        {
+            timeBetweenSparkles = ((1 - temp) * MaxTimeBetweenSparkles);
+        }
+        else
+        {   
+            if(temp >= 2) // it's dead jim
+            {
+                Debug.Log("it's dead jim!");
+                spriteRenderer.color = Color.black;
+            } 
+            else
+            {
+                // it's sick and sad
+                timeBetweenSparkles = MaxTimeBetweenSparkles;
+                spriteRenderer.color = new Color(0.4518f, 0.5094f, .1033f, 1.0f);
+            }
+            
+            
+        }
     }
     
     /*
@@ -111,17 +141,42 @@ public class Plant : MonoBehaviour{
     }
 
     public bool plantStageUpdate(){
+        timeBetweenSparkles = MaxTimeBetweenSparkles;
+        spriteRenderer.color = Color.white;
+        timeBetweenSparkles = 0f;
         Debug.Log("Plant grew!");
         if (waterLevel > 1){
-            waterLevel -= 1;
-            plantStage++;
-            changePlant();
-            return true;
+            var waterbonus = PerfectWaterAmount - waterLevel;
+            //watered more than once and less than or equal to perfectly
+            if (waterbonus > 0 ){
+                // adjust what the plant is worth
+                valueModifier += (waterbonus / (float) PerfectWaterAmount) * 0.2f;
+                waterLevel = 0;
+                plantStage++;
+                changePlant();
+                return true;
+            }
+            // watered it a little too much
+            else if (waterbonus + PerfectWaterAmount > 1) 
+            {
+                valueModifier += ((waterbonus + PerfectWaterAmount) / (float) PerfectWaterAmount) * 0.1f;
+                waterLevel = 0;
+                plantStage++;
+                changePlant();
+                return true;
+            }
+            else // watered it way too mch
+            {
+                Destroy(this.gameObject);
+                return false;
+            }
+            
 
         }
         else if (waterLevel > 0 || isMushroom){
             plantStage++;
             changePlant();
+            waterLevel = 0;
             return false;
 
         }
@@ -155,7 +210,7 @@ public class Plant : MonoBehaviour{
     // This will return the amount of money the plant sells for
     public int ValuePlant()
     {
-        return averagePlantValue * plantStage;
+        return Mathf.RoundToInt(averagePlantValue * plantStage * valueModifier);
     }
 
     /*

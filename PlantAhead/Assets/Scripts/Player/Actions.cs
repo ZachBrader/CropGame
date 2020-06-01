@@ -289,16 +289,28 @@ public class Actions : MonoBehaviour
                 {
                     guideText.text = "Press G to harvest plant";
                 }
+                else
+                {
+                    guideParent.SetActive(false);
+                }
             }
             else
             {
-                if ((tillableTile as TillableTile).beenHoed)
+                if ((tillableTile as TillableTile).beenHoed && currentEquipped != null)
                 {
                     guideText.text = "Press SPACE BAR to plant an equipped seed here!";
                 }
-                else
+                else if ((tillableTile as TillableTile).beenHoed && currentEquipped == null)
+                {
+                    guideText.text = "Purchase more seeds or equip one from inventory to plant here!";
+                }
+                else if ((tillableTile as TillableTile).plant == null)
                 {
                     guideText.text = "Press R to hoe land!";
+                }
+                else
+                {
+                    guideParent.SetActive(false);
                 }
             }
         }

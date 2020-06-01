@@ -10,10 +10,11 @@ public class StoreDisplay : MonoBehaviour
     private Inventory playerInventory;
     public Store store;
     public TMP_Text playerGold;
+    public GameObject notificationPrefab;
+    public Vector3 initNotificationPosition;
 
     public GameObject slotsParent;
     private List<Slot> allSlots;
-    private InventoryDisplay inventoryDisplay;
 
     private List<Item> curStock;
 
@@ -27,8 +28,6 @@ public class StoreDisplay : MonoBehaviour
         allSlots = new List<Slot>();
         curStock = new List<Item>();
         playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
-        inventoryDisplay = GameObject.FindGameObjectWithTag("InventoryDisplay").GetComponent<InventoryDisplay>();
-
         // Maintain list of all slots
         foreach (Transform child in slotsParent.transform)
         {
@@ -74,6 +73,9 @@ public class StoreDisplay : MonoBehaviour
     {
         slotsParent.SetActive(true);
         isOpen = true;
+
+        //backgroundRender.SetAlpha(0);
+        //textRender.SetAlpha(0);
     }
 
     public void closeDisplay()
@@ -115,5 +117,28 @@ public class StoreDisplay : MonoBehaviour
     public void BuyItem(Item itemToBuy)
     {
         store.BuyItemFromStore(itemToBuy);
+        string buyText = "Bought " + itemToBuy.itemName + " for " + itemToBuy.cost + " gold"; 
+        StartCoroutine(Notification(buyText));
+    }
+
+    IEnumerator Notification(string buyText)
+    {
+        GameObject notificationBackground = Instantiate(notificationPrefab);
+        notificationBackground.transform.SetParent(slotsParent.transform);
+        notificationBackground.transform.localPosition = initNotificationPosition;
+
+        TMP_Text notificationText = notificationBackground.transform.Find("NotificationText").GetComponent<TMP_Text>();
+        notificationText.text = buyText;
+        CanvasRenderer backgroundRender = notificationBackground.GetComponent<CanvasRenderer>();
+        CanvasRenderer textRender = notificationText.GetComponent<CanvasRenderer>();
+
+        while (backgroundRender.GetAlpha() > 0)
+        {
+            backgroundRender.SetAlpha(backgroundRender.GetAlpha() - (float)(Time.deltaTime) );
+            textRender.SetAlpha(textRender.GetAlpha() - (float)(Time.deltaTime));
+            notificationBackground.transform.position = new Vector3(notificationBackground.transform.position.x, notificationBackground.transform.position.y - (float)(Time.deltaTime) * 100, notificationBackground.transform.position.z);
+            yield return null;
+        }
+        yield return null;
     }
 }

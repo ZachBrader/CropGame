@@ -255,6 +255,7 @@ public class Actions : MonoBehaviour
         Vector3 offset = new Vector3(cellPosition.x + 0.5f + movement.direction.x, cellPosition.y - 0.5f + movement.direction.y, cellPosition.z);
         curSelectionSprite.transform.position = offset;
 
+        #region Guide Text Logic
         if (canSleep)
         {
             guideParent.SetActive(true);
@@ -314,6 +315,7 @@ public class Actions : MonoBehaviour
                 }
             }
         }
+        #endregion
     }
 
     public void refreshPlayer(int penalty = 0)

@@ -25,6 +25,7 @@ public class Seed : Item
 
                 var newPlant = Instantiate(plant, plantLocation, Quaternion.identity);
                 (selectedTile as TillableTile).plant = newPlant.GetComponent<Plant>();
+                (selectedTile as TillableTile).plant.myPrefab = plant;
                 (selectedTile as TillableTile).UnHoe(); // remove the hoe state
 
                 seedCount -= 1;

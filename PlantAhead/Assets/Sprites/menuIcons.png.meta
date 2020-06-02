@@ -1,16 +1,19 @@
 fileFormatVersion: 2
-guid: 5ad8a0616790d6b409cafe1325460a86
+guid: d7b89e7c0d880484081b8ca45574354f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3647150943198315466
-    second: gamedayUIbar_0
+      213: -720412822002940183
+    second: menuIcons_0
   - first:
-      213: -6718852970406144880
-    second: gamedayUIbar_1
+      213: 8788369332228233696
+    second: menuIcons_1
   - first:
-      213: -667324445109348794
-    second: gamedayUIbar_1
+      213: -4367402381065915626
+    second: menuIcons_2
+  - first:
+      213: -7563043471286080602
+    second: menuIcons_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -52,10 +55,10 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 9
-  spritePivot: {x: 0.5, y: 0.781995}
-  spritePixelsToUnits: 100
-  spriteBorder: {x: 1, y: 19, z: 3, w: 2}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -108,43 +111,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: gamedayUIbar_0
+      name: menuIcons_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 29
-        width: 114
-        height: 17
+        x: 0
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 3, y: 3, z: 3, w: 3}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63cfe646a87b26dc0800000000000000
-      internalID: -3647150943198315466
+      spriteID: 9e6c0e4fa549006f0800000000000000
+      internalID: -720412822002940183
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gamedayUIbar_1
+      name: menuIcons_1
       rect:
         serializedVersion: 2
-        x: 0
+        x: 16
         y: 0
-        width: 32
+        width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 3, y: 3, z: 3, w: 3}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 646925be3ff2db6f0800000000000000
-      internalID: -667324445109348794
+      spriteID: 0e9966a485f86f970800000000000000
+      internalID: 8788369332228233696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menuIcons_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 613fe558caed363c0800000000000000
+      internalID: -4367402381065915626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menuIcons_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6abe729980caa0790800000000000000
+      internalID: -7563043471286080602
       vertices: []
       indices: 
       edges: []

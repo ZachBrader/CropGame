@@ -45,14 +45,14 @@ public class Inventory : MonoBehaviour
     public int SpendGold(int goldToSpend)
     {
         curGold -= goldToSpend;
-        playerGoldTrackerText.text = "Gold: " + curGold + "g";
+        playerGoldTrackerText.text = curGold.ToString();
         return curGold;
     }
 
     public int ReceiveGold(int goldReceived)
     {
         curGold += goldReceived;
-        playerGoldTrackerText.text = "Gold: " + curGold + "g";
+        playerGoldTrackerText.text = curGold.ToString();
         return curGold;
     }
 

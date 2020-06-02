@@ -31,6 +31,8 @@ public class UIManager : MonoBehaviour
         badActionIcon.SetActive(true);
         yield return new WaitForSeconds(time);
         badActionIcon.SetActive(false);
+        yield return new WaitForSeconds(time * 3);
+        ActionStatus.text = "";
     }
 
 }

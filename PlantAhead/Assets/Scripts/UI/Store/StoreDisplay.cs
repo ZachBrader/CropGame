@@ -36,6 +36,7 @@ public class StoreDisplay : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        audioSource.volume = 0.20f;
         allSlots = new List<Slot>();
         curStock = new List<Item>();
         playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();

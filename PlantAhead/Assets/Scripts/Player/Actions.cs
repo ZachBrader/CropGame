@@ -217,18 +217,19 @@ public class Actions : MonoBehaviour
     {
         Vector3 selectorPos = new Vector3(transform.position.x + movement.direction.x, transform.position.y + movement.direction.y, 0);
         Vector3Int cellPosition = grid.WorldToCell(selectorPos);
+        
         var tillableTile = gameManager.GetTile(new Vector2Int(cellPosition.x, cellPosition.y));
         if (tillableTile == null) { return; }
         if (tillableTile.GetType() != typeof(TillableTile)) { return; }
 
         int energyCost = (hoe as Hoe).Use(tillableTile);
-        if(energyCost != 0)
-            {
+        
+        if(energyCost != 0){
                 animator.SetTrigger("Hoe");
                 StartCoroutine(StopPlayerMovement(0.3333f));
                 currentEnergy -= energyCost;
                 setEnergyBar();
-            }
+        }
         source.PlayOneShot(hoSound);
     }
 

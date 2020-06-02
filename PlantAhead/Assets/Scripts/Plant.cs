@@ -27,6 +27,7 @@ public class Plant : MonoBehaviour{
     private int plantStage = 0;
     public int waterLevel = 1;
     private float stageTime = 0f;
+    public Boolean isDead = false;
 
     // Determines how much a plant is worth
     public int averagePlantValue;
@@ -105,7 +106,10 @@ public class Plant : MonoBehaviour{
         timeBetweenSparkles = MaxTimeBetweenSparkles;
         spriteRenderer.color = Color.white;
         timeBetweenSparkles = 0f;
-        
+
+        if (isDead){
+            return false;
+        }
         
         if (waterLevel > 1){
             var waterbonus = PerfectWaterAmount - waterLevel;
@@ -129,7 +133,8 @@ public class Plant : MonoBehaviour{
             }
             else // watered it way too mch
             {
-                Destroy(this.gameObject);
+                spriteRenderer.color = Color.black;
+                isDead = true;
                 return false;
             }
         }
@@ -143,7 +148,7 @@ public class Plant : MonoBehaviour{
         }
         else
         {
-            Destroy(this.gameObject);
+            spriteRenderer.color = Color.black;
             return false;
         }
     }
@@ -156,7 +161,7 @@ public class Plant : MonoBehaviour{
         if (reusable)
         {
             //harvest reusable too early and it will be destroyed
-            if (plantStage > 2){
+            if (plantStage > 2 && isDead == false){
                 this.spriteRenderer.sprite = stage2;
             }
             else{
@@ -180,21 +185,23 @@ public class Plant : MonoBehaviour{
             return 0;
         }
 
-        
+        if (isDead){
+            return 0;
+        }
+
         if (reusable){
 
             //ignore first three stages for returning money because it would make plant immortal
             if (plantStage > 2){
-                return (int)Math.Pow(plantStage-2, 1 + (averagePlantValue / 10));
+                return (int)Math.Pow(plantStage-2, 1.5 + (averagePlantValue / 10));
             }
             else{
                 return 0;
             }
         }
         else{
-            return (int)Math.Pow(plantStage, 1 + (averagePlantValue / 10));
+            return (int)Math.Pow(plantStage, 1.5 + (averagePlantValue / 10));
         }
-
         
         return Mathf.RoundToInt(averagePlantValue * plantStage * valueModifier);
     }

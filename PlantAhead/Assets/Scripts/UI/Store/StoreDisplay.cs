@@ -13,7 +13,7 @@ public class StoreDisplay : MonoBehaviour
     public GameObject notificationPrefab;
     public Vector3 initNotificationPosition;
 
-    public GameObject slotsParent;
+    public GameObject storeDisplayParent;
     private List<Slot> allSlots;
 
     private List<Item> curStock;
@@ -29,7 +29,8 @@ public class StoreDisplay : MonoBehaviour
         curStock = new List<Item>();
         playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         // Maintain list of all slots
-        foreach (Transform child in slotsParent.transform)
+        Transform slot;
+        foreach (Transform child in storeDisplayParent.transform)
         {
             if (child.gameObject.tag == "Slot")
             {
@@ -37,10 +38,10 @@ public class StoreDisplay : MonoBehaviour
             }
         }
 
-        isOpen = slotsParent.activeSelf;
-        slotsParent.SetActive(true);
+        isOpen = storeDisplayParent.activeSelf;
+        storeDisplayParent.SetActive(true);
         checkStockAndUpdateVisuals();
-        slotsParent.SetActive(false);
+        storeDisplayParent.SetActive(false);
     }
 
     // Update is called once per frame
@@ -71,7 +72,7 @@ public class StoreDisplay : MonoBehaviour
 
     public void showDisplay()
     {
-        slotsParent.SetActive(true);
+        storeDisplayParent.SetActive(true);
         isOpen = true;
 
         //backgroundRender.SetAlpha(0);
@@ -80,7 +81,7 @@ public class StoreDisplay : MonoBehaviour
 
     public void closeDisplay()
     {
-        slotsParent.SetActive(false);
+        storeDisplayParent.SetActive(false);
         isOpen = false;
     }
 
@@ -124,7 +125,7 @@ public class StoreDisplay : MonoBehaviour
     IEnumerator Notification(string buyText)
     {
         GameObject notificationBackground = Instantiate(notificationPrefab);
-        notificationBackground.transform.SetParent(slotsParent.transform);
+        notificationBackground.transform.SetParent(storeDisplayParent.transform);
         notificationBackground.transform.localPosition = initNotificationPosition;
 
         TMP_Text notificationText = notificationBackground.transform.Find("NotificationText").GetComponent<TMP_Text>();

@@ -438,7 +438,7 @@ MonoBehaviour:
   playerGold: {fileID: 0}
   notificationPrefab: {fileID: 5593180282342746693, guid: 02c8e7006fa92554b8796bfe9f27d836,
     type: 3}
-  initNotificationPosition: {x: 300, y: 100, z: 0}
+  initNotificationPosition: {x: 300, y: -100, z: 0}
   slotsParent: {fileID: 6050834979024632766}
   ItemDescriptorText: {fileID: 6050834978211963322}
 --- !u!1 &6050834978211963320

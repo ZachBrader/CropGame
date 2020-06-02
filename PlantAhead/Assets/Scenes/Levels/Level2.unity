@@ -121,6 +121,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &24149093 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -4782838333860952658, guid: 916577bb3321b17448a6ff6865022a09,
+    type: 3}
+  m_PrefabInstance: {fileID: 1445909815}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9afdeaae1bb27d6418d5d8cd5165faed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1839735485 &175075610 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 4905917975244535332, guid: 916577bb3321b17448a6ff6865022a09,
+    type: 3}
+  m_PrefabInstance: {fileID: 1445909815}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &199092102
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,6 +607,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1839735485 &1244788376 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 8564140744359870224, guid: 916577bb3321b17448a6ff6865022a09,
+    type: 3}
+  m_PrefabInstance: {fileID: 1445909815}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1429466715
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1124,10 +1148,10 @@ MonoBehaviour:
   mushroomLevel: 0
   mushroom: {fileID: 0}
   startingMushrooms: 0
-  myMap: {fileID: 0}
-  dirtTiles: {fileID: 0}
+  myMap: {fileID: 24149093}
+  dirtTiles: {fileID: 175075610}
   waterTiles:
-  - {fileID: 0}
+  - {fileID: 1244788376}
   waterSources:
   - WaterAmountMax: 9999
     WaterAmount: 9999

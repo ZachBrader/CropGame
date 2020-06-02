@@ -110,20 +110,25 @@ public class Actions : MonoBehaviour
         #region Inventory Selection
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            gameManager.OpenMenu("Day");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
             gameManager.OpenMenu("InGameMenu");
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             gameManager.OpenMenu("Inventory");
         }
 
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             gameManager.OpenMenu("Store");
         }
 
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             gameManager.OpenMenu("TasksBoard");
         }

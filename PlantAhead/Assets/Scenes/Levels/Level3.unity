@@ -342,6 +342,30 @@ PrefabInstance:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: -2695619058785784247, guid: 536f52a53970e4c4a82e037fbf49e9a8,
     type: 3}
+--- !u!114 &322950216 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 971590057954320429, guid: 536f52a53970e4c4a82e037fbf49e9a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 322950215}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9afdeaae1bb27d6418d5d8cd5165faed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1839735485 &322950217 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: -5894828754412962505, guid: 536f52a53970e4c4a82e037fbf49e9a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 322950215}
+  m_PrefabAsset: {fileID: 0}
+--- !u!156049354 &322950218 stripped
+Grid:
+  m_CorrespondingSourceObject: {fileID: -7533528918962396220, guid: 536f52a53970e4c4a82e037fbf49e9a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 322950215}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &375602403
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,8 +414,9 @@ PolygonCollider2D:
       - {x: 2.9479141, y: -0.29603004}
       - {x: 4.2026386, y: -0.3568287}
       - {x: 14.386387, y: -0.36424255}
+      - {x: 14.977533, y: 0.23661423}
       - {x: 15.2049675, y: 0.34406662}
-      - {x: 14.839497, y: 1.3194151}
+      - {x: 13.856724, y: 1.3194151}
       - {x: 16.014122, y: 2.3061619}
       - {x: 16.292324, y: 2.5485153}
       - {x: 15.115055, y: 3.049612}
@@ -411,8 +436,9 @@ PolygonCollider2D:
       - {x: 3.9031506, y: 2.8697748}
       - {x: 4.3013153, y: 1.738905}
       - {x: 3.6105251, y: 1.5054293}
+      - {x: -0.56687164, y: 2.4340248}
       - {x: -0.49316025, y: 1.5988388}
-      - {x: -1.0215111, y: 0.5908241}
+      - {x: -3.0317326, y: 3.3604631}
       - {x: -2.9349632, y: 0.53860664}
       - {x: -3.3218994, y: 1.3945322}
       - {x: -4.249298, y: 0.25002098}
@@ -423,7 +449,9 @@ PolygonCollider2D:
       - {x: -7.7859087, y: -1.789814}
       - {x: -9.72136, y: -0.22747803}
       - {x: -10.083051, y: 0.6406269}
-      - {x: -8.280671, y: 0.35686874}
+      - {x: -8.658595, y: 2.7604556}
+      - {x: -9.62082, y: 4.466656}
+      - {x: -8.625578, y: 2.7496223}
       - {x: -7.6138525, y: -0.48516083}
       - {x: -6.8082075, y: -0.04037857}
       - {x: -6.327549, y: 0.5586281}
@@ -440,7 +468,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 375602403}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.45, y: -17.12, z: -12.615517}
+  m_LocalPosition: {x: 11.1, y: -7.47, z: -12.615517}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -535,7 +563,7 @@ PrefabInstance:
     - target: {fileID: 2614238915082533281, guid: 1ef6161f07bed84498d3f4e3d7d3273f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -21.75
+      value: -21.39
       objectReference: {fileID: 0}
     - target: {fileID: 2614238915082533281, guid: 1ef6161f07bed84498d3f4e3d7d3273f,
         type: 3}
@@ -626,7 +654,7 @@ PrefabInstance:
         type: 3}
       propertyPath: grid
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 322950218}
     - target: {fileID: 5794718071514118738, guid: 719902d9423145a419fcfff3254d526a,
         type: 3}
       propertyPath: curSelectionSprite
@@ -726,12 +754,12 @@ PrefabInstance:
     - target: {fileID: 5794718071514119086, guid: 719902d9423145a419fcfff3254d526a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.8
+      value: 3.37
       objectReference: {fileID: 0}
     - target: {fileID: 5794718071514119086, guid: 719902d9423145a419fcfff3254d526a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.6
+      value: -22.18
       objectReference: {fileID: 0}
     - target: {fileID: 5794718071514119086, guid: 719902d9423145a419fcfff3254d526a,
         type: 3}
@@ -879,8 +907,8 @@ MonoBehaviour:
   mushroomLevel: 0
   mushroom: {fileID: 0}
   startingMushrooms: 0
-  myMap: {fileID: 0}
-  dirtTiles: {fileID: 0}
+  myMap: {fileID: 322950216}
+  dirtTiles: {fileID: 322950217}
   waterTiles:
   - {fileID: 0}
   waterSources:
@@ -1938,7 +1966,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1751182549}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.584942, y: -6.978538, z: -10}
+  m_LocalPosition: {x: 10.681911, y: -19.86793, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2022,7 +2050,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1902989891}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.8, y: -6.6, z: -10}
+  m_LocalPosition: {x: 3.37, y: -22.18, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2136386652}

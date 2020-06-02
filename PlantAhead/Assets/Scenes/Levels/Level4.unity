@@ -487,12 +487,12 @@ PrefabInstance:
     - target: {fileID: 2614238915082533281, guid: 1ef6161f07bed84498d3f4e3d7d3273f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.22
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 2614238915082533281, guid: 1ef6161f07bed84498d3f4e3d7d3273f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.86
+      value: -5.67
       objectReference: {fileID: 0}
     - target: {fileID: 2614238915082533281, guid: 1ef6161f07bed84498d3f4e3d7d3273f,
         type: 3}
@@ -677,6 +677,30 @@ PrefabInstance:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: -2695619058785784247, guid: 2e2b84d839ddaea4191513aebee5fe56,
     type: 3}
+--- !u!114 &1043852141 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -5664770489125209491, guid: 2e2b84d839ddaea4191513aebee5fe56,
+    type: 3}
+  m_PrefabInstance: {fileID: 1043852140}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9afdeaae1bb27d6418d5d8cd5165faed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1839735485 &1043852142 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 8229692444589180697, guid: 2e2b84d839ddaea4191513aebee5fe56,
+    type: 3}
+  m_PrefabInstance: {fileID: 1043852140}
+  m_PrefabAsset: {fileID: 0}
+--- !u!156049354 &1043852143 stripped
+Grid:
+  m_CorrespondingSourceObject: {fileID: -4325069090577775990, guid: 2e2b84d839ddaea4191513aebee5fe56,
+    type: 3}
+  m_PrefabInstance: {fileID: 1043852140}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1180091946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -714,7 +738,7 @@ PrefabInstance:
         type: 3}
       propertyPath: grid
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1043852143}
     - target: {fileID: 5794718071514118738, guid: 719902d9423145a419fcfff3254d526a,
         type: 3}
       propertyPath: curSelectionSprite
@@ -967,8 +991,8 @@ MonoBehaviour:
   mushroomLevel: 0
   mushroom: {fileID: 0}
   startingMushrooms: 0
-  myMap: {fileID: 0}
-  dirtTiles: {fileID: 0}
+  myMap: {fileID: 1043852141}
+  dirtTiles: {fileID: 1043852142}
   waterTiles:
   - {fileID: 0}
   waterSources:

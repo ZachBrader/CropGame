@@ -306,7 +306,7 @@ PrefabInstance:
         type: 3}
       propertyPath: grid
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1445909816}
     - target: {fileID: 5794718071514118738, guid: 719902d9423145a419fcfff3254d526a,
         type: 3}
       propertyPath: curSelectionSprite
@@ -406,12 +406,12 @@ PrefabInstance:
     - target: {fileID: 5794718071514119086, guid: 719902d9423145a419fcfff3254d526a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.8
+      value: 29.42
       objectReference: {fileID: 0}
     - target: {fileID: 5794718071514119086, guid: 719902d9423145a419fcfff3254d526a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.6
+      value: -5.35
       objectReference: {fileID: 0}
     - target: {fileID: 5794718071514119086, guid: 719902d9423145a419fcfff3254d526a,
         type: 3}
@@ -600,7 +600,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 615574318}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.8, y: -6.6, z: -10}
+  m_LocalPosition: {x: 29.42, y: -5.35, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1905007106}
@@ -752,6 +752,12 @@ PrefabInstance:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: -2695619058785784247, guid: 916577bb3321b17448a6ff6865022a09,
     type: 3}
+--- !u!156049354 &1445909816 stripped
+Grid:
+  m_CorrespondingSourceObject: {fileID: 2764758060293377625, guid: 916577bb3321b17448a6ff6865022a09,
+    type: 3}
+  m_PrefabInstance: {fileID: 1445909815}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1535097514
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2028,7 +2034,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066620209}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.4795265, y: -7.0064344, z: -10}
+  m_LocalPosition: {x: 24.58693, y: -7.0420437, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

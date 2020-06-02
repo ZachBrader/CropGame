@@ -1152,7 +1152,8 @@ MonoBehaviour:
   finalDate: 15
   playerGoldGoal: 50
   mushroomLevel: 0
-  mushroom: {fileID: 0}
+  mushroom: {fileID: 7320437837059399940, guid: 5a80c040e78252048a336ffbc9e6c6ed,
+    type: 3}
   startingMushrooms: 0
   myMap: {fileID: 24149093}
   dirtTiles: {fileID: 175075610}
@@ -1365,6 +1366,10 @@ PrefabInstance:
       propertyPath: badActionIcon
       value: 
       objectReference: {fileID: 2108957503}
+    - target: {fileID: 1320769626, guid: c58b221bab4a4dd48a20be881c847c8c, type: 3}
+      propertyPath: Heart
+      value: 
+      objectReference: {fileID: 1957940701}
     - target: {fileID: 1282802871051202417, guid: c58b221bab4a4dd48a20be881c847c8c,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -2034,7 +2039,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066620209}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.58693, y: -7.0420437, z: -10}
+  m_LocalPosition: {x: 24.574646, y: -7.0420437, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

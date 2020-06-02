@@ -54,4 +54,7 @@ MonoBehaviour:
   - {r: 0, g: 1, b: 1, a: 1}
   - {r: 0.7372549, g: 0.56078434, b: 0.56078434, a: 1}
   m_CustomObjectTypes: []
-  m_PrefabReplacements: []
+  m_PrefabReplacements:
+  - m_TypeName: animal
+    m_Prefab: {fileID: 9221534635709168375, guid: 78e21108b82cc5b4b9217d73fc958451,
+      type: 3}

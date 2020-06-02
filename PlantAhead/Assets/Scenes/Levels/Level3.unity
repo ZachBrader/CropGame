@@ -272,6 +272,53 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &247100797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 247100799}
+  - component: {fileID: 247100798}
+  m_Layer: 0
+  m_Name: Water Source pond
+  m_TagString: Water
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!58 &247100798
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247100797}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
+--- !u!4 &247100799
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247100797}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 30.46, y: -16.5, z: -12.615517}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &322950215
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -338,6 +385,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Level3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193657973808083394, guid: 536f52a53970e4c4a82e037fbf49e9a8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: -2695619058785784247, guid: 536f52a53970e4c4a82e037fbf49e9a8,
@@ -408,58 +460,39 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1.7161236, y: -2.3446426}
-      - {x: 2.2132835, y: -1.3691444}
-      - {x: 1.8262386, y: -0.6376896}
-      - {x: 2.9479141, y: -0.29603004}
-      - {x: 4.2026386, y: -0.3568287}
-      - {x: 14.386387, y: -0.36424255}
-      - {x: 14.977533, y: 0.23661423}
-      - {x: 15.2049675, y: 0.34406662}
-      - {x: 13.856724, y: 1.3194151}
-      - {x: 16.014122, y: 2.3061619}
-      - {x: 16.292324, y: 2.5485153}
-      - {x: 15.115055, y: 3.049612}
-      - {x: 13.789097, y: 1.5883846}
-      - {x: 12.069368, y: 1.5897827}
-      - {x: 11.685095, y: 2.1967144}
-      - {x: 12.601673, y: 2.753314}
-      - {x: 12.811527, y: 3.165986}
-      - {x: 12.592739, y: 3.5942936}
-      - {x: 11.728617, y: 3.660696}
-      - {x: 11.139334, y: 2.5760374}
-      - {x: 10.143501, y: 2.2554188}
-      - {x: 9.028519, y: 2.553235}
-      - {x: 8.462938, y: 3.551859}
-      - {x: 5.8092976, y: 3.4741564}
-      - {x: 4.5504875, y: 3.5254774}
-      - {x: 3.9031506, y: 2.8697748}
-      - {x: 4.3013153, y: 1.738905}
-      - {x: 3.6105251, y: 1.5054293}
-      - {x: -0.56687164, y: 2.4340248}
-      - {x: -0.49316025, y: 1.5988388}
-      - {x: -3.0317326, y: 3.3604631}
-      - {x: -2.9349632, y: 0.53860664}
-      - {x: -3.3218994, y: 1.3945322}
-      - {x: -4.249298, y: 0.25002098}
-      - {x: -4.2899904, y: -1.1696377}
-      - {x: -5.0464497, y: -1.9245968}
-      - {x: -5.880041, y: -2.3566093}
-      - {x: -7.4021444, y: -2.4136257}
-      - {x: -7.7859087, y: -1.789814}
-      - {x: -9.72136, y: -0.22747803}
-      - {x: -10.083051, y: 0.6406269}
-      - {x: -8.658595, y: 2.7604556}
-      - {x: -9.62082, y: 4.466656}
-      - {x: -8.625578, y: 2.7496223}
-      - {x: -7.6138525, y: -0.48516083}
-      - {x: -6.8082075, y: -0.04037857}
-      - {x: -6.327549, y: 0.5586281}
-      - {x: -4.701705, y: 1.047617}
-      - {x: -4.359293, y: 0.40216446}
-      - {x: -4.338009, y: -1.0435905}
-      - {x: -0.08150482, y: -1.3374043}
-      - {x: 0.8361988, y: -1.2784615}
+    - - {x: 1.6883297, y: 1.4911509}
+      - {x: 1.3006716, y: 1.9815762}
+      - {x: 0.6144848, y: 2.1815279}
+      - {x: -0.017027378, y: 1.8783875}
+      - {x: -0.43085957, y: 1.0982323}
+      - {x: -1.2624865, y: 1.0501237}
+      - {x: -2.7302504, y: 1.0917625}
+      - {x: -3.3996139, y: 0.14910364}
+      - {x: -3.019886, y: -0.5592203}
+      - {x: -2.116162, y: -1.120975}
+      - {x: -2.541398, y: -1.3927779}
+      - {x: -2.4470305, y: -2.0333705}
+      - {x: -2.1131537, y: -2.5885553}
+      - {x: -2.969104, y: -2.9639635}
+      - {x: -3.4068837, y: -3.373433}
+      - {x: -3.4606733, y: -4.761467}
+      - {x: -2.893882, y: -5.5906744}
+      - {x: -2.1512089, y: -5.6465673}
+      - {x: -1.5359633, y: -5.392642}
+      - {x: -1.1849384, y: -4.6731777}
+      - {x: -0.517262, y: -4.565798}
+      - {x: -0.117125034, y: -5.5015535}
+      - {x: 0.54141426, y: -5.497078}
+      - {x: 0.61475945, y: -4.866436}
+      - {x: 1.6495328, y: -4.3846445}
+      - {x: 1.5931239, y: -3.8854809}
+      - {x: 2.2611423, y: -3.6815424}
+      - {x: 2.7305245, y: -2.9753537}
+      - {x: 2.4947114, y: -0.2197485}
+      - {x: 1.492497, y: 0.2587571}
+      - {x: 1.7983518, y: 1.3848581}
+      - {x: -0.32581186, y: 0.9896784}
+      - {x: 0.5929074, y: 2.1594543}
 --- !u!4 &375602405
 Transform:
   m_ObjectHideFlags: 0
@@ -468,7 +501,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 375602403}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.1, y: -7.47, z: -12.615517}
+  m_LocalPosition: {x: 4.83, y: -3.71, z: -12.615517}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -905,15 +938,19 @@ MonoBehaviour:
   finalDate: 15
   playerGoldGoal: 50
   mushroomLevel: 0
-  mushroom: {fileID: 0}
+  mushroom: {fileID: 7320437837059399940, guid: 5a80c040e78252048a336ffbc9e6c6ed,
+    type: 3}
   startingMushrooms: 0
   myMap: {fileID: 322950216}
   dirtTiles: {fileID: 322950217}
   waterTiles:
-  - {fileID: 0}
+  - {fileID: 1770312323}
+  - {fileID: 2115676059}
   waterSources:
   - WaterAmountMax: 9999
     WaterAmount: 9999
+  - WaterAmountMax: 100
+    WaterAmount: 100
   tileManager: {fileID: 11400000, guid: fc7b59896a3dd2a43862a2fbf2533523, type: 2}
 --- !u!82 &1435524162
 AudioSource:
@@ -1231,6 +1268,10 @@ PrefabInstance:
       propertyPath: badActionIcon
       value: 
       objectReference: {fileID: 1972305160}
+    - target: {fileID: 1320769626, guid: c58b221bab4a4dd48a20be881c847c8c, type: 3}
+      propertyPath: Heart
+      value: 
+      objectReference: {fileID: 245763546}
     - target: {fileID: 1282802871051202417, guid: c58b221bab4a4dd48a20be881c847c8c,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -1966,12 +2007,18 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1751182549}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.681911, y: -19.86793, z: -10}
+  m_LocalPosition: {x: 10.694192, y: -19.867788, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1839735485 &1770312323 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: -7158762218360531979, guid: 536f52a53970e4c4a82e037fbf49e9a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 322950215}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1902989891
 GameObject:
   m_ObjectHideFlags: 0
@@ -2138,6 +2185,12 @@ Transform:
   m_Father: {fileID: 1382373038}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1839735485 &2115676059 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: -8021815820177095889, guid: 536f52a53970e4c4a82e037fbf49e9a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 322950215}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2136386651
 GameObject:
   m_ObjectHideFlags: 3

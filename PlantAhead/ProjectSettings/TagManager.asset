@@ -14,6 +14,9 @@ TagManager:
   - InventorySelector
   - StoreSelector
   - InventoryDisplay
+  - InGameMenu
+  - EndGameMenu
+  - Animal
   layers:
   - Default
   - TransparentFX

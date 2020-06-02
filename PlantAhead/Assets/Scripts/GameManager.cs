@@ -45,8 +45,6 @@ public class GameManager : MonoBehaviour
     public GameObject mushroom;
     public int startingMushrooms;
 
-    public AudioSource audioSource; 
-
     public SuperMap myMap;
     public Tilemap dirtTiles;
 

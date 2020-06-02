@@ -21,10 +21,13 @@ public class StoreDisplay : MonoBehaviour
     private bool isOpen;
 
     public TMP_Text ItemDescriptorText;
+    
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         allSlots = new List<Slot>();
         curStock = new List<Item>();
         playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
@@ -119,6 +122,7 @@ public class StoreDisplay : MonoBehaviour
     public void BuyItem(Item itemToBuy)
     {
         store.BuyItemFromStore(itemToBuy);
+        audioSource.Play();
         string buyText = "Bought " + itemToBuy.itemName + " for " + itemToBuy.cost + " gold"; 
         StartCoroutine(Notification(buyText));
     }

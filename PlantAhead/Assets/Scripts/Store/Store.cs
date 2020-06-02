@@ -19,10 +19,11 @@ public class Store : MonoBehaviour
     public Seed stockSeed6;
     public Seed stockSeed7;
 
+    
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
+        
         stock = new List<Item>();
         isReady = true;
 
@@ -56,6 +57,7 @@ public class Store : MonoBehaviour
         if (stock.Contains(itemToBuy))
         {
             playerInventory.ConfirmPurchase(itemToBuy);
+            
         }
     }
 

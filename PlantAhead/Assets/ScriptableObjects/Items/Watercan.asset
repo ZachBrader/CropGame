@@ -19,6 +19,6 @@ MonoBehaviour:
   cost: 5
   icon: {fileID: 0}
   nearWater: 0
-  maxWaterinCan: 10
-  waterCurrentlyinCan: 9
+  maxWaterinCan: 20
+  waterCurrentlyinCan: 20
   waterPerUse: 1

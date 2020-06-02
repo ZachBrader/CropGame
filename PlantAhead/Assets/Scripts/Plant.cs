@@ -81,6 +81,7 @@ public class Plant : MonoBehaviour{
      * maximizes water value of plant
      */
     public void waterPlant(int waterAmount){
+        
         Debug.Log("Water successful");
         waterLevel += waterAmount;
         
@@ -170,9 +171,8 @@ public class Plant : MonoBehaviour{
                 Destroy(this.gameObject);
                 return false;
             }
-            
-
         }
+        
         else if (waterLevel > 0 || isMushroom){
             plantStage++;
             changePlant();
@@ -208,8 +208,28 @@ public class Plant : MonoBehaviour{
     }
 
     // This will return the amount of money the plant sells for
-    public int ValuePlant()
-    {
+    public int ValuePlant(){
+        if (isMushroom){
+            return 0;
+        }
+
+        if (reusable){
+            
+        }
+
+        if (plantStage == 1){
+            
+        }
+        if (plantStage == 2){
+           
+        }
+        if (plantStage == 3){
+           
+        }
+        if (plantStage == 4){
+           
+        }
+        
         return Mathf.RoundToInt(averagePlantValue * plantStage * valueModifier);
     }
 

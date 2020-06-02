@@ -315,8 +315,13 @@ public class GameManager : MonoBehaviour
 
                             //expand and then update current plant
                             GameObject currentplant = (thisTile as TillableTile).plant.gameObject;
-                            if ((thisTile as TillableTile).plant.isMushroom)
-                                SpreadPlants(currentplant, neighbors[expandingTo]);
+                            
+                            SpreadPlants(currentplant, neighbors[expandingTo]);
+                            
+                        }
+                        else{
+                            (thisTile as TillableTile).plant = null;
+                            (thisTile as TillableTile).beenHoed = false;
                         }
 
                     }

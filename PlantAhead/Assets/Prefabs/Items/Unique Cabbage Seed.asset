@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a99e366e9bdd30144acc0e04d12cd56b, type: 3}
   m_Name: Unique Cabbage Seed
   m_EditorClassIdentifier: 
-  itemName: Unique Cabbage Seed
+  itemName: Artichoke Seed
   triggerName: none
   tillableTiles: {fileID: 0}
   energyCost: 5
+  cost: 5
   icon: {fileID: 2138221501215653280, guid: 755d6eca844c1aa4dbe60ba6330d6282, type: 3}
   plant: {fileID: 1895972971009972997, guid: 2bea6a237c6fc40448f50a2a55db2664, type: 3}
   seedCount: 1

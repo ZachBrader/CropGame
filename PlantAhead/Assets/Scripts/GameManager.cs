@@ -244,16 +244,16 @@ public class GameManager : MonoBehaviour
                         var weightedCurve = Random.Range(0, 99);
                         int numSpread;
 
-                        if (weightedCurve < 10)
+                        if (weightedCurve < 40)
                         {
                             numSpread = 0;// no spread go home
                         }
-                        else if (weightedCurve < 41)
+                        else if (weightedCurve < 60)
                         {
                             // spread by 10% ROUNDED UP
                             numSpread = Mathf.CeilToInt(neighbors.Count * 0.1f);
                         }
-                        else if (weightedCurve < 66)
+                        else if (weightedCurve < 70)
                         {
                             // spread by 20% ROUNDED UP
                             numSpread = Mathf.CeilToInt(neighbors.Count * 0.2f);
@@ -330,7 +330,7 @@ public class GameManager : MonoBehaviour
                     if (mushroomLevel)
                     {
                         var roll = Random.Range(0, 100);
-                        if (roll > 65)
+                        if (roll > 80)
                         {
                             MushroomSpawn(startingMushrooms);
                         }

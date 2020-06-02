@@ -349,6 +349,10 @@ public class Actions : MonoBehaviour
         {
             canSleep = true;
         }
+        if(collison.CompareTag("Animal"))
+        {
+            UIManager.Instance.DisplayHearts();
+        }
     }
 
     public void OnTriggerExit2D(Collider2D collison) 

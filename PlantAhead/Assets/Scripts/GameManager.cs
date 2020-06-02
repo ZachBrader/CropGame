@@ -80,6 +80,7 @@ public class GameManager : MonoBehaviour
 
         panel = UI.transform.Find("Panel").GetComponent<Image>();
         panel.color = new Color(0, 0, 0, 0);
+        panel.gameObject.SetActive(false);
 
         dayTrackerText = UI.transform.Find("PlayerUI/DayTrackerBackground/DayTrackerText").GetComponent<TMP_Text>();
         #endregion
@@ -358,6 +359,7 @@ public class GameManager : MonoBehaviour
     {
         playerActions.SetCanSleep(false);
         Image screenOverlay = GameObject.Find("UIOverlay/Panel").GetComponent<Image>();
+        screenOverlay.gameObject.SetActive(true);
         OpenMenu("Night");
         menuLocked = true;
         playerMovement.canMove = false;
@@ -375,6 +377,7 @@ public class GameManager : MonoBehaviour
             screenOverlay.color = new Color(0, 0, 0, screenOverlay.color.a - (float)(Time.deltaTime / .5));
             yield return null;
         }
+        screenOverlay.gameObject.SetActive(false);
         menuLocked = false;
         OpenMenu("Day");
         playerMovement.canMove = true;

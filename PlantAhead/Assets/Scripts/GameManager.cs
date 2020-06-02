@@ -358,26 +358,27 @@ public class GameManager : MonoBehaviour
     IEnumerator SimulateNight(int penalty = 0)
     {
         playerActions.SetCanSleep(false);
-        Image screenOverlay = GameObject.Find("Panel").GetComponent<Image>();
-        screenOverlay.gameObject.SetActive(true);
+
+        panel.gameObject.SetActive(true);
+
         OpenMenu("Night");
         menuLocked = true;
         playerMovement.canMove = false;
 
-        while (screenOverlay.color.a < 1)
+        while (panel.color.a < 1)
         {
-            screenOverlay.color = new Color(0, 0, 0, screenOverlay.color.a + (float)(Time.deltaTime / .5));
+            panel.color = new Color(0, 0, 0, panel.color.a + (float)(Time.deltaTime / .5));
             yield return null;
         }
 
         NightLogic(penalty);
 
-        while (screenOverlay.color.a > 0)
+        while (panel.color.a > 0)
         {
-            screenOverlay.color = new Color(0, 0, 0, screenOverlay.color.a - (float)(Time.deltaTime / .5));
+            panel.color = new Color(0, 0, 0, panel.color.a - (float)(Time.deltaTime / .5));
             yield return null;
         }
-        screenOverlay.gameObject.SetActive(false);
+        panel.gameObject.SetActive(false);
         menuLocked = false;
         OpenMenu("Day");
         playerMovement.canMove = true;

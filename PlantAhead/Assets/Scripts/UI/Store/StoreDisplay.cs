@@ -20,7 +20,15 @@ public class StoreDisplay : MonoBehaviour
 
     private bool isOpen;
 
-    public TMP_Text ItemDescriptorText;
+    public Sprite restingImage;
+
+    private Image itemIconImage;
+    private TMP_Text itemDescriptorText;
+    private TMP_Text costText;
+    private TMP_Text sellText;
+    private TMP_Text reusableText;
+    private TMP_Text waterLevelText;
+    private TMP_Text spreadText;
     
     private AudioSource audioSource;
 
@@ -44,6 +52,16 @@ public class StoreDisplay : MonoBehaviour
 
         isOpen = storeDisplayParent.activeSelf;
         storeDisplayParent.SetActive(true);
+
+        Transform objParent = storeDisplayParent.transform.Find("ItemDescriptor");
+        itemDescriptorText = objParent.Find("ItemDescriptorText").GetComponent<TMP_Text>();
+        itemIconImage = objParent.Find("ItemIconImage").GetComponent<Image>();
+        costText = objParent.Find("ItemCost/CostText").GetComponent<TMP_Text>();
+        sellText = objParent.Find("ItemSellValue/SellText").GetComponent<TMP_Text>();
+        reusableText = objParent.Find("Reusable/ReusableText").GetComponent<TMP_Text>();
+        waterLevelText = objParent.Find("WaterLevels/WaterLevelsText").GetComponent<TMP_Text>();
+        spreadText = objParent.Find("SpreadRate/SpreadText").GetComponent<TMP_Text>();
+
         checkStockAndUpdateVisuals();
         storeDisplayParent.SetActive(false);
     }
@@ -78,13 +96,12 @@ public class StoreDisplay : MonoBehaviour
     {
         storeDisplayParent.SetActive(true);
         isOpen = true;
-
-        //backgroundRender.SetAlpha(0);
-        //textRender.SetAlpha(0);
     }
 
     public void closeDisplay()
     {
+
+
         storeDisplayParent.SetActive(false);
         isOpen = false;
     }
@@ -114,17 +131,40 @@ public class StoreDisplay : MonoBehaviour
         }
     }
 
-    public void UpdateSelectorText(string newDescriptor)
+    public void UpdateSelectorText(Item itemToShow)
     {
-        ItemDescriptorText.text = newDescriptor;
+        if (itemToShow != null)
+        {
+            itemDescriptorText.text = itemToShow.itemName;
+            itemIconImage.sprite = itemToShow.icon;
+            costText.text = itemToShow.cost.ToString();
+
+            Plant refToPlant = (itemToShow as Seed).plant.GetComponent<Plant>();
+            sellText.text = refToPlant.averagePlantValue.ToString();
+            reusableText.text = refToPlant.reusable.ToString();
+            waterLevelText.text = refToPlant.PerfectWaterAmount.ToString();
+            spreadText.text = refToPlant.SpreadZone.ToString();
+        }
+        else
+        {
+            itemDescriptorText.text = "---";
+            itemIconImage.sprite = restingImage;
+            costText.text = "0";
+            sellText.text = "0";
+            reusableText.text = "---";
+            waterLevelText.text = "0";
+            spreadText.text = "0";
+        }
     }
 
     public void BuyItem(Item itemToBuy)
     {
-        store.BuyItemFromStore(itemToBuy);
-        audioSource.Play();
-        string buyText = "Bought " + itemToBuy.itemName + " for " + itemToBuy.cost + " gold"; 
-        StartCoroutine(Notification(buyText));
+        if (store.BuyItemFromStore(itemToBuy))
+        {
+            audioSource.Play();
+            string buyText = "-" + itemToBuy.cost + " Gold";
+            StartCoroutine(Notification(buyText));
+        }
     }
 
     IEnumerator Notification(string buyText)
@@ -145,6 +185,8 @@ public class StoreDisplay : MonoBehaviour
             notificationBackground.transform.position = new Vector3(notificationBackground.transform.position.x, notificationBackground.transform.position.y - (float)(Time.deltaTime) * 100, notificationBackground.transform.position.z);
             yield return null;
         }
+        Destroy(notificationText);
+        Destroy(notificationBackground);
         yield return null;
     }
 }

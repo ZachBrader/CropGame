@@ -35,16 +35,14 @@ public class StoreSlot : Slot
         slotSelector.transform.position = transform.position;
         if (containedItem != null)
         {
-            string newDescription = "Store Item Name: " + containedItem.itemName + " - " + containedItem.cost + " G";
-
-            storeDisplay.UpdateSelectorText(newDescription);
+            storeDisplay.UpdateSelectorText(containedItem);
         }
     }
 
     public override void RemoveItemDescriptor()
     {
         slotSelector.SetActive(false);
-        storeDisplay.UpdateSelectorText("---");
+        storeDisplay.UpdateSelectorText(null);
     }
 
     public void BuyItem()

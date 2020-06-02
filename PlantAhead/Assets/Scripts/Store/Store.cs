@@ -52,12 +52,15 @@ public class Store : MonoBehaviour
         stock.Remove(itemToRemove);
     }
 
-    public void BuyItemFromStore(Item itemToBuy)
+    public bool BuyItemFromStore(Item itemToBuy)
     {
         if (stock.Contains(itemToBuy))
         {
-            playerInventory.ConfirmPurchase(itemToBuy);
-            
+            return playerInventory.ConfirmPurchase(itemToBuy);
+        }
+        else
+        {
+            return false;
         }
     }
 

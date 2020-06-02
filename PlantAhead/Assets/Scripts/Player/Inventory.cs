@@ -56,17 +56,17 @@ public class Inventory : MonoBehaviour
         return curGold;
     }
 
-    public void ConfirmPurchase(Item itemToAdd)
+    public bool ConfirmPurchase(Item itemToAdd)
     {
         if (curGold >= itemToAdd.cost)
         {
             SpendGold(itemToAdd.cost);
             AddItemToInventory(itemToAdd);
-            Debug.Log("Able to Purchase " + itemToAdd.itemName);
+            return true;
         }
         else
         {
-            Debug.Log("Unable to buy item -- Too little gold");
+            return false;
         }
     }
 

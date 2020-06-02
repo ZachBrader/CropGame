@@ -86,16 +86,14 @@ public class Slot : MonoBehaviour
         slotSelector.transform.position = transform.position;
         if (containedItem != null)
         {
-            string newDescription = "Item Name: " + containedItem.itemName;
-
-            inventoryDisplay.UpdateSelectorText(newDescription);
+            inventoryDisplay.UpdateSelectorText(containedItem);
         }
     }
 
     public virtual void RemoveItemDescriptor()
     {
         slotSelector.SetActive(false);
-        inventoryDisplay.UpdateSelectorText("---");
+        inventoryDisplay.UpdateSelectorText(null);
     }
 
     public virtual void UpdateStoredAmount()

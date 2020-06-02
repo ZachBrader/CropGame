@@ -10,27 +10,35 @@ public class InventoryDisplay : MonoBehaviour
 
     public GameObject player;
     private Inventory playerInventory;
-    private StoreDisplay storeDisplay;
 
-    public GameObject slotsParent;
+    private GameObject inventoryDisplayParent;
     private List<Slot> allSlots;
 
     private List<Item> curPlayerInv;
 
     private bool isOpen;
 
-    public TMP_Text ItemDescriptorText;
+    public Sprite restingImage;
+
+    private Image itemIconImage;
+    private TMP_Text itemDescriptorText;
+    private TMP_Text heldText;
+    private TMP_Text sellText;
+    private TMP_Text reusableText;
+    private TMP_Text waterLevelText;
+    private TMP_Text spreadText;
 
     // Start is called before the first frame update
     void Start()
     {
         playerInventory = player.GetComponent<Inventory>();
+        inventoryDisplayParent = transform.Find("InventoryParent").gameObject;
         allSlots = new List<Slot>();
         curPlayerInv = new List<Item>();
-        storeDisplay = GameObject.FindGameObjectWithTag("Store").GetComponent<StoreDisplay>();
 
         // Maintain list of all slots
-        foreach (Transform child in slotsParent.transform)
+        Transform slotParent = inventoryDisplayParent.transform.Find("slotParent");
+        foreach (Transform child in slotParent)
         {
             if (child.gameObject.tag == "Slot")
             {
@@ -38,11 +46,18 @@ public class InventoryDisplay : MonoBehaviour
             }
         }
 
-        isOpen = slotsParent.activeSelf;
+        Transform objParent = inventoryDisplayParent.transform.Find("ItemDescriptor");
+        itemDescriptorText = objParent.Find("ItemDescriptorText").GetComponent<TMP_Text>();
+        itemIconImage = objParent.Find("ItemIconImage").GetComponent<Image>();
+        heldText = objParent.Find("NumberHeld/HeldText").GetComponent<TMP_Text>();
+        sellText = objParent.Find("ItemSellValue/SellText").GetComponent<TMP_Text>();
+        reusableText = objParent.Find("Reusable/ReusableText").GetComponent<TMP_Text>();
+        waterLevelText = objParent.Find("WaterLevels/WaterLevelsText").GetComponent<TMP_Text>();
+        spreadText = objParent.Find("SpreadRate/SpreadText").GetComponent<TMP_Text>();
 
-        slotsParent.SetActive(true);
+
+        isOpen = inventoryDisplayParent.activeSelf;
         checkInventoryAndUpdateVisuals();
-        slotsParent.SetActive(false);
     }
 
     // Update is called once per frame
@@ -73,13 +88,13 @@ public class InventoryDisplay : MonoBehaviour
 
     public void showDisplay()
     {
-        slotsParent.SetActive(true);
+        inventoryDisplayParent.SetActive(true);
         isOpen = true;
     }
 
     public void closeDisplay()
     {
-        slotsParent.SetActive(false);
+        inventoryDisplayParent.SetActive(false);
         isOpen = false;
     }
 
@@ -107,8 +122,30 @@ public class InventoryDisplay : MonoBehaviour
         }
     }
 
-    public void UpdateSelectorText(string newDescriptor)
+    public void UpdateSelectorText(Item itemToShow)
     {
-        ItemDescriptorText.text = newDescriptor;
+        if (itemToShow != null)
+        {
+            itemDescriptorText.text = itemToShow.itemName;
+            itemIconImage.color = new Color(0, 0, 0, 1);
+            itemIconImage.sprite = itemToShow.icon;
+            heldText.text = (itemToShow as Seed).seedCount.ToString();
+
+            Plant refToPlant = (itemToShow as Seed).plant.GetComponent<Plant>();
+            sellText.text = refToPlant.averagePlantValue.ToString();
+            reusableText.text = refToPlant.reusable.ToString();
+            waterLevelText.text = refToPlant.PerfectWaterAmount.ToString();
+            spreadText.text = refToPlant.SpreadZone.ToString();
+        }
+        else
+        {
+            itemDescriptorText.text = "---";
+            itemIconImage.sprite = restingImage;
+            heldText.text = "-";
+            sellText.text = "-";
+            reusableText.text = "---";
+            waterLevelText.text = "---";
+            spreadText.text = "---";
+        }
     }
 }

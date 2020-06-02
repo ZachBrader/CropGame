@@ -149,11 +149,11 @@ public class StoreDisplay : MonoBehaviour
         {
             itemDescriptorText.text = "---";
             itemIconImage.sprite = restingImage;
-            costText.text = "0";
-            sellText.text = "0";
+            costText.text = "-";
+            sellText.text = "-";
             reusableText.text = "---";
-            waterLevelText.text = "0";
-            spreadText.text = "0";
+            waterLevelText.text = "---";
+            spreadText.text = "---";
         }
     }
 

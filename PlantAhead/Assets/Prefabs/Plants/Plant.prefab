@@ -187,10 +187,15 @@ MonoBehaviour:
   reusable: 0
   waterCost: 0
   animator: {fileID: 0}
+  MaxTimeBetweenSparkles: 5
   spriteRenderer: {fileID: 3324291818824633321}
   waterLevel: 0
   averagePlantValue: 0
   isMushroom: 0
+  EnergyCost: 0
+  SpreadZone: 0
+  valueModifier: 0
+  PerfectWaterAmount: 0
 --- !u!95 &3324291818824633323
 Animator:
   serializedVersion: 3
@@ -220,7 +225,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 59f501bec13dffe4fb87df269cf130b3, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 23c3f429b9920ac40a1c0c7996ff6da4, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

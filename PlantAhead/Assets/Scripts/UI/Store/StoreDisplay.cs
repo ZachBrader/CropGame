@@ -28,9 +28,10 @@ public class StoreDisplay : MonoBehaviour
         allSlots = new List<Slot>();
         curStock = new List<Item>();
         playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        
         // Maintain list of all slots
-        Transform slot;
-        foreach (Transform child in storeDisplayParent.transform)
+        Transform slotParent = storeDisplayParent.transform.Find("slotParent");
+        foreach (Transform child in slotParent)
         {
             if (child.gameObject.tag == "Slot")
             {

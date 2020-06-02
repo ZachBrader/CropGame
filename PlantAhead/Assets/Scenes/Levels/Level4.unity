@@ -1098,8 +1098,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UI: {fileID: 2115817933}
   curDay: 0
-  finalDate: 15
-  playerGoldGoal: 50
+  finalDate: 25
+  playerGoldGoal: 250
   mushroomLevel: 1
   mushroom: {fileID: 7320437837059399940, guid: 5a80c040e78252048a336ffbc9e6c6ed,
     type: 3}
@@ -1337,7 +1337,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1362844117}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.535159, y: -6.973423, z: -10}
+  m_LocalPosition: {x: 10.522879, y: -6.9733996, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

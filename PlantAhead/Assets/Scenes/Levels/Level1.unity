@@ -429,8 +429,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UI: {fileID: 2428022946697678593}
   curDay: 0
-  finalDate: 15
-  playerGoldGoal: 50
+  finalDate: 10
+  playerGoldGoal: 75
   mushroomLevel: 0
   mushroom: {fileID: 0}
   startingMushrooms: 0

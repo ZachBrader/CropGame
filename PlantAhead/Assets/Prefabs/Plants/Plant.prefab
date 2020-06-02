@@ -188,6 +188,7 @@ MonoBehaviour:
   waterCost: 0
   animator: {fileID: 0}
   MaxTimeBetweenSparkles: 5
+  myPrefab: {fileID: 3324291818824633322}
   spriteRenderer: {fileID: 3324291818824633321}
   waterLevel: 0
   averagePlantValue: 0

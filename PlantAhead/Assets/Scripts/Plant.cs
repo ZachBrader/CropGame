@@ -20,6 +20,7 @@ public class Plant : MonoBehaviour{
     private float timeBetweenSparkles;
     public float MaxTimeBetweenSparkles = 5f; // how frequently to sparkle; update when watering and growing
 
+    public GameObject myPrefab;
     //convey water level via sparkles or something
 
     public SpriteRenderer spriteRenderer; 

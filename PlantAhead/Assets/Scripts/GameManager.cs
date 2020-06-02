@@ -316,7 +316,7 @@ public class GameManager : MonoBehaviour
                             int expandingTo = Random.Range(0, neighbors.Count);
 
                             //expand and then update current plant
-                            GameObject currentplant = (thisTile as TillableTile).plant.gameObject;
+                            GameObject currentplant = (thisTile as TillableTile).plant.myPrefab;
                             
                             SpreadPlants(currentplant, neighbors[expandingTo]);
                             
@@ -457,6 +457,7 @@ public class GameManager : MonoBehaviour
             Vector3 offset = new Vector3(tile.tilePosition.x + 0.5f, tile.tilePosition.y - 0.5f, 0);
             var newPlant = Instantiate(plant, offset, Quaternion.identity);
             tile.plant = newPlant.GetComponent<Plant>();
+            tile.plant.myPrefab = plant;
             tile.plant.resetPlant();
         }
     }

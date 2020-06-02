@@ -45,8 +45,12 @@ public class Actions : MonoBehaviour
 
     [SerializeField]
     public ScriptableObject hoe;
+    
     [SerializeField] public AudioClip waterSound;
-
+    [SerializeField] public AudioClip harvestSound;
+    [SerializeField] public AudioClip sellSound;
+    [SerializeField] public AudioClip hoSound;
+    
     private AudioSource source;
     
     // Start is called before the first frame update
@@ -182,6 +186,7 @@ public class Actions : MonoBehaviour
                 currentEnergy -= energyCost;
                 setEnergyBar();
             }
+            source.PlayOneShot(harvestSound);
 
         }
 
@@ -189,7 +194,7 @@ public class Actions : MonoBehaviour
 
     void Water()
     {
-        source.PlayOneShot(waterSound, .5f);
+        //source.PlayOneShot(waterSound, .5f);
         Vector3 selectorPos = new Vector3(transform.position.x + movement.direction.x, transform.position.y + movement.direction.y, 0);
         Vector3Int cellPosition = grid.WorldToCell(selectorPos);
         var tillableTile = gameManager.GetTile(new Vector2Int(cellPosition.x, cellPosition.y));
@@ -205,6 +210,7 @@ public class Actions : MonoBehaviour
             setEnergyBar();
         }
         (waterCan as Watercan).updateWaterBar();
+        source.PlayOneShot(waterSound);
     }
 
     void Hoe()
@@ -223,6 +229,7 @@ public class Actions : MonoBehaviour
                 currentEnergy -= energyCost;
                 setEnergyBar();
             }
+        source.PlayOneShot(hoSound);
     }
 
     #region Equip Item Functions

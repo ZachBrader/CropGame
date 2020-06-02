@@ -118,7 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c8e71a8012dc484f828d10a26e68250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSelectedText: {fileID: 0}
   selectionSprite: {fileID: 5690451708708873100, guid: 068a1a7dfb329a4499ca5018c8f8db25,
     type: 3}
   animator: {fileID: 0}
@@ -129,13 +128,13 @@ MonoBehaviour:
   curSelectionSprite: {fileID: 5690451708708873100, guid: 068a1a7dfb329a4499ca5018c8f8db25,
     type: 3}
   curCellPosition: {x: 0, y: 0, z: 0}
-  inventoryDisplay: {fileID: 0}
-  storeDisplay: {fileID: 0}
-  inGameMenu: {fileID: 0}
-  playerUI: {fileID: 0}
   canSleep: 0
   waterCan: {fileID: 0}
-  waterSound: {fileID: 8300000, guid: c63365f65f96545499f46d9f8374e9f5, type: 3}
+  hoe: {fileID: 0}
+  waterSound: {fileID: 8300000, guid: 874a2c79a85ef764381120e3a92f4106, type: 3}
+  harvestSound: {fileID: 8300000, guid: 9569455570b2a184aa552163bef34dfb, type: 3}
+  sellSound: {fileID: 8300000, guid: fffb6e51c2fd64a449d45ea47923c26e, type: 3}
+  hoSound: {fileID: 8300000, guid: 48376f79a6bb2ef43841582a7a6688fc, type: 3}
 --- !u!50 &5794718071514118736
 Rigidbody2D:
   serializedVersion: 4
@@ -199,7 +198,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a2bce63cdd6721a4ab35730a9d38a285, type: 3}
+  m_audioClip: {fileID: 8300000, guid: fcdd48bde19068d4fadafb835004558e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

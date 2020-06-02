@@ -305,7 +305,7 @@ public class GameManager : MonoBehaviour
                     else // not a mushroom
                     {
                         //grow current plant and if it has too much water expand it
-                        if ((thisTile as TillableTile).plant.plantStageUpdate() == true)
+                        if ((thisTile as TillableTile).plant.plantStageUpdate())
                         {
 
                             //get all neighbors of current plant
@@ -358,7 +358,7 @@ public class GameManager : MonoBehaviour
     IEnumerator SimulateNight(int penalty = 0)
     {
         playerActions.SetCanSleep(false);
-        Image screenOverlay = GameObject.Find("UIOverlay/Panel").GetComponent<Image>();
+        Image screenOverlay = GameObject.Find("Panel").GetComponent<Image>();
         screenOverlay.gameObject.SetActive(true);
         OpenMenu("Night");
         menuLocked = true;
@@ -455,6 +455,7 @@ public class GameManager : MonoBehaviour
             Vector3 offset = new Vector3(tile.tilePosition.x + 0.5f, tile.tilePosition.y - 0.5f, 0);
             var newPlant = Instantiate(plant, offset, Quaternion.identity);
             tile.plant = newPlant.GetComponent<Plant>();
+            tile.plant.resetPlant();
         }
     }
 

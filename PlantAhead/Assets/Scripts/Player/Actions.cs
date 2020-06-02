@@ -356,7 +356,7 @@ public class Actions : MonoBehaviour
         {
             canSleep = true;
         }
-        if(collison.CompareTag("Animal"))
+        else if(collison.CompareTag("Animal"))
         {
             UIManager.Instance.DisplayHearts();
         }

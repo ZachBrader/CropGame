@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Plant : MonoBehaviour{
 
@@ -54,8 +55,7 @@ public class Plant : MonoBehaviour{
 
     // Update is called once per frame
     void Update(){
-        grow();
-
+        
         if (waterLevel > 0 && waterLevel < 2 * PerfectWaterAmount) 
         {
             lastSparkle += Time.deltaTime;
@@ -64,16 +64,6 @@ public class Plant : MonoBehaviour{
                 lastSparkle = timeBetweenSparkles - lastSparkle;
                 animator.SetTrigger("Water Sparkle");
             }
-        }
-        
-    }
-
-    /*
-     * checks if plant has water
-     */
-    void waterLevelCheck(){
-        if (waterLevel > 0){
-            waterLevel -= waterCost;
         }
     }
 
@@ -108,44 +98,14 @@ public class Plant : MonoBehaviour{
             
         }
     }
-    
-    /*
-     * grows plants
-     */
-    void grow(){
-        if (plantStage == 0){
-            stageTime += Time.deltaTime;
-
-        }else if (plantStage == 1){
-            stageTime += Time.deltaTime;
-            
-        }else if (plantStage == 2){
-            stageTime += Time.deltaTime;
-            
-        }else if (plantStage == 3){
-            stageTime += Time.deltaTime;
-            
-        }else if (plantStage == 4){
-            stageTime += Time.deltaTime;
-            
-        }else if (plantStage == 5){
-            
-        }
-
-        // change plant to next stage
-        //if (stageTime >= this.timer && plantStage != 5){
-        //    plantStage++;
-        //    stageTime = 0f;
-        //    waterLevelCheck();
-        //   changePlant();
-        //}
-    }
 
     public bool plantStageUpdate(){
+        
         timeBetweenSparkles = MaxTimeBetweenSparkles;
         spriteRenderer.color = Color.white;
         timeBetweenSparkles = 0f;
-        Debug.Log("Plant grew!");
+        
+        
         if (waterLevel > 1){
             var waterbonus = PerfectWaterAmount - waterLevel;
             //watered more than once and less than or equal to perfectly
@@ -194,7 +154,13 @@ public class Plant : MonoBehaviour{
         Debug.Log("Harvest successful");
         if (reusable)
         {
-            this.spriteRenderer.sprite = stage2;
+            //harvest reusable too early and it will be destroyed
+            if (plantStage > 2){
+                this.spriteRenderer.sprite = stage2;
+            }
+            else{
+                Destroy(this.gameObject);
+            }
         }
         else
         {
@@ -213,22 +179,21 @@ public class Plant : MonoBehaviour{
             return 0;
         }
 
+        
         if (reusable){
-            
+
+            //ignore first three stages for returning money because it would make plant immortal
+            if (plantStage > 2){
+                return (int)Math.Pow(plantStage-2, 1 + (averagePlantValue / 10));
+            }
+            else{
+                return 0;
+            }
+        }
+        else{
+            return (int)Math.Pow(plantStage, 1 + (averagePlantValue / 10));
         }
 
-        if (plantStage == 1){
-            
-        }
-        if (plantStage == 2){
-           
-        }
-        if (plantStage == 3){
-           
-        }
-        if (plantStage == 4){
-           
-        }
         
         return Mathf.RoundToInt(averagePlantValue * plantStage * valueModifier);
     }
@@ -250,6 +215,10 @@ public class Plant : MonoBehaviour{
         if (plantStage == 4){
             this.spriteRenderer.sprite = stage4;
         }
+    }
+
+    public void resetPlant(){
+        this.spriteRenderer.sprite = stage1;
     }
 
     public int GetPlantStage()

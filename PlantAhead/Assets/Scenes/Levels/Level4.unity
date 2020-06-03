@@ -1788,6 +1788,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1180091948}
+    - target: {fileID: 2428022944710412836, guid: c58b221bab4a4dd48a20be881c847c8c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -17
+      objectReference: {fileID: 0}
     - target: {fileID: 2428022944729818918, guid: c58b221bab4a4dd48a20be881c847c8c,
         type: 3}
       propertyPath: m_Name
@@ -1998,11 +2003,23 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4140189562022651046, guid: c58b221bab4a4dd48a20be881c847c8c,
+        type: 3}
+      propertyPath: m_text
+      value: Inventory - Press '2' key to open your inventory. Clicking on tiles
+        will equip that item!
+      objectReference: {fileID: 0}
     - target: {fileID: 4150797744683880915, guid: c58b221bab4a4dd48a20be881c847c8c,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1245741158}
+    - target: {fileID: 4338544542649494230, guid: c58b221bab4a4dd48a20be881c847c8c,
+        type: 3}
+      propertyPath: m_text
+      value: Store - Open the store by clicking '3'. Spend gold to get new items
+        and seeds!
+      objectReference: {fileID: 0}
     - target: {fileID: 4977090393525402603, guid: c58b221bab4a4dd48a20be881c847c8c,
         type: 3}
       propertyPath: m_textInfo.characterCount

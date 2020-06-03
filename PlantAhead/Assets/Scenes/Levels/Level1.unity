@@ -1838,6 +1838,11 @@ PrefabInstance:
       propertyPath: badActionIcon
       value: 
       objectReference: {fileID: 295698320}
+    - target: {fileID: 1167468990765737604, guid: c58b221bab4a4dd48a20be881c847c8c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 1282802871051202417, guid: c58b221bab4a4dd48a20be881c847c8c,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -1873,6 +1878,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1684801892}
+    - target: {fileID: 2428022944710412836, guid: c58b221bab4a4dd48a20be881c847c8c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -21
+      objectReference: {fileID: 0}
     - target: {fileID: 2428022944729818918, guid: c58b221bab4a4dd48a20be881c847c8c,
         type: 3}
       propertyPath: m_Name

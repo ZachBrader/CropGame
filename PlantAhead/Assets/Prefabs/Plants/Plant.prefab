@@ -191,6 +191,7 @@ MonoBehaviour:
   myPrefab: {fileID: 3324291818824633322}
   spriteRenderer: {fileID: 3324291818824633321}
   waterLevel: 0
+  isDead: 0
   averagePlantValue: 0
   isMushroom: 0
   EnergyCost: 0
@@ -228,7 +229,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 23c3f429b9920ac40a1c0c7996ff6da4, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0

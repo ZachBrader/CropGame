@@ -27,7 +27,6 @@ public class Plant : MonoBehaviour{
     private int plantStage = 0;
     public int waterLevel = 1;
     private float stageTime = 0f;
-    public Boolean isDead = false;
 
     // Determines how much a plant is worth
     public int averagePlantValue;
@@ -88,7 +87,7 @@ public class Plant : MonoBehaviour{
             if(temp >= 2) // it's dead jim
             {
                 Debug.Log("it's dead jim!");
-                spriteRenderer.color = Color.black;
+                //spriteRenderer.color = Color.black;
             } 
             else
             {
@@ -106,10 +105,7 @@ public class Plant : MonoBehaviour{
         timeBetweenSparkles = MaxTimeBetweenSparkles;
         spriteRenderer.color = Color.white;
         timeBetweenSparkles = 0f;
-
-        if (isDead){
-            return false;
-        }
+        
         
         if (waterLevel > 1){
             var waterbonus = PerfectWaterAmount - waterLevel;
@@ -134,7 +130,6 @@ public class Plant : MonoBehaviour{
             else // watered it way too mch
             {
                 spriteRenderer.color = Color.black;
-                isDead = true;
                 return false;
             }
         }
@@ -161,7 +156,7 @@ public class Plant : MonoBehaviour{
         if (reusable)
         {
             //harvest reusable too early and it will be destroyed
-            if (plantStage > 2 && isDead == false){
+            if (plantStage > 2){
                 this.spriteRenderer.sprite = stage2;
             }
             else{
@@ -182,10 +177,6 @@ public class Plant : MonoBehaviour{
     // This will return the amount of money the plant sells for
     public int ValuePlant(){
         if (isMushroom){
-            return 0;
-        }
-
-        if (isDead){
             return 0;
         }
 

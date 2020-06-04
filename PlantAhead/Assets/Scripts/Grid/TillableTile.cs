@@ -18,7 +18,7 @@ public class TillableTile : CustomTile
 
     public void UnHoe()
     {
-        beenHoed = true;
+        beenHoed = false;
         tilemap.SetTile(tilePosition, TileSpriteManager.Instance.dirtTile);
     }
 

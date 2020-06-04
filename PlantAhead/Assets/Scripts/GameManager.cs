@@ -231,113 +231,121 @@ public class GameManager : MonoBehaviour
             for (int y = 0; y < myMap.m_Height; y++)
             {
                 var thisTile = tileGrid[x, y];
-                if ((thisTile as TillableTile) != null && (thisTile as TillableTile).plant != null)
+                if ((thisTile as TillableTile) != null)
                 {
-                    #region Mushroom Expansion
-                    // mushrooms:
-                    // expand no matter their water stage
-                    // grow no matter what
-                    if ((thisTile as TillableTile).plant.isMushroom)
+                    if ((thisTile as TillableTile).plant != null)
                     {
-                        int spread = (thisTile as TillableTile).plant.SpreadZone;
-                        List<TillableTile> neighbors = checkNeighborhood(x, y, spread);
-                        var weightedCurve = Random.Range(0, 99);
-                        int numSpread;
+                        #region Mushroom Expansion
+                        // mushrooms:
+                        // expand no matter their water stage
+                        // grow no matter what
+                        if ((thisTile as TillableTile).plant.isMushroom)
+                        {
+                            int spread = (thisTile as TillableTile).plant.SpreadZone;
+                            List<TillableTile> neighbors = checkNeighborhood(x, y, spread);
+                            var weightedCurve = Random.Range(0, 99);
+                            int numSpread;
 
-                        if (weightedCurve < 40)
-                        {
-                            numSpread = 0;// no spread go home
-                        }
-                        else if (weightedCurve < 60)
-                        {
-                            // spread by 10% ROUNDED UP
-                            numSpread = Mathf.CeilToInt(neighbors.Count * 0.1f);
-                        }
-                        else if (weightedCurve < 70)
-                        {
-                            // spread by 20% ROUNDED UP
-                            numSpread = Mathf.CeilToInt(neighbors.Count * 0.2f);
-                        }
-                        else if (weightedCurve < 81)
-                        {
-                            // spread by 30% ROUNDED UP
-                            numSpread = Mathf.CeilToInt(neighbors.Count * 0.3f);
-                        }
-                        else if (weightedCurve < 91)
-                        {
-                            // spread by 40% ROUNDED UP
-                            numSpread = Mathf.CeilToInt(neighbors.Count * 0.4f);
-                        }
-                        else if (weightedCurve < 96)
-                        {
-                            // spread by 50% ROUNDED UP
-                            numSpread = Mathf.CeilToInt(neighbors.Count * 0.5f);
-                        }
-                        else if (weightedCurve < 99)
-                        {
-                            // spread by 75% ROUNDED UP
-                            numSpread = Mathf.CeilToInt(neighbors.Count * 0.75f);
-                        }
-                        else
-                        {
-                            //100% spread;
-                            numSpread = neighbors.Count;
-                        }
-
-                        // loop until the list is empty or all mushrooms have been spread
-                        while (neighbors.Count > 0 && numSpread > 0)
-                        {
-                            int hit = Random.Range(0, neighbors.Count);
-                            if (neighbors[hit].plant == null)
+                            if (weightedCurve < 40)
                             {
-                                SpreadPlants(mushroom, neighbors[hit]);
-                                numSpread--;
+                                numSpread = 0;// no spread go home
                             }
-                            // remove the index because it's not valid to use again
-                            neighbors.RemoveAt(hit);
-                        }
+                            else if (weightedCurve < 60)
+                            {
+                                // spread by 10% ROUNDED UP
+                                numSpread = Mathf.CeilToInt(neighbors.Count * 0.1f);
+                            }
+                            else if (weightedCurve < 70)
+                            {
+                                // spread by 20% ROUNDED UP
+                                numSpread = Mathf.CeilToInt(neighbors.Count * 0.2f);
+                            }
+                            else if (weightedCurve < 81)
+                            {
+                                // spread by 30% ROUNDED UP
+                                numSpread = Mathf.CeilToInt(neighbors.Count * 0.3f);
+                            }
+                            else if (weightedCurve < 91)
+                            {
+                                // spread by 40% ROUNDED UP
+                                numSpread = Mathf.CeilToInt(neighbors.Count * 0.4f);
+                            }
+                            else if (weightedCurve < 96)
+                            {
+                                // spread by 50% ROUNDED UP
+                                numSpread = Mathf.CeilToInt(neighbors.Count * 0.5f);
+                            }
+                            else if (weightedCurve < 99)
+                            {
+                                // spread by 75% ROUNDED UP
+                                numSpread = Mathf.CeilToInt(neighbors.Count * 0.75f);
+                            }
+                            else
+                            {
+                                //100% spread;
+                                numSpread = neighbors.Count;
+                            }
 
-                        // update the plant stage if possible
-                        (thisTile as TillableTile).plant.plantStageUpdate();
-                    }
-                    #endregion
-                    else // not a mushroom
-                    {
-                        //grow current plant and if it has too much water expand it
-                        if ((thisTile as TillableTile).plant.plantStageUpdate())
+                            // loop until the list is empty or all mushrooms have been spread
+                            while (neighbors.Count > 0 && numSpread > 0)
+                            {
+                                int hit = Random.Range(0, neighbors.Count);
+                                if (neighbors[hit].plant == null)
+                                {
+                                    SpreadPlants(mushroom, neighbors[hit]);
+                                    numSpread--;
+                                }
+                                // remove the index because it's not valid to use again
+                                neighbors.RemoveAt(hit);
+                            }
+
+                            // update the plant stage if possible
+                            (thisTile as TillableTile).plant.plantStageUpdate();
+                        }
+                        #endregion
+                        else // not a mushroom
                         {
+                            //grow current plant and if it has too much water expand it
+                            if ((thisTile as TillableTile).plant.plantStageUpdate())
+                            {
 
-                            //get all neighbors of current plant
-                            List<TillableTile> neighbors = checkNeighborhood(x, y);
+                                //get all neighbors of current plant
+                                List<TillableTile> neighbors = checkNeighborhood(x, y);
 
-                            //generate a random number that will be the one that is expanded to
-                            int expandingTo = Random.Range(0, neighbors.Count);
+                                //generate a random number that will be the one that is expanded to
+                                int expandingTo = Random.Range(0, neighbors.Count);
 
-                            //expand and then update current plant
-                            GameObject currentplant = (thisTile as TillableTile).plant.myPrefab;
-                            
-                            SpreadPlants(currentplant, neighbors[expandingTo]);
-                            
+                                //expand and then update current plant
+                                GameObject currentplant = (thisTile as TillableTile).plant.myPrefab;
+
+                                SpreadPlants(currentplant, neighbors[expandingTo]);
+
+                            }
+                            else
+                            {
+                                Debug.Log("Removing plant");
+                                //(thisTile as TillableTile).plant = null;
+                                //(thisTile as TillableTile).beenHoed = false;
+                            }
+
                         }
-                        else {
-                            Debug.Log("Removing plant");
-                            //(thisTile as TillableTile).plant = null;
-                            //(thisTile as TillableTile).beenHoed = false;
-                        }
 
-                    }
-
-                    // spawn mushrooms if this is a mushroom level... sometimes
-                    if (mushroomLevel)
-                    {
-                        var roll = Random.Range(0, 100);
-                        if (roll > 80)
+                        // spawn mushrooms if this is a mushroom level... sometimes
+                        if (mushroomLevel)
                         {
-                            MushroomSpawn(startingMushrooms);
+                            var roll = Random.Range(0, 100);
+                            if (roll > 80)
+                            {
+                                MushroomSpawn(startingMushrooms);
+                            }
                         }
+                    }
+                    else if ((thisTile as TillableTile).beenHoed)
+                    {
+                        Debug.Log("Unhoeing land");
+                        (thisTile as TillableTile).UnHoe();
                     }
                 }
-
             }
         }
         #endregion

@@ -32,10 +32,9 @@ public class Actions : MonoBehaviour
     public int maxEnergy = 100;
     private Item currentEquipped;
     public GameObject curSelectionSprite = null;
-    public Vector2Int curCellPos;
 
     [SerializeField]
-    private bool canSleep = false;
+    private bool canSleep = true;
     
     //[SerializeField] public GameObject plant;
 
@@ -83,7 +82,8 @@ public class Actions : MonoBehaviour
         selectCell();
 
         #region User Actions
-        if (Input.GetKeyDown(KeyCode.Space)){
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
             DoAction();
         }
 
@@ -223,8 +223,6 @@ public class Actions : MonoBehaviour
         if (tillableTile.GetType() != typeof(TillableTile)) { return; }
 
         int energyCost = (hoe as Hoe).Use(tillableTile);
-
-        Debug.Log("Used " + energyCost + " energy");
         
         if(energyCost != 0){
                 animator.SetTrigger("Hoe");
@@ -272,8 +270,6 @@ public class Actions : MonoBehaviour
         Vector3Int cellPosition = grid.WorldToCell(transform.position);
         Vector3 offset = new Vector3(cellPosition.x + 0.5f + movement.direction.x, cellPosition.y - 0.5f + movement.direction.y, cellPosition.z);
         curSelectionSprite.transform.position = offset;
-
-        //curCellPos = new Vector2Int((int)offset.x, (int)offset.y, cellPosition.z);
 
         /*var tile = gameManager.GetTile(new Vector2Int((int)offset.x, (int)offset.y));
         if (tile != null)

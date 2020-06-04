@@ -546,6 +546,7 @@ public class GameManager : MonoBehaviour
 
     private void EndGame()
     {
+        playerActions.SetCanSleep(false);
         menuLocked = false;
         OpenMenu("EndGameMenu");
         menuLocked = true;

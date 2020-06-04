@@ -233,7 +233,7 @@ public class GameManager : MonoBehaviour
                 var thisTile = tileGrid[x, y];
                 if ((thisTile as TillableTile) != null && (thisTile as TillableTile).plant != null)
                 {
-
+                    #region Mushroom Expansion
                     // mushrooms:
                     // expand no matter their water stage
                     // grow no matter what
@@ -300,7 +300,7 @@ public class GameManager : MonoBehaviour
                         // update the plant stage if possible
                         (thisTile as TillableTile).plant.plantStageUpdate();
                     }
-
+                    #endregion
                     else // not a mushroom
                     {
                         //grow current plant and if it has too much water expand it
@@ -319,9 +319,10 @@ public class GameManager : MonoBehaviour
                             SpreadPlants(currentplant, neighbors[expandingTo]);
                             
                         }
-                        else{
-                            (thisTile as TillableTile).plant = null;
-                            (thisTile as TillableTile).beenHoed = false;
+                        else {
+                            Debug.Log("Removing plant");
+                            //(thisTile as TillableTile).plant = null;
+                            //(thisTile as TillableTile).beenHoed = false;
                         }
 
                     }

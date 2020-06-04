@@ -165,6 +165,7 @@ public class Actions : MonoBehaviour
 
     void Harvest()
     {
+
         Vector3 selectorPos = new Vector3(transform.position.x + movement.direction.x, transform.position.y + movement.direction.y, 0);
         Vector3Int cellPosition = grid.WorldToCell(selectorPos);
         var tillableTile = gameManager.GetTile(new Vector2Int(cellPosition.x, cellPosition.y));
@@ -178,7 +179,7 @@ public class Actions : MonoBehaviour
             int energyCost = plantToHarvest.harvest();
             plantToHarvest = null;
 
-            (tillableTile as TillableTile).beenHoed = false;
+            (tillableTile as TillableTile).UnHoe();
             if(energyCost != 0)
             {
                 animator.SetTrigger("Sickle");
@@ -223,6 +224,8 @@ public class Actions : MonoBehaviour
         if (tillableTile.GetType() != typeof(TillableTile)) { return; }
 
         int energyCost = (hoe as Hoe).Use(tillableTile);
+
+        Debug.Log("Used " + energyCost + " energy");
         
         if(energyCost != 0){
                 animator.SetTrigger("Hoe");
@@ -270,6 +273,16 @@ public class Actions : MonoBehaviour
         Vector3Int cellPosition = grid.WorldToCell(transform.position);
         Vector3 offset = new Vector3(cellPosition.x + 0.5f + movement.direction.x, cellPosition.y - 0.5f + movement.direction.y, cellPosition.z);
         curSelectionSprite.transform.position = offset;
+
+        /*var tile = gameManager.GetTile(new Vector2Int((int)offset.x, (int)offset.y));
+        if (tile != null)
+        {
+            if ((tile as TillableTile).plant != null) { Debug.Log("Plant found"); }
+            else
+            {
+                Debug.Log("No plant");
+            }
+        }*/
 
         #region Guide Text Logic
         if (canSleep)

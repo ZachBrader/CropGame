@@ -41,6 +41,8 @@ public class Plant : MonoBehaviour{
     [SerializeField]
     private float valueModifier;
     public int PerfectWaterAmount;
+
+    private bool isDead = false;
     
     // Start is called before the first frame update
     void Start(){
@@ -49,9 +51,6 @@ public class Plant : MonoBehaviour{
         valueModifier = 1;
         timeBetweenSparkles = MaxTimeBetweenSparkles;
 
-        // TEST CODE
-        //averagePlantValue = 1;
-        // TEST CODE
     }
 
     // Update is called once per frame
@@ -107,7 +106,7 @@ public class Plant : MonoBehaviour{
         timeBetweenSparkles = 0f;
         
         
-        if (waterLevel > 1){
+        if (waterLevel > 1) {
             var waterbonus = PerfectWaterAmount - waterLevel;
             //watered more than once and less than or equal to perfectly
             if (waterbonus > 0 ){
@@ -156,10 +155,10 @@ public class Plant : MonoBehaviour{
         if (reusable)
         {
             //harvest reusable too early and it will be destroyed
-            if (plantStage > 2){
+            if (plantStage > 2) {
                 this.spriteRenderer.sprite = stage2;
             }
-            else{
+            else {
                 Destroy(this.gameObject);
             }
         }
@@ -176,7 +175,7 @@ public class Plant : MonoBehaviour{
 
     // This will return the amount of money the plant sells for
     public int ValuePlant(){
-        if (isMushroom){
+        if (isMushroom || isDead){
             return 0;
         }
 
@@ -223,5 +222,10 @@ public class Plant : MonoBehaviour{
     public int GetPlantStage()
     {
         return plantStage;
+    }
+
+    public bool getIsDeadStatus()
+    {
+        return isDead;
     }
 }

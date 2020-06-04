@@ -104,7 +104,6 @@ public class InventoryDisplay : MonoBehaviour
 
         if (curPlayerInv == null)
         {
-            Debug.Log("Not Instantiated Yet");
             return;
         }
         else
@@ -127,7 +126,6 @@ public class InventoryDisplay : MonoBehaviour
         if (itemToShow != null)
         {
             itemDescriptorText.text = itemToShow.itemName;
-            itemIconImage.color = new Color(0, 0, 0, 1);
             itemIconImage.sprite = itemToShow.icon;
             heldText.text = (itemToShow as Seed).seedCount.ToString();
 

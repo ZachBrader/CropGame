@@ -34,7 +34,7 @@ public class Actions : MonoBehaviour
     public GameObject curSelectionSprite = null;
 
     [SerializeField]
-    private bool canSleep = true;
+    private bool canSleep = false;
     
     //[SerializeField] public GameObject plant;
 

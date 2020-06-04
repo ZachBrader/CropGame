@@ -127,7 +127,6 @@ MonoBehaviour:
   maxEnergy: 100
   curSelectionSprite: {fileID: 5690451708708873100, guid: 068a1a7dfb329a4499ca5018c8f8db25,
     type: 3}
-  curCellPosition: {x: 0, y: 0, z: 0}
   canSleep: 0
   waterCan: {fileID: 0}
   hoe: {fileID: 0}

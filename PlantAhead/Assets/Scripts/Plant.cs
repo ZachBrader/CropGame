@@ -86,7 +86,7 @@ public class Plant : MonoBehaviour{
             if(temp >= 2) // it's dead jim
             {
                 Debug.Log("it's dead jim!");
-                //spriteRenderer.color = Color.black;
+                spriteRenderer.color = new Color(0, 0, 0);
             } 
             else
             {

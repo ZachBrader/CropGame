@@ -382,7 +382,6 @@ public class GameManager : MonoBehaviour
         menuLocked = false;
         OpenMenu("Day");
         playerMovement.canMove = true;
-        playerActions.SetCanSleep(true);
         if (curDay == finalDate || HasPlayerWon())
         {
             EndGame();

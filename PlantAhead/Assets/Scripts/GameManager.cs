@@ -458,6 +458,7 @@ public class GameManager : MonoBehaviour
             tile.plant = newPlant.GetComponent<Plant>();
             tile.plant.myPrefab = plant;
             tile.plant.resetPlant();
+            (tile as TillableTile).UnHoe();
         }
     }
 

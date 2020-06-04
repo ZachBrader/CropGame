@@ -32,8 +32,7 @@ public class Actions : MonoBehaviour
     public int maxEnergy = 100;
     private Item currentEquipped;
     public GameObject curSelectionSprite = null;
-    [SerializeField]
-    private Vector3Int curCellPosition;
+    public Vector2Int curCellPos;
 
     [SerializeField]
     private bool canSleep = false;
@@ -273,6 +272,8 @@ public class Actions : MonoBehaviour
         Vector3Int cellPosition = grid.WorldToCell(transform.position);
         Vector3 offset = new Vector3(cellPosition.x + 0.5f + movement.direction.x, cellPosition.y - 0.5f + movement.direction.y, cellPosition.z);
         curSelectionSprite.transform.position = offset;
+
+        //curCellPos = new Vector2Int((int)offset.x, (int)offset.y, cellPosition.z);
 
         /*var tile = gameManager.GetTile(new Vector2Int((int)offset.x, (int)offset.y));
         if (tile != null)

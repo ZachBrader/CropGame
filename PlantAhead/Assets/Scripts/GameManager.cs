@@ -365,8 +365,8 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SimulateNight(int penalty = 0)
     {
+        playerActions.SetActionLock(false);
         playerActions.SetCanSleep(false);
-
         panel.gameObject.SetActive(true);
 
         OpenMenu("Night");
@@ -386,10 +386,12 @@ public class GameManager : MonoBehaviour
             panel.color = new Color(0, 0, 0, panel.color.a - (float)(Time.deltaTime / .5));
             yield return null;
         }
+
+        Debug.Log("Players should start moving");
         panel.gameObject.SetActive(false);
         menuLocked = false;
-        OpenMenu("Day");
-        playerMovement.canMove = true;
+        playerActions.WakeUp();
+
         if (curDay == finalDate || HasPlayerWon())
         {
             EndGame();

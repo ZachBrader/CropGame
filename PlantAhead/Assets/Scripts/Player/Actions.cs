@@ -35,6 +35,8 @@ public class Actions : MonoBehaviour
 
     [SerializeField]
     private bool canSleep = false;
+    private bool actionLock = false;
+    private bool isPassedOut = false;
     
     //[SerializeField] public GameObject plant;
 
@@ -79,34 +81,38 @@ public class Actions : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
+
         selectCell();
 
         #region User Actions
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (!actionLock && !isPassedOut)
         {
-            DoAction();
-        }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                DoAction();
+            }
 
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            Harvest();
-        }
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                Harvest();
+            }
 
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            Water();
-        }
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                Water();
+            }
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Hoe();
-        }
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                Hoe();
+            }
 
-        // Player sleeps
-        // checks if you're in the house
-        if (Input.GetKeyDown(KeyCode.Q) && canSleep)
-        {
-            gameManager.EndDay();
+            // Player sleeps
+            // checks if you're in the house
+            if (Input.GetKeyDown(KeyCode.Q) && canSleep)
+            {
+                gameManager.EndDay();
+            }
         }
         #endregion
 
@@ -137,8 +143,9 @@ public class Actions : MonoBehaviour
         }
         #endregion
 
-        if (currentEnergy < 1){
-            UIManager.Instance.ActionStatus.text = " You Passed Out!";
+        if (currentEnergy < 1 && !isPassedOut) {
+            isPassedOut = true;
+            UIManager.Instance.SendNotification("You Passed Out!");
             gameManager.EndDay((int)(Math.Round(maxEnergy * passOutPenalty)));
         }
 
@@ -149,6 +156,7 @@ public class Actions : MonoBehaviour
     {
         if (currentEquipped == null)
         {
+            UIManager.Instance.SendNotification("No Seed Equipped!");
             return;
         }
         Vector3 selectorPos = new Vector3(transform.position.x + movement.direction.x, transform.position.y + movement.direction.y, 0);
@@ -164,7 +172,6 @@ public class Actions : MonoBehaviour
 
     void Harvest()
     {
-
         Vector3 selectorPos = new Vector3(transform.position.x + movement.direction.x, transform.position.y + movement.direction.y, 0);
         Vector3Int cellPosition = grid.WorldToCell(selectorPos);
         var tillableTile = gameManager.GetTile(new Vector2Int(cellPosition.x, cellPosition.y));
@@ -181,6 +188,7 @@ public class Actions : MonoBehaviour
             (tillableTile as TillableTile).UnHoe();
             if(energyCost != 0)
             {
+                UIManager.Instance.SendStatusUpdate("Successfully Harvested!");
                 animator.SetTrigger("Sickle");
                 StartCoroutine(StopPlayerMovement(0.3333f));
                 currentEnergy -= energyCost;
@@ -215,6 +223,7 @@ public class Actions : MonoBehaviour
 
     void Hoe()
     {
+
         Vector3 selectorPos = new Vector3(transform.position.x + movement.direction.x, transform.position.y + movement.direction.y, 0);
         Vector3Int cellPosition = grid.WorldToCell(selectorPos);
         
@@ -270,16 +279,6 @@ public class Actions : MonoBehaviour
         Vector3Int cellPosition = grid.WorldToCell(transform.position);
         Vector3 offset = new Vector3(cellPosition.x + 0.5f + movement.direction.x, cellPosition.y - 0.5f + movement.direction.y, cellPosition.z);
         curSelectionSprite.transform.position = offset;
-
-        /*var tile = gameManager.GetTile(new Vector2Int((int)offset.x, (int)offset.y));
-        if (tile != null)
-        {
-            if ((tile as TillableTile).plant != null) { Debug.Log("Plant found"); }
-            else
-            {
-                Debug.Log("No plant");
-            }
-        }*/
 
         #region Guide Text Logic
         if (canSleep)
@@ -381,16 +380,44 @@ public class Actions : MonoBehaviour
         }
     }
 
+    public void WakeUp()
+    {
+        StartCoroutine(WakeUpLogic());
+    }
+
+    IEnumerator WakeUpLogic()
+    {
+        yield return new WaitForSeconds(.5f);
+        gameManager.OpenMenu("Day");
+        movement.canMove = true;
+        SetActionLock(false);
+        SetPassedOut(false);
+        yield return null;
+    }
+
     public void SetCanSleep(bool newSleep)
     {
         canSleep = newSleep;
+    }
+
+    public void SetActionLock(bool actionStatus)
+    {
+        actionLock = actionStatus;
+    }
+
+    public void SetPassedOut(bool passedOutStatus)
+    {
+        isPassedOut = passedOutStatus;
     }
 
     private IEnumerator StopPlayerMovement(float time) 
     {
         movement.canMove = false;
         yield return new WaitForSeconds(time);
-        movement.canMove = true;
+        if (!isPassedOut)
+        {
+            movement.canMove = true;
+        }
     }   
 
 }

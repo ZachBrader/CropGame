@@ -53,9 +53,9 @@ public class Watercan : Item
                 }
                 else
                 {
-                    Debug.Log("Watering Can is Empty");
-                    UIManager.Instance.ActionStatus.text = "Watering Can is Empty";
-                    UIManager.Instance.displayX();
+                    UIManager.Instance.SendNotification("Watering Can is Empty!");
+                    //UIManager.Instance.ActionStatus.text = "Watering Can is Empty";
+                    //UIManager.Instance.displayX();
                     return 0;
                     // notify player watering can out of water
                 }

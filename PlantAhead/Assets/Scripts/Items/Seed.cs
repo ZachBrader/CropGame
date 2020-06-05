@@ -21,15 +21,12 @@ public class Seed : Item
         if (selectedTile != null && (selectedTile as TillableTile).plant == null)
         {
             if((selectedTile as TillableTile).beenHoed){
-                Debug.Log("Planting at location " + plantLocation);
-
                 var newPlant = Instantiate(plant, plantLocation, Quaternion.identity);
                 (selectedTile as TillableTile).plant = newPlant.GetComponent<Plant>();
                 (selectedTile as TillableTile).plant.myPrefab = plant;
                 (selectedTile as TillableTile).UnHoe(); // remove the hoe state
 
                 seedCount -= 1;
-                Debug.Log("Current Seed Count after use: " + seedCount);
                 if (seedCount <= 0)
                 {
                     Inventory playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
@@ -40,11 +37,11 @@ public class Seed : Item
             }
             else
             {
-                UIManager.Instance.ActionStatus.text = "Soil needs to be tilled to plant!";
-                UIManager.Instance.displayX();
+                UIManager.Instance.SendNotification("Till Soil Before Planting!");
+                //UIManager.Instance.ActionStatus.text = "Soil needs to be tilled to plant!";
+                //UIManager.Instance.displayX();
             }
         }
-        Debug.Log("Failed to plant");
         return 0;
     }
 }

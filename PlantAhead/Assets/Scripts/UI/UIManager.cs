@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public Image waterBar;
     public Image EnergyBar;
 
+    public GameObject notificationPrefab;
     public GameObject badActionIcon;
 
     public GameObject Heart;
@@ -21,6 +22,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Pls work");
         Instance = this;
         ActionStatus.text = "";
     }
@@ -54,6 +56,42 @@ public class UIManager : MonoBehaviour
         badActionIcon.SetActive(false);
         yield return new WaitForSeconds(time * 3);
         ActionStatus.text = "";
+    }
+
+    public void SendNotification(string message)
+    {
+        StartCoroutine(Notification(message, new Vector3(0, 0, 0)));
+    }
+
+    public void SendStatusUpdate(string message)
+    {
+        StartCoroutine(Notification(message, new Vector3(100, 100, 0)));
+    }
+
+    IEnumerator Notification(string message, Vector3 NotificationLocation)
+    {
+        Debug.Log("Notification");
+        GameObject notificationBackground = Instantiate(notificationPrefab);
+        notificationBackground.transform.SetParent(transform);
+        notificationBackground.transform.localPosition = NotificationLocation;
+
+        TMP_Text notificationText = notificationBackground.transform.Find("NotificationText").GetComponent<TMP_Text>();
+        notificationText.text = message;
+        CanvasRenderer backgroundRender = notificationBackground.GetComponent<CanvasRenderer>();
+        CanvasRenderer textRender = notificationText.GetComponent<CanvasRenderer>();
+
+        yield return new WaitForSeconds(1);
+
+        while (backgroundRender.GetAlpha() > 0)
+        {
+            backgroundRender.SetAlpha(backgroundRender.GetAlpha() - (float)(Time.deltaTime));
+            textRender.SetAlpha(textRender.GetAlpha() - (float)(Time.deltaTime));
+            notificationBackground.transform.position = new Vector3(notificationBackground.transform.position.x, notificationBackground.transform.position.y - (float)(Time.deltaTime) * 100, notificationBackground.transform.position.z);
+            yield return null;
+        }
+        Destroy(notificationText);
+        Destroy(notificationBackground);
+        yield return null;
     }
 
 }

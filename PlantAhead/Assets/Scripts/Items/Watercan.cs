@@ -19,15 +19,20 @@ public class Watercan : Item
     // do a watering can action. If near water, this will try to fill the watering can
     public int Use(CustomTile selectedTile)
     {
-        if(selectedTile != null){
+        if(selectedTile != null)
+        {
             if(selectedTile is WaterTile)
             {
-                Debug.Log("Water refilled ");
                 // refill the can
                 var fillAmount = (selectedTile as WaterTile).refillCan(maxWaterinCan - waterCurrentlyinCan);
                 waterCurrentlyinCan += fillAmount;
                 if(maxWaterinCan == 0){
                         maxWaterinCan = 1;
+                }
+
+                if (waterCurrentlyinCan >= maxWaterinCan)
+                {
+                    UIManager.Instance.SendNotification("Filled Watercan!");
                 }
                 UIManager.Instance.waterBar.fillAmount = (float) waterCurrentlyinCan / (float) maxWaterinCan;
                 return 0;
@@ -39,7 +44,6 @@ public class Watercan : Item
 
                 if(waterCurrentlyinCan >= waterPerUse) 
                 {
-                    Debug.Log("Watered " + selectedTile);
                     //  better hope you aren't wasting water and energy on not actually watering a plant
                     waterCurrentlyinCan -= waterPerUse;
                     didWater = true;
@@ -54,14 +58,12 @@ public class Watercan : Item
                 else
                 {
                     UIManager.Instance.SendNotification("Watering Can is Empty!");
-                    //UIManager.Instance.ActionStatus.text = "Watering Can is Empty";
-                    //UIManager.Instance.displayX();
                     return 0;
                     // notify player watering can out of water
                 }
                 // update the fill bar per use
                 // make sure no div 0
-                if(didWater) {
+                if (didWater) {
                     if(maxWaterinCan == 0){
                         maxWaterinCan = 1;
                     }

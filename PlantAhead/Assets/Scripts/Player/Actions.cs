@@ -166,6 +166,10 @@ public class Actions : MonoBehaviour
         if (tillableTile.GetType() != typeof(TillableTile)) { return; }
 
         int energyCost = currentEquipped.Use(tillableTile, new Vector3(cellPosition.x + 0.5f, cellPosition.y - 0.5f, 0));
+        if (energyCost == 0)
+        {
+            UIManager.Instance.SendNotification("Unable to Plant Here!");
+        }
         setEnergyBar();
         
     }
@@ -188,7 +192,6 @@ public class Actions : MonoBehaviour
             (tillableTile as TillableTile).UnHoe();
             if(energyCost != 0)
             {
-                UIManager.Instance.SendStatusUpdate("Successfully Harvested!");
                 animator.SetTrigger("Sickle");
                 StartCoroutine(StopPlayerMovement(0.3333f));
                 currentEnergy -= energyCost;
@@ -238,6 +241,10 @@ public class Actions : MonoBehaviour
                 StartCoroutine(StopPlayerMovement(0.3333f));
                 currentEnergy -= energyCost;
                 setEnergyBar();
+        }
+        else
+        {
+            UIManager.Instance.SendNotification("Cannot Use Hoe Here!");
         }
         source.PlayOneShot(hoSound);
     }

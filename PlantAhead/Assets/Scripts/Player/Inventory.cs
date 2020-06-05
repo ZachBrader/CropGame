@@ -52,6 +52,8 @@ public class Inventory : MonoBehaviour
     public int ReceiveGold(int goldReceived)
     {
         curGold += goldReceived;
+
+        UIManager.Instance.SendNotification("Player Received " + goldReceived + " gold!");
         playerGoldTrackerText.text = curGold.ToString();
         return curGold;
     }

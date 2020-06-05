@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public Image waterBar;
     public Image EnergyBar;
 
+    public GameObject notificationPosition;
     public GameObject notificationPrefab;
     public GameObject badActionIcon;
 
@@ -60,19 +61,13 @@ public class UIManager : MonoBehaviour
 
     public void SendNotification(string message)
     {
-        StartCoroutine(Notification(message, new Vector3(0, 0, 0)));
-    }
-
-    public void SendStatusUpdate(string message)
-    {
         StartCoroutine(Notification(message, new Vector3(100, 100, 0)));
     }
 
     IEnumerator Notification(string message, Vector3 NotificationLocation)
     {
-        Debug.Log("Notification");
         GameObject notificationBackground = Instantiate(notificationPrefab);
-        notificationBackground.transform.SetParent(transform);
+        notificationBackground.transform.SetParent(notificationPosition.transform);
         notificationBackground.transform.localPosition = NotificationLocation;
 
         TMP_Text notificationText = notificationBackground.transform.Find("NotificationText").GetComponent<TMP_Text>();
@@ -84,9 +79,8 @@ public class UIManager : MonoBehaviour
 
         while (backgroundRender.GetAlpha() > 0)
         {
-            backgroundRender.SetAlpha(backgroundRender.GetAlpha() - (float)(Time.deltaTime));
+            backgroundRender.SetAlpha(backgroundRender.GetAlpha() - (float)(Time.deltaTime) / .5f);
             textRender.SetAlpha(textRender.GetAlpha() - (float)(Time.deltaTime));
-            notificationBackground.transform.position = new Vector3(notificationBackground.transform.position.x, notificationBackground.transform.position.y - (float)(Time.deltaTime) * 100, notificationBackground.transform.position.z);
             yield return null;
         }
         Destroy(notificationText);

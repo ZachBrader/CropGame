@@ -15,7 +15,7 @@ public class Hoe : Item
                 if(!(selectedTile as TillableTile).beenHoed && (selectedTile as TillableTile).plant == null)
                 {
                     (selectedTile as TillableTile).Hoe();
-                    return 100; //energyCost;
+                    return energyCost;
                 }
             }
         }

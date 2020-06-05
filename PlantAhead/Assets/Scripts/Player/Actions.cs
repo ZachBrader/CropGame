@@ -299,11 +299,13 @@ public class Actions : MonoBehaviour
         if (tillableTile == null)
         {
             guideParent.SetActive(false);
+            curSelectionSprite.SetActive(false);
             return;
         }
         else
         {
             guideParent.SetActive(true);
+            curSelectionSprite.SetActive(true);
         }
 
         if (tillableTile.GetType() == typeof(WaterTile))

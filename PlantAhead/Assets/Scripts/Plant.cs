@@ -15,6 +15,7 @@ public class Plant : MonoBehaviour{
     [Header("Water needed per stage of growth")] public int waterCost;
 
     public Animator animator;
+    public Animator animator2;
 
     private float lastSparkle = 0f; // time since last sparkle
     private float timeBetweenSparkles;
@@ -24,7 +25,7 @@ public class Plant : MonoBehaviour{
     //convey water level via sparkles or something
 
     public SpriteRenderer spriteRenderer; 
-    private int plantStage = 0;
+    public int plantStage = 0;
     public int waterLevel = 1;
     private float stageTime = 0f;
 
@@ -43,6 +44,7 @@ public class Plant : MonoBehaviour{
     public int PerfectWaterAmount;
 
     private bool isDead = false;
+
     
     // Start is called before the first frame update
     void Start(){
@@ -65,6 +67,16 @@ public class Plant : MonoBehaviour{
                 animator.SetTrigger("Water Sparkle");
             }
         }
+        // make it VERY clear that it's ready to be harvested
+        if(plantStage == 4 && !isDead){
+            Debug.Log("Plant stage is 4");
+            animator2.SetBool("PlantisReady", true);
+        }
+    }
+
+    // used to sparkle on water
+    public void MakeSparkle(){
+        animator.SetTrigger("Water Sparkle");
     }
 
     /*
@@ -87,6 +99,10 @@ public class Plant : MonoBehaviour{
             {
                 Debug.Log("it's dead jim!");
                 spriteRenderer.color = new Color(0, 0, 0);
+                isDead = true;
+                if(plantStage == 4){
+                    animator2.SetBool("PlantisReady", false);
+                }
             } 
             else
             {
@@ -129,6 +145,10 @@ public class Plant : MonoBehaviour{
             else // watered it way too mch
             {
                 spriteRenderer.color = Color.black;
+                isDead = true;
+                if(plantStage == 4){
+                    animator2.SetBool("PlantisReady", false);
+                }
                 return false;
             }
         }
@@ -143,6 +163,10 @@ public class Plant : MonoBehaviour{
         else
         {
             spriteRenderer.color = Color.black;
+            isDead = true;
+            if(plantStage == 4){
+                animator2.SetBool("PlantisReady", false);
+            }
             return false;
         }
     }

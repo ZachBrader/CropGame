@@ -48,6 +48,7 @@ public class Watercan : Item
                     //only call if not null
                     if ((selectedTile as TillableTile).plant != null){
                         (selectedTile as TillableTile).plant.waterPlant(waterPerUse);
+                        (selectedTile as TillableTile).plant.MakeSparkle();
                     }
                 }
                 else

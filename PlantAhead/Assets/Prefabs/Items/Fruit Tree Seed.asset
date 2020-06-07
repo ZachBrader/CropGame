@@ -15,8 +15,8 @@ MonoBehaviour:
   itemName: Plantain Seed
   triggerName: none
   tillableTiles: {fileID: 0}
-  energyCost: 5
-  cost: 5
+  energyCost: 20
+  cost: 15
   icon: {fileID: 2651082895550569169, guid: 755d6eca844c1aa4dbe60ba6330d6282, type: 3}
   plant: {fileID: 7482483227611548611, guid: d35bc3da2deeec54da62651b95ef3690, type: 3}
   seedCount: 1

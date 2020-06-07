@@ -15,7 +15,8 @@ MonoBehaviour:
   itemName: Grape Seed
   triggerName: none
   tillableTiles: {fileID: 0}
-  energyCost: 5
+  energyCost: 10
+  cost: 10
   icon: {fileID: -4243267446078174288, guid: 755d6eca844c1aa4dbe60ba6330d6282, type: 3}
   plant: {fileID: 1641705744094229883, guid: 61baa3bb7713b244bb6b3a5bc555eea9, type: 3}
   seedCount: 1

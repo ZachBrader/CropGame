@@ -38,11 +38,6 @@ PrefabInstance:
       objectReference: {fileID: 1895972971009972998}
     - target: {fileID: 3324291818824633320, guid: 277393091fe3b184c9896e7ef2088ae3,
         type: 3}
-      propertyPath: averagePlantValue
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3324291818824633320, guid: 277393091fe3b184c9896e7ef2088ae3,
-        type: 3}
       propertyPath: PerfectWaterAmount
       value: 5
       objectReference: {fileID: 0}
@@ -65,7 +60,7 @@ PrefabInstance:
     - target: {fileID: 3324291818824633322, guid: 277393091fe3b184c9896e7ef2088ae3,
         type: 3}
       propertyPath: m_Name
-      value: WeirdCabbage 1
+      value: Artichoke
       objectReference: {fileID: 0}
     - target: {fileID: 3324291818824633326, guid: 277393091fe3b184c9896e7ef2088ae3,
         type: 3}

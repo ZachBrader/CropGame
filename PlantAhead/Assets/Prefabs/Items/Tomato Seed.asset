@@ -15,7 +15,8 @@ MonoBehaviour:
   itemName: Tomato Seed
   triggerName: none
   tillableTiles: {fileID: 0}
-  energyCost: 5
+  energyCost: 10
+  cost: 5
   icon: {fileID: -2654346353742193797, guid: 755d6eca844c1aa4dbe60ba6330d6282, type: 3}
   plant: {fileID: 3228334298848688934, guid: c5afe352be261944eaff10f3594492bd, type: 3}
   seedCount: 1

@@ -194,7 +194,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 3324291818824633321}
   plantStage: 0
   waterLevel: 0
-  averagePlantValue: 0
+  averagePlantValue: 14
   isMushroom: 0
   EnergyCost: 0
   SpreadZone: 0

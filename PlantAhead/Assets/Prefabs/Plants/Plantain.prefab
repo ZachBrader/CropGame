@@ -49,7 +49,7 @@ PrefabInstance:
     - target: {fileID: 3324291818824633320, guid: 277393091fe3b184c9896e7ef2088ae3,
         type: 3}
       propertyPath: averagePlantValue
-      value: 3
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3324291818824633321, guid: 277393091fe3b184c9896e7ef2088ae3,
         type: 3}
@@ -70,7 +70,7 @@ PrefabInstance:
     - target: {fileID: 3324291818824633322, guid: 277393091fe3b184c9896e7ef2088ae3,
         type: 3}
       propertyPath: m_Name
-      value: TreeThing 1
+      value: Plantain
       objectReference: {fileID: 0}
     - target: {fileID: 3324291818824633326, guid: 277393091fe3b184c9896e7ef2088ae3,
         type: 3}

@@ -207,14 +207,18 @@ public class Plant : MonoBehaviour{
 
             //ignore first three stages for returning money because it would make plant immortal
             if (plantStage > 2){
-                return (int)Math.Pow(plantStage-2, 1.5 + (averagePlantValue / 10));
+                System.Random rand = new System.Random();
+                return (int)averagePlantValue * plantStage / 4 + rand.Next(-3, 3);
+                //return (int)Math.Pow(plantStage-2, 1.5 + (averagePlantValue / 10));
             }
             else{
                 return 0;
             }
         }
         else{
-            return (int)Math.Pow(plantStage, 1.5 + (averagePlantValue / 10));
+            System.Random rand = new System.Random();
+            return (int)averagePlantValue * plantStage / 4 + rand.Next(-3, 3);
+            // return (int)Math.Pow(plantStage, 1.5 + (averagePlantValue / 10));
         }
         
         return Mathf.RoundToInt(averagePlantValue * plantStage * valueModifier);

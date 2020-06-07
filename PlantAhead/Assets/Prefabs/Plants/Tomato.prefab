@@ -43,13 +43,13 @@ PrefabInstance:
       objectReference: {fileID: 3228334298848688933}
     - target: {fileID: 3324291818824633320, guid: 277393091fe3b184c9896e7ef2088ae3,
         type: 3}
-      propertyPath: averagePlantValue
+      propertyPath: PerfectWaterAmount
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3324291818824633320, guid: 277393091fe3b184c9896e7ef2088ae3,
         type: 3}
-      propertyPath: PerfectWaterAmount
-      value: 4
+      propertyPath: averagePlantValue
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3324291818824633321, guid: 277393091fe3b184c9896e7ef2088ae3,
         type: 3}

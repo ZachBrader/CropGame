@@ -157,7 +157,18 @@ public class InventoryDisplay : MonoBehaviour
             }
 
             waterLevelText.text = refToPlant.PerfectWaterAmount.ToString() + " Waterings";
-            spreadText.text = refToPlant.SpreadZone.ToString();
+            if (refToPlant.spreadRate < 3)
+            {
+                spreadText.text = "Low";
+            }
+            else if (refToPlant.spreadRate < 6)
+            {
+                spreadText.text = "Medium";
+            }
+            else
+            {
+                spreadText.text = "High";
+            }
         }
         else
         {

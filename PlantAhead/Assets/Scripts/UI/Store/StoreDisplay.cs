@@ -142,9 +142,28 @@ public class StoreDisplay : MonoBehaviour
 
             Plant refToPlant = (itemToShow as Seed).plant.GetComponent<Plant>();
             sellText.text = refToPlant.averagePlantValue.ToString();
-            reusableText.text = refToPlant.reusable.ToString();
-            waterLevelText.text = refToPlant.PerfectWaterAmount.ToString();
-            spreadText.text = refToPlant.SpreadZone.ToString();
+            if (refToPlant.reusable)
+            {
+                reusableText.text = "Yes";
+            }
+            else
+            {
+                reusableText.text = "No";
+            }
+
+            waterLevelText.text = refToPlant.PerfectWaterAmount.ToString() + " Waterings";
+            if (refToPlant.spreadRate < 3)
+            {
+                spreadText.text = "Low";
+            }
+            else if (refToPlant.spreadRate < 6)
+            {
+                spreadText.text = "Medium";
+            }
+            else
+            {
+                spreadText.text = "High";
+            }
         }
         else
         {

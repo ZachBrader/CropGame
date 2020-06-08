@@ -69,7 +69,6 @@ public class Plant : MonoBehaviour{
         }
         // make it VERY clear that it's ready to be harvested
         if(plantStage == 4 && !isDead){
-            Debug.Log("Plant stage is 4");
             animator2.SetBool("PlantisReady", true);
         }
     }
@@ -82,9 +81,7 @@ public class Plant : MonoBehaviour{
     /*
      * maximizes water value of plant
      */
-    public void waterPlant(int waterAmount){
-        
-        Debug.Log("Water successful");
+    public void waterPlant(int waterAmount) {
         waterLevel += waterAmount;
         
         var temp = ((waterLevel) / (float) PerfectWaterAmount);
@@ -110,8 +107,6 @@ public class Plant : MonoBehaviour{
                 timeBetweenSparkles = MaxTimeBetweenSparkles;
                 spriteRenderer.color = new Color(0.4518f, 0.5094f, .1033f, 1.0f);
             }
-            
-            
         }
     }
 
@@ -121,11 +116,10 @@ public class Plant : MonoBehaviour{
         spriteRenderer.color = Color.white;
         timeBetweenSparkles = 0f;
         
-        
         if (waterLevel > 1) {
             var waterbonus = PerfectWaterAmount - waterLevel;
             //watered more than once and less than or equal to perfectly
-            if (waterbonus > 0 ){
+            if (waterbonus > 0) {
                 // adjust what the plant is worth
                 valueModifier += (waterbonus / (float) PerfectWaterAmount) * 0.2f;
                 waterLevel = 0;
@@ -175,11 +169,12 @@ public class Plant : MonoBehaviour{
      * destroys the plant if it is not reusable 
      */
     public int harvest(){
-        Debug.Log("Harvest successful");
+        animator2.SetBool("PlantisReady", false);
         if (reusable)
         {
             //harvest reusable too early and it will be destroyed
             if (plantStage > 2) {
+                plantStage = 2;
                 this.spriteRenderer.sprite = stage2;
             }
             else {

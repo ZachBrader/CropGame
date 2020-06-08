@@ -10,7 +10,7 @@ public class Inventory : MonoBehaviour
 
     private Actions player;
     public TMP_Text playerGoldTrackerText;
-
+    public InventoryDisplay inventoryDisplay;
     public int startingGold = 0;
     private int curGold = 0;
 
@@ -20,7 +20,9 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         playerInventory = new List<Item>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Actions>();
+        player = transform.GetComponent<Actions>();
+
+        inventoryDisplay = GameObject.Find("UIOverlay/InventoryDisplay").GetComponent<InventoryDisplay>();
         ReceiveGold(startingGold);
         isReady = true;
     }
@@ -147,6 +149,7 @@ public class Inventory : MonoBehaviour
         if (itemInInventory != null)
         {
             player.EquipItem(itemInInventory);
+            inventoryDisplay.EquipItemNotification(itemToEquip);
         }
         else
         {

@@ -7,9 +7,9 @@ using UnityEngine.EventSystems;
 
 public class InventoryDisplay : MonoBehaviour
 {
-
     public GameObject player;
     private Inventory playerInventory;
+    private Actions playerActions;
 
     private GameObject inventoryDisplayParent;
     private List<Slot> allSlots;
@@ -28,10 +28,16 @@ public class InventoryDisplay : MonoBehaviour
     private TMP_Text waterLevelText;
     private TMP_Text spreadText;
 
+    public GameObject notificationPrefab;
+    public Vector3 initNotificationPosition;
+    private Image equippedIconImage;
+    private TMP_Text equippedText;
+
     // Start is called before the first frame update
     void Start()
     {
         playerInventory = player.GetComponent<Inventory>();
+        playerActions = player.GetComponent<Actions>();
         inventoryDisplayParent = transform.Find("InventoryParent").gameObject;
         allSlots = new List<Slot>();
         curPlayerInv = new List<Item>();
@@ -46,7 +52,11 @@ public class InventoryDisplay : MonoBehaviour
             }
         }
 
-        Transform objParent = inventoryDisplayParent.transform.Find("ItemDescriptor");
+        Transform objParent = inventoryDisplayParent.transform.Find("ItemEquippedBackground");
+        equippedIconImage = objParent.Find("ItemEquippedIcon").GetComponent<Image>();
+        equippedText = objParent.Find("ItemEquippedText").GetComponent<TMP_Text>();
+
+        objParent = inventoryDisplayParent.transform.Find("ItemDescriptor");
         itemDescriptorText = objParent.Find("ItemDescriptorText").GetComponent<TMP_Text>();
         itemIconImage = objParent.Find("ItemIconImage").GetComponent<Image>();
         heldText = objParent.Find("NumberHeld/HeldText").GetComponent<TMP_Text>();
@@ -118,6 +128,12 @@ public class InventoryDisplay : MonoBehaviour
             {
                 allSlots[i].setItem();
             }
+
+            if (playerActions.GetEquippedItem() != null)
+            {
+                equippedIconImage.sprite = playerActions.GetEquippedItem().icon;
+                equippedText.text = playerActions.GetEquippedItem().itemName;
+            }
         }
     }
 
@@ -145,5 +161,36 @@ public class InventoryDisplay : MonoBehaviour
             waterLevelText.text = "---";
             spreadText.text = "---";
         }
+    }
+
+    public void EquipItemNotification(Item itemToEquip)
+    {
+        if (isOpen)
+        {
+            StartCoroutine(Notification(itemToEquip.itemName));
+        }
+    }
+
+    IEnumerator Notification(string buyText)
+    {
+        GameObject notificationBackground = Instantiate(notificationPrefab);
+        notificationBackground.transform.SetParent(inventoryDisplayParent.transform);
+        notificationBackground.transform.localPosition = initNotificationPosition;
+
+        TMP_Text notificationText = notificationBackground.transform.Find("NotificationText").GetComponent<TMP_Text>();
+        notificationText.text = buyText;
+        CanvasRenderer backgroundRender = notificationBackground.GetComponent<CanvasRenderer>();
+        CanvasRenderer textRender = notificationText.GetComponent<CanvasRenderer>();
+
+        while (backgroundRender.GetAlpha() > 0)
+        {
+            backgroundRender.SetAlpha(backgroundRender.GetAlpha() - (float)(Time.deltaTime));
+            textRender.SetAlpha(textRender.GetAlpha() - (float)(Time.deltaTime));
+            notificationBackground.transform.position = new Vector3(notificationBackground.transform.position.x, notificationBackground.transform.position.y - (float)(Time.deltaTime) * 100, notificationBackground.transform.position.z);
+            yield return null;
+        }
+        Destroy(notificationText);
+        Destroy(notificationBackground);
+        yield return null;
     }
 }

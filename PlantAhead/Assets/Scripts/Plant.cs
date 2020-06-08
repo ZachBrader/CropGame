@@ -65,7 +65,15 @@ public class Plant : MonoBehaviour{
             if(lastSparkle > timeBetweenSparkles)
             {
                 lastSparkle = timeBetweenSparkles - lastSparkle;
-                animator.SetTrigger("Water Sparkle");
+                if(waterLevel == PerfectWaterAmount)
+                {
+                    animator.SetTrigger("Water Perfect");
+                }
+                
+                else
+                {
+                    animator.SetTrigger("Water Sparkle");
+                }
             }
         }
         // make it VERY clear that it's ready to be harvested

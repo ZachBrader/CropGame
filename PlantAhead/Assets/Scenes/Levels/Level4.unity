@@ -1065,7 +1065,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerGoldTrackerText: {fileID: 2115817936}
   inventoryDisplay: {fileID: 0}
-  startingGold: 50
+  startingGold: 250
   maxItems: 28
 --- !u!1 &1245741157
 GameObject:
@@ -2143,6 +2143,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6264548689858466519, guid: c58b221bab4a4dd48a20be881c847c8c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6834153018432012066, guid: c58b221bab4a4dd48a20be881c847c8c,
         type: 3}

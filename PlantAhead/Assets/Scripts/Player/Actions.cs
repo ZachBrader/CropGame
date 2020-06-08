@@ -241,12 +241,13 @@ public class Actions : MonoBehaviour
                 StartCoroutine(StopPlayerMovement(0.3333f));
                 currentEnergy -= energyCost;
                 setEnergyBar();
+                source.PlayOneShot(hoSound);
         }
         else
         {
             UIManager.Instance.SendNotification("Cannot Use Hoe Here!");
         }
-        source.PlayOneShot(hoSound);
+        
     }
 
     #region Equip Item Functions

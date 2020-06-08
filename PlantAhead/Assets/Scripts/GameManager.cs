@@ -56,9 +56,15 @@ public class GameManager : MonoBehaviour
     public TileSpriteManager tileManager;
     public List<TillableTile> DirtTileList = new List<TillableTile>();
 
+    public AudioClip gameWonSound;
+    public AudioClip gameLostSound;
+
+    public AudioSource audioSource;
+
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
+
+        audioSource = GetComponent<AudioSource>();
         curDay = 1;
         TileSpriteManager.Instance = tileManager;
 
@@ -565,12 +571,15 @@ public class GameManager : MonoBehaviour
         endGameMenu.setGoldText(playerInventory.GetGold() + " / " + playerGoldGoal);
         if (HasPlayerWon())
         {
+
+            audioSource.PlayOneShot(gameWonSound);
             endGameMenu.setVictoryText("Victory!");
             endGameMenu.ActivateObject(endGameMenu.nextLevelButton);
             Debug.Log("Player has won!");
         }
         else
         {
+            audioSource.PlayOneShot(gameLostSound);
             endGameMenu.setVictoryText("Level Failed!");
             endGameMenu.DeactivateObject(endGameMenu.nextLevelButton);
             Debug.Log("Player has lost");

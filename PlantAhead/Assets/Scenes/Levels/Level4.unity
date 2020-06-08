@@ -1064,6 +1064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerGoldTrackerText: {fileID: 2115817936}
+  inventoryDisplay: {fileID: 0}
   startingGold: 50
   maxItems: 28
 --- !u!1 &1245741157
@@ -1115,6 +1116,9 @@ MonoBehaviour:
   - WaterAmountMax: 9999
     WaterAmount: 9999
   tileManager: {fileID: 11400000, guid: fc7b59896a3dd2a43862a2fbf2533523, type: 2}
+  gameWonSound: {fileID: 8300000, guid: 636238a7cd322094ba68d2346898867a, type: 3}
+  gameLostSound: {fileID: 8300000, guid: 2c9d033a865ce054a92ba008d1d4cbbb, type: 3}
+  audioSource: {fileID: 0}
 --- !u!82 &1245741159
 AudioSource:
   m_ObjectHideFlags: 0

@@ -306,24 +306,27 @@ public class GameManager : MonoBehaviour
                         else // not a mushroom
                         {
                             //grow current plant and if it has too much water expand it
-                            if ((thisTile as TillableTile).plant.plantStageUpdate())
+                            if ((thisTile as TillableTile).plant.GetDayCreated() < curDay)
                             {
-
-                                //get all neighbors of current plant
-                                List<TillableTile> neighbors = checkNeighborhood(x, y);
-
-                                //generate a random number that will be the one that is expanded to
-                                GameObject currentplant = (thisTile as TillableTile).plant.myPrefab;
-                                Plant plantRef = currentplant.GetComponent<Plant>();
-                                for (int i = 0; i < neighbors.Count; i++)
+                                if ((thisTile as TillableTile).plant.plantStageUpdate())
                                 {
-                                    //expand and then update current plant
-                                    if (Random.Range(0, 10) < plantRef.spreadRate)
-                                    {
-                                        SpreadPlants(currentplant, neighbors[i]);
-                                    }
-                                }
 
+                                    //get all neighbors of current plant
+                                    List<TillableTile> neighbors = checkNeighborhood(x, y);
+
+                                    //generate a random number that will be the one that is expanded to
+                                    GameObject currentplant = (thisTile as TillableTile).plant.myPrefab;
+                                    Plant plantRef = currentplant.GetComponent<Plant>();
+                                    for (int i = 0; i < neighbors.Count; i++)
+                                    {
+                                        //expand and then update current plant
+                                        if (Random.Range(0, 10) < plantRef.spreadRate)
+                                        {
+                                            SpreadPlants(currentplant, neighbors[i]);
+                                        }
+                                    }
+
+                                }
                             }
 
                         }
@@ -465,6 +468,7 @@ public class GameManager : MonoBehaviour
             tile.plant = newPlant.GetComponent<Plant>();
             tile.plant.myPrefab = plant;
             tile.plant.resetPlant();
+            tile.plant.SetDayCreated(curDay);
             (tile as TillableTile).UnHoe();
         }
     }

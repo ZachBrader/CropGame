@@ -45,6 +45,7 @@ public class Plant : MonoBehaviour{
 
     private bool isDead = false;
     public int spreadRate;
+    private int dayCreated = -1;
 
     
     // Start is called before the first frame update
@@ -246,5 +247,15 @@ public class Plant : MonoBehaviour{
     public bool getIsDeadStatus()
     {
         return isDead;
+    }
+
+    public int GetDayCreated()
+    {
+        return dayCreated;
+    }
+
+    public void SetDayCreated(int dayMade)
+    {
+        dayCreated = dayMade;
     }
 }

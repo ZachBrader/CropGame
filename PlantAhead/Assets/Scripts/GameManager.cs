@@ -313,19 +313,17 @@ public class GameManager : MonoBehaviour
                                 List<TillableTile> neighbors = checkNeighborhood(x, y);
 
                                 //generate a random number that will be the one that is expanded to
-                                int expandingTo = Random.Range(0, neighbors.Count);
-
-                                //expand and then update current plant
                                 GameObject currentplant = (thisTile as TillableTile).plant.myPrefab;
+                                Plant plantRef = currentplant.GetComponent<Plant>();
+                                for (int i = 0; i < neighbors.Count; i++)
+                                {
+                                    //expand and then update current plant
+                                    if (Random.Range(0, 10) < plantRef.spreadRate)
+                                    {
+                                        SpreadPlants(currentplant, neighbors[i]);
+                                    }
+                                }
 
-                                SpreadPlants(currentplant, neighbors[expandingTo]);
-
-                            }
-                            else
-                            {
-                                Debug.Log("Removing plant");
-                                //(thisTile as TillableTile).plant = null;
-                                //(thisTile as TillableTile).beenHoed = false;
                             }
 
                         }
@@ -534,9 +532,9 @@ public class GameManager : MonoBehaviour
         int upperbound = (my_y + squaresAway < myMap.m_Height ? my_y + squaresAway : myMap.m_Height);
         int lowerbound = (my_y - squaresAway >= 0 ? my_y - squaresAway : 0);
 
-        for (int x = leftbound; x < rightbound; x++)
+        for (int x = leftbound; x <= rightbound; x++)
         {
-            for(int y = lowerbound; y < upperbound; y++)
+            for(int y = lowerbound; y <= upperbound; y++)
             {
                 if(tileGrid[x, y] is TillableTile && tileGrid[x,y] != null)
                 {

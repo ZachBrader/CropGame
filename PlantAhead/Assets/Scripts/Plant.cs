@@ -44,6 +44,7 @@ public class Plant : MonoBehaviour{
     public int PerfectWaterAmount;
 
     private bool isDead = false;
+    public int spreadRate;
 
     
     // Start is called before the first frame update
@@ -94,12 +95,8 @@ public class Plant : MonoBehaviour{
         {   
             if(temp >= 2) // it's dead jim
             {
-                Debug.Log("it's dead jim!");
-                spriteRenderer.color = new Color(0, 0, 0);
-                isDead = true;
-                if(plantStage == 4){
-                    animator2.SetBool("PlantisReady", false);
-                }
+                Debug.Log("Plant killed while watering!");
+                KillPlant();
             } 
             else
             {
@@ -138,11 +135,7 @@ public class Plant : MonoBehaviour{
             }
             else // watered it way too mch
             {
-                spriteRenderer.color = Color.black;
-                isDead = true;
-                if(plantStage == 4){
-                    animator2.SetBool("PlantisReady", false);
-                }
+                KillPlant();
                 return false;
             }
         }
@@ -156,11 +149,7 @@ public class Plant : MonoBehaviour{
         }
         else
         {
-            spriteRenderer.color = Color.black;
-            isDead = true;
-            if(plantStage == 4){
-                animator2.SetBool("PlantisReady", false);
-            }
+            KillPlant();
             return false;
         }
     }
@@ -236,6 +225,13 @@ public class Plant : MonoBehaviour{
         if (plantStage == 4){
             this.spriteRenderer.sprite = stage4;
         }
+    }
+
+    private void KillPlant()
+    {
+        animator2.SetBool("PlantisReady", false);
+        spriteRenderer.color = Color.black;
+        isDead = true;
     }
 
     public void resetPlant(){

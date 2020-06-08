@@ -147,8 +147,16 @@ public class InventoryDisplay : MonoBehaviour
 
             Plant refToPlant = (itemToShow as Seed).plant.GetComponent<Plant>();
             sellText.text = refToPlant.averagePlantValue.ToString();
-            reusableText.text = refToPlant.reusable.ToString();
-            waterLevelText.text = refToPlant.PerfectWaterAmount.ToString();
+            if (refToPlant.reusable)
+            {
+                reusableText.text = "Yes";
+            }
+            else
+            {
+                reusableText.text = "No";
+            }
+
+            waterLevelText.text = refToPlant.PerfectWaterAmount.ToString() + " Waterings";
             spreadText.text = refToPlant.SpreadZone.ToString();
         }
         else

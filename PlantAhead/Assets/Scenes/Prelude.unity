@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 50
   m_Viewport: {fileID: 0}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 1469983442}
@@ -414,7 +414,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 34.724392, y: 0}
   m_SizeDelta: {x: 69.448784, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1323658728
@@ -431,7 +431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delay: 0.05
   fullText: 
-  scrollRect: {fileID: 495356133}
+  scroll: {fileID: 1469983442}
   realIntro: 1
   SceneIndex: 2
 --- !u!114 &1323658729
@@ -453,27 +453,67 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '1
+  m_text: 'Hello New Farmer!
 
-    2
 
-    3
+    We are hoping you can prove your farm is worth
+    running. To do that we want you to meet some production expectations.
 
-    4
 
-    5
+    Plant
+    and harvest crops and if you can meet our expectations, you will acquire new
+    and better farm plots.
 
-    6
 
-    7
+    To add some challenge for you, we are going to restrict
+    the amount of energy you can expend per day, that will reset when you sleep.
+    Planting and harvesting will decrease this energy, if you run out of energy something
+    bad will happen.
 
-    8
 
-    9
+    To move around your farm use WASD as controls.
 
-    10
 
-    11'
+    You
+    can access the menu, your inventory, teh store, and your goal list via the buttons
+    on the left of the screen, once on your farm. You can also access these menus
+    via 1-4 respectively.
+
+
+    When you go into the store you can purchase plants,
+    and then to plant them you must go into your inventory to equip them.
+
+
+    The
+    dirt chunks across the map are where you can plant. To plant you must press R
+    on the location to til the land, at which point you plant the equipped plant
+    by pressing Space.
+
+
+    After being planted your plants will need to be watered
+    by pressing F. This also doubles as the key to press when you want to refill
+    your watercan at a water source. You can keep track of how much water you have
+    in the bottom right corner of the screen.
+
+
+    Your plants will sparkle to let
+    you know they have been watered, and darken when they are dying.
+
+
+    To harvest
+    your plants press G. If they aren''t fully ready you may not get as much money
+    in return.
+
+
+    When you want to end your day go into your house and press Q,
+    while you sleep your plants will grow.
+
+
+    Good luck!
+
+    Press space to begin.
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -517,7 +557,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
+  m_overflowMode: 4
   m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
@@ -532,22 +572,22 @@ MonoBehaviour:
   m_ignoreRectMaskCulling: 0
   m_ignoreCulling: 1
   m_horizontalMapping: 0
-  m_verticalMapping: 0
+  m_verticalMapping: 3
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
   m_VertexBufferAutoSizeReduction: 1
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 5.9023094, y: 30.904968, z: -647.2595, w: 641.172}
+  m_margin: {x: 5.9023094, y: 0.86431885, z: -647.2595, w: 3.7515259}
   m_textInfo:
     textComponent: {fileID: 1323658729}
-    characterCount: 23
+    characterCount: 1608
     spriteCount: 0
-    spaceCount: 10
-    wordCount: 11
+    spaceCount: 317
+    wordCount: 305
     linkCount: 0
-    lineCount: 11
+    lineCount: 56
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -821,8 +861,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1203904264}
   m_HandleRect: {fileID: 1203904263}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.42767128
+  m_Value: 0.36910883
+  m_Size: 0.20747027
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

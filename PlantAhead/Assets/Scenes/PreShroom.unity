@@ -250,7 +250,9 @@ MonoBehaviour:
   delay: 0.05
   fullText: Mushrooms have begun to invade your farm. They are expanding at an aggressive
     rate. Harvest them to stop there growth or they will take over everything.
-  SceneIndex: 5
+  scroll: {fileID: 0}
+  realIntro: 0
+  SceneIndex: 6
 --- !u!114 &1323658729
 MonoBehaviour:
   m_ObjectHideFlags: 0

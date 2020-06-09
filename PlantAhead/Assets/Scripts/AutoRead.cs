@@ -13,7 +13,7 @@ public class AutoRead : MonoBehaviour{
 
     private string currentText;
     
-    public ScrollRect scrollRect;
+    public Scrollbar scroll;
 
     public bool realIntro;
     
@@ -45,7 +45,8 @@ public class AutoRead : MonoBehaviour{
     // Start is called before the first frame update
     void Start(){
         if (realIntro){
-            StartCoroutine(Intro());
+            //StartCoroutine(Intro());
+            scroll.value = 2f;
         }
         else{
             StartCoroutine(ShowText());

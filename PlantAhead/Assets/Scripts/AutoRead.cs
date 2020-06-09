@@ -69,6 +69,7 @@ public class AutoRead : MonoBehaviour{
         for (int i = 0; i <= tempText.Length; i++){
             currentText = tempText.Substring(0, i);
             this.GetComponent<TMP_Text>().text = currentText;
+            //scroll.value = 2f;
             yield return new WaitForSeconds(delay);
         }
     }

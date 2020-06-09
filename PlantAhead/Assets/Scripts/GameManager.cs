@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     private InGameMenu inGameMenu;
     private InGameMenu TasksBoard;
 
+
+    private TMP_Text playerGoldTrackerText;
     private Image panel;
     private TMP_Text dayTrackerText;
 
@@ -83,6 +85,7 @@ public class GameManager : MonoBehaviour
         storeDisplay = UI.transform.Find("StoreDisplay").GetComponent<StoreDisplay>();
         playerUI = UI.transform.Find("PlayerUI").gameObject;
 
+        playerGoldTrackerText = UI.transform.Find("PlayerUI/GoldIcon/PlayerGoldTrackerText").GetComponent<TMP_Text>();
         panel = UI.transform.Find("Panel").GetComponent<Image>();
         panel.color = new Color(0, 0, 0, 0);
         panel.gameObject.SetActive(false);
@@ -136,6 +139,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (playerGoldTrackerText != null)
+        {
+            playerGoldTrackerText.text = playerInventory.GetGold().ToString();
+        }
     }
 
     public void OpenMenu(string menuName)

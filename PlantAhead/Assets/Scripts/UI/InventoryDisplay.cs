@@ -66,8 +66,10 @@ public class InventoryDisplay : MonoBehaviour
         spreadText = objParent.Find("SpreadRate/SpreadText").GetComponent<TMP_Text>();
 
 
-        isOpen = inventoryDisplayParent.activeSelf;
+        isOpen = false;
+        inventoryDisplayParent.SetActive(true);
         checkInventoryAndUpdateVisuals();
+        inventoryDisplayParent.SetActive(false);
     }
 
     // Update is called once per frame

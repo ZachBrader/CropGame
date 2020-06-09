@@ -9,7 +9,6 @@ public class Inventory : MonoBehaviour
     bool isReady = false;
 
     private Actions player;
-    public TMP_Text playerGoldTrackerText;
     public InventoryDisplay inventoryDisplay;
     public int startingGold = 0;
     private int curGold = 0;
@@ -47,7 +46,6 @@ public class Inventory : MonoBehaviour
     public int SpendGold(int goldToSpend)
     {
         curGold -= goldToSpend;
-        playerGoldTrackerText.text = curGold.ToString();
         return curGold;
     }
 
@@ -56,7 +54,6 @@ public class Inventory : MonoBehaviour
         curGold += goldReceived;
 
         UIManager.Instance.SendNotification("Player Received " + goldReceived + " gold!");
-        playerGoldTrackerText.text = curGold.ToString();
         return curGold;
     }
 

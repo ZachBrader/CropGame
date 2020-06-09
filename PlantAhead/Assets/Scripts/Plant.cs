@@ -68,11 +68,12 @@ public class Plant : MonoBehaviour{
                 lastSparkle = timeBetweenSparkles - lastSparkle;
                 if(waterLevel == PerfectWaterAmount)
                 {
-                    animator.SetTrigger("Water Perfect");
+                    animator.SetBool("Water Perfect 0", true);
                 }
                 
                 else
                 {
+                    animator.SetBool("Water Perfect 0", false);
                     animator.SetTrigger("Water Sparkle");
                 }
             }
@@ -85,7 +86,13 @@ public class Plant : MonoBehaviour{
 
     // used to sparkle on water
     public void MakeSparkle(){
-        animator.SetTrigger("Water Sparkle");
+        if(waterLevel == PerfectWaterAmount){
+            animator.SetBool("Water Perfect 0", true);
+        }
+        else{
+            animator.SetBool("Water Perfect 0", false);
+            animator.SetTrigger("Water Sparkle");
+        }
     }
 
     /*
@@ -144,6 +151,7 @@ public class Plant : MonoBehaviour{
             }
             else // watered it way too mch
             {
+                animator.SetBool("Water Perfect 0", false);
                 KillPlant();
                 return false;
             }
@@ -159,6 +167,7 @@ public class Plant : MonoBehaviour{
         else
         {
             KillPlant();
+            animator.SetBool("Water Perfect 0", false);
             return false;
         }
     }

@@ -24,6 +24,7 @@ public class Inventory : MonoBehaviour
         inventoryDisplay = GameObject.Find("UIOverlay/InventoryDisplay").GetComponent<InventoryDisplay>();
         ReceiveGold(startingGold);
         isReady = true;
+        Debug.Log("start finished");
     }
 
     // Update is called once per frame

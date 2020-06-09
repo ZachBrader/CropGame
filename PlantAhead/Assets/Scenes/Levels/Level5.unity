@@ -462,7 +462,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df1a93990e9e67c43bf1a7f9e27da302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerGoldTrackerText: {fileID: 786500598}
   inventoryDisplay: {fileID: 0}
   startingGold: 50
   maxItems: 28
@@ -1290,18 +1289,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 786500594}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &786500598 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2428022946743385570, guid: c58b221bab4a4dd48a20be881c847c8c,
-    type: 3}
-  m_PrefabInstance: {fileID: 786500594}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &786500599 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2428022944710412837, guid: c58b221bab4a4dd48a20be881c847c8c,

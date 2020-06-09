@@ -26,7 +26,7 @@ public class AutoRead : MonoBehaviour{
     IEnumerator ShowText(){
         for (int i = 0; i < fullText.Length; i++){
             currentText = fullText.Substring(0, i);
-            this.GetComponent<TextMeshPro>().text = currentText;
+            this.GetComponent<TMP_Text>().text = currentText;
             yield return new WaitForSeconds(delay);
         }
     }

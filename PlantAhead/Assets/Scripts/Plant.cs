@@ -58,6 +58,14 @@ public class Plant : MonoBehaviour{
     }
 
     // Update is called once per frame
+    void FixedUpdate()
+    {
+        if(animator.GetBool("Water Perfect 0") && waterLevel != PerfectWaterAmount)
+        {
+            animator.SetBool("Water Perfect 0", false);
+        }
+    }
+
     void Update(){
         
         if (waterLevel > 0 && waterLevel < 2 * PerfectWaterAmount) 
@@ -151,7 +159,6 @@ public class Plant : MonoBehaviour{
             }
             else // watered it way too mch
             {
-                animator.SetBool("Water Perfect 0", false);
                 KillPlant();
                 return false;
             }
@@ -167,7 +174,6 @@ public class Plant : MonoBehaviour{
         else
         {
             KillPlant();
-            animator.SetBool("Water Perfect 0", false);
             return false;
         }
     }

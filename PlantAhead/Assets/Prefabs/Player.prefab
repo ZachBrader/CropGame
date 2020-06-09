@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5794718071514118737}
   - component: {fileID: 5871655690175268699}
   - component: {fileID: 8433661959471380811}
+  - component: {fileID: 3662992834211023749}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -283,3 +284,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3662992834211023749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5794718071514119085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df1a93990e9e67c43bf1a7f9e27da302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryDisplay: {fileID: 0}
+  startingGold: 50
+  maxItems: 28

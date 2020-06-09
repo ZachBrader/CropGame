@@ -317,13 +317,18 @@ public class Actions : MonoBehaviour
         {
             if ((tillableTile as TillableTile).plant != null)
             {
-                if ((tillableTile as TillableTile).plant.waterLevel < 1)
+                
+                if ((tillableTile as TillableTile).plant.getIsDeadStatus())
                 {
-                    guideText.text = "Press F to water plant";
+                    guideText.text = "Press G to remove dead plant";
                 }
                 else if ((tillableTile as TillableTile).plant.GetPlantStage() > 3)
                 {
                     guideText.text = "Press G to harvest plant";
+                }
+                else if ((tillableTile as TillableTile).plant.waterLevel < 1)
+                {
+                    guideText.text = "Press F to water plant";
                 }
                 else
                 {

@@ -1695,7 +1695,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerInventory
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1684801894}
     - target: {fileID: 7465886709723437826, guid: 012b29328f883ed4d98af995004be349,
         type: 3}
       propertyPath: stockSeed

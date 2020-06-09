@@ -475,7 +475,7 @@ MonoBehaviour:
 
 
     You
-    can access the menu, your inventory, teh store, and your goal list via the buttons
+    can access the menu, your inventory, the store, and your goal list via the buttons
     on the left of the screen, once on your farm. You can also access these menus
     via 1-4 respectively.
 
@@ -485,7 +485,7 @@ MonoBehaviour:
 
 
     The
-    dirt chunks across the map are where you can plant. To plant you must press R
+    dirt plots  across the map are where you can plant. To plant you must press R
     on the location to til the land, at which point you plant the equipped plant
     by pressing Space.
 
@@ -493,7 +493,7 @@ MonoBehaviour:
     After being planted your plants will need to be watered
     by pressing F. This also doubles as the key to press when you want to refill
     your watercan at a water source. You can keep track of how much water you have
-    in the bottom right corner of the screen.
+    in the bottom left corner of the screen.
 
 
     Your plants will sparkle to let
@@ -502,14 +502,15 @@ MonoBehaviour:
 
     To harvest
     your plants press G. If they aren''t fully ready you may not get as much money
-    in return.
+    in return. Even dead plants must be harvested.
 
 
-    When you want to end your day go into your house and press Q,
-    while you sleep your plants will grow.
+    When you want to end your
+    day go into your house and press Q, while you sleep your plants will grow.
 
 
-    Good luck!
+    Good
+    luck!
 
     Press space to begin.
 
@@ -582,12 +583,12 @@ MonoBehaviour:
   m_margin: {x: 5.9023094, y: 0.86431885, z: -647.2595, w: 3.7515259}
   m_textInfo:
     textComponent: {fileID: 1323658729}
-    characterCount: 1608
+    characterCount: 1643
     spriteCount: 0
-    spaceCount: 317
-    wordCount: 305
+    spaceCount: 324
+    wordCount: 311
     linkCount: 0
-    lineCount: 56
+    lineCount: 57
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -861,8 +862,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1203904264}
   m_HandleRect: {fileID: 1203904263}
   m_Direction: 2
-  m_Value: 0.36910883
-  m_Size: 0.20747027
+  m_Value: 1
+  m_Size: 0.2038363
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

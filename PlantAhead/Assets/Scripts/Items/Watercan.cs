@@ -58,6 +58,7 @@ public class Watercan : Item
                 else
                 {
                     UIManager.Instance.SendNotification("Watering Can is Empty!");
+                    UIManager.Instance.DisplayRedX();
                     return 0;
                     // notify player watering can out of water
                 }

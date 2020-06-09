@@ -59,6 +59,17 @@ public class UIManager : MonoBehaviour
         ActionStatus.text = "";
     }
 
+    public void DisplayRedX(float time = 1f)
+    {
+        StartCoroutine(displayRedXAction(time));
+    }
+    private IEnumerator displayRedXAction(float time = 1f)
+    {
+        badActionIcon.SetActive(true);
+        yield return new WaitForSeconds(time);
+        badActionIcon.SetActive(false);
+    }
+
     public void SendNotification(string message)
     {
         StartCoroutine(Notification(message, new Vector3(100, 100, 0)));

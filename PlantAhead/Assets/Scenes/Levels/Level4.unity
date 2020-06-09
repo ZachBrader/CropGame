@@ -1063,7 +1063,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df1a93990e9e67c43bf1a7f9e27da302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerGoldTrackerText: {fileID: 2115817936}
   inventoryDisplay: {fileID: 0}
   startingGold: 50
   maxItems: 28
@@ -1341,7 +1340,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1362844117}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.522879, y: -6.9733996, z: -10}
+  m_LocalPosition: {x: 8.337545, y: -6.9692516, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1641,7 +1640,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 490821995
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 94b92601b335a0e4b9dfbe38aaa33cee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2270,18 +2269,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2115817932}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2115817936 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2428022946743385570, guid: c58b221bab4a4dd48a20be881c847c8c,
-    type: 3}
-  m_PrefabInstance: {fileID: 2115817932}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2115817937 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2428022944710412837, guid: c58b221bab4a4dd48a20be881c847c8c,

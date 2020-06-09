@@ -17,6 +17,8 @@ public class Hoe : Item
                     (selectedTile as TillableTile).Hoe();
                     return energyCost;
                 }
+                UIManager.Instance.SendNotification("Can't hoe here!");
+                UIManager.Instance.DisplayRedX();
             }
         }
         return 0;

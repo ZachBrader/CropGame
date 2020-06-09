@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
     public Sprite HeartL;
     public TMP_Text ActionStatus;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Debug.Log("Pls work");
         Instance = this;

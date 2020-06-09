@@ -134,7 +134,7 @@ public class Plant : MonoBehaviour{
                 return true;
             }
             // watered it a little too much
-            else if (waterbonus + PerfectWaterAmount > 1) 
+            else if ((waterbonus + PerfectWaterAmount > 1) || (waterbonus == -1)) 
             {
                 valueModifier += ((waterbonus + PerfectWaterAmount) / (float) PerfectWaterAmount) * 0.1f;
                 waterLevel = 0;
@@ -171,7 +171,7 @@ public class Plant : MonoBehaviour{
         if (reusable)
         {
             //harvest reusable too early and it will be destroyed
-            if (plantStage > 2) {
+            if (plantStage > 2 && !isDead) {
                 plantStage = 2;
                 this.spriteRenderer.sprite = stage2;
             }

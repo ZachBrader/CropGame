@@ -601,12 +601,12 @@ PrefabInstance:
     - target: {fileID: 2614238915082533281, guid: 1ef6161f07bed84498d3f4e3d7d3273f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.07
+      value: 1.34
       objectReference: {fileID: 0}
     - target: {fileID: 2614238915082533281, guid: 1ef6161f07bed84498d3f4e3d7d3273f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -21.39
+      value: -21.07
       objectReference: {fileID: 0}
     - target: {fileID: 2614238915082533281, guid: 1ef6161f07bed84498d3f4e3d7d3273f,
         type: 3}
@@ -797,12 +797,12 @@ PrefabInstance:
     - target: {fileID: 5794718071514119086, guid: 719902d9423145a419fcfff3254d526a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.37
+      value: 6.14
       objectReference: {fileID: 0}
     - target: {fileID: 5794718071514119086, guid: 719902d9423145a419fcfff3254d526a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -22.18
+      value: -21.82
       objectReference: {fileID: 0}
     - target: {fileID: 5794718071514119086, guid: 719902d9423145a419fcfff3254d526a,
         type: 3}
@@ -910,7 +910,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df1a93990e9e67c43bf1a7f9e27da302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerGoldTrackerText: {fileID: 1610275652}
   inventoryDisplay: {fileID: 0}
   startingGold: 50
   maxItems: 28
@@ -1787,18 +1786,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1610275648}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1610275652 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2428022946743385570, guid: c58b221bab4a4dd48a20be881c847c8c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1610275648}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1610275653 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2428022944710412837, guid: c58b221bab4a4dd48a20be881c847c8c,
@@ -2121,7 +2108,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1902989891}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.37, y: -22.18, z: -10}
+  m_LocalPosition: {x: 6.14, y: -21.82, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2136386652}
